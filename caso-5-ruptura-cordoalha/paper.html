@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #5</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover"><div class="cover-badge">Café com a Bá</div><div class="cover-series">Base Anestesia Veterinária</div><h1 class="cover-title">Ruptura de Cordoalha —<br><span>Anestesiar o Cardiopata Terminal</span></h1><p class="cover-subtitle">Um caso agendado que cai na sua mão. Como pensar o posicionamento antes da seringa e o pós-operatório — que é onde mora o risco.</p><div class="cover-meta"><div class="cover-meta-item">Tempo de leitura<strong>10 a 12 min</strong></div><div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div><div class="cover-meta-item">Série<strong>Café com a Bá · Caso #5</strong></div></div></div><div class="body-wrap"><div class="index-block"><h2>Índice</h2><div class="index-grid"><div class="index-item"><a href="#o-problema-central-o-caso-terminal-que-c">O Problema Central: o caso terminal que cai agendado</a><span class="index-num">01</span></div><div class="index-item"><a href="#posicionamento-quem-libera-e-o-anestesis">Posicionamento: quem libera é o anestesista</a><span class="index-num">02</span></div><div class="index-item"><a href="#a-conversa-dificil-voce-pode-estar-adian">A conversa difícil: você pode estar adiantando o óbito</a><span class="index-num">03</span></div><div class="index-item"><a href="#nao-ajuste-o-tratamento-so-pra-anestesia">Não ajuste o tratamento só pra anestesiar</a><span class="index-num">04</span></div><div class="index-item"><a href="#por-que-ele-descompensa-justo-na-anestes">Por que ele descompensa justo na anestesia</a><span class="index-num">05</span></div><div class="index-item"><a href="#mpa-morfina-acepromazina-bem-baixinha">MPA: morfina + acepromazina bem baixinha</a><span class="index-num">06</span></div><div class="index-item"><a href="#inducao-ketamina-lidocaina-propofol-dose">Indução: ketamina + lidocaína + propofol dose-efeito</a><span class="index-num">07</span></div><div class="index-item"><a href="#preoxigenacao-sem-estressar">Pré-oxigenação sem estressar</a><span class="index-num">08</span></div><div class="index-item"><a href="#a-alternativa-do-etomidato">A alternativa do etomidato</a><span class="index-num">09</span></div><div class="index-item"><a href="#acepromazina-e-o-refluxo-mitral">Acepromazina e o refluxo mitral</a><span class="index-num">10</span></div><div class="index-item"><a href="#bloqueio-primeiro-fentanil-como-resgate">Bloqueio primeiro, fentanil como resgate</a><span class="index-num">11</span></div><div class="index-item"><a href="#furosemida-preventiva-e-debito-urinario">Furosemida preventiva e débito urinário</a><span class="index-num">12</span></div><div class="index-item"><a href="#posoperatorio-e-expectativa-realista">Pós-operatório e expectativa realista</a><span class="index-num">13</span></div></div></div><div id="o-problema-central-o-caso-terminal-que-c" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Problema Central: o caso terminal que cai agendado</h2><div class="callout callout-blue"><strong>Contexto do Paper</strong> Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.</div><p>Diferente da rotina de plantão e emergência — onde o paciente chega, consulta e vai pra cirurgia no mesmo dia, sem tempo de sentar na véspera e pensar protocolo —, este é um caso em que, <strong>excepcionalmente, eu já tinha as informações</strong>. Foi agendado: uma <strong>limpeza de dente (odonto)</strong> de uma <strong>poodle de 17 anos</strong>, de uma senhorinha.</p><p>A paciente fez avaliação cardiológica completa: <strong>eletro</strong> e <strong>eco</strong>. O laudo veio com <strong>ruptura de cordoalha tendínea</strong>, dentro de uma <strong>endocardiose de mitral em estágio final (terminal)</strong>. Ou seja: você tem o exame, e o exame te diz que é um cachorrinho com <strong>pouco tempo de vida</strong>, em tratamento apenas <strong>paliativo</strong>.</p><p>E aí você cai naquela <strong>sinuca de bico</strong>: o tutor quer limpar a boca (muitas vezes convencido pelo próprio veterinário de que precisa), o veterinário quer o serviço dele, e ele vira pra você e fala "te vira, você pediu exame, eu te dei o exame, agora faz aí, eu preciso anestesiar".</p><div class="callout callout-blue"><strong>O recado do paper</strong> Este Café com a Bá é sobre <b>como pensar</b> um cardiopata terminal que chega agendado pra um procedimento eletivo. A questão central não é só o protocolo — é o <b>posicionamento antes da seringa</b> e o <b>pós-operatório</b>, que é onde mora o risco.</div></div><div id="posicionamento-quem-libera-e-o-anestesis" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Posicionamento: quem libera é o anestesista</h2><p>A gente tem que se posicionar nesses casos. No começo, muitos de vocês não vão conseguir — eu sei. Mas o procedimento certo é <strong>pedir pra conversar com o tutor</strong> sobre os riscos. Neste caso específico eu não pude: era um veterinário de <strong>lábia muito boa</strong>, que não deixava eu chegar no tutor. Ele, por outro lado, assumia: <strong>se desse ruim, ele assumia.</strong></p><p>Mesmo assim, se der ruim, eu faço questão de falar com o tutor depois. O mínimo é a gente pelo menos <strong>desconfiar do que aconteceu</strong> — o problema de verdade é quando você não tem ideia nenhuma.</p><p>Quando <strong>não dá pra falar com o tutor</strong>, o jeito é fazer o veterinário entender o peso da coisa. Pergunte de volta pra ele, sem medo: <strong>precisa mesmo anestesiar? Parou de comer?</strong> Porque se parou de comer, é urgência, não tem o que discutir. Se está comendo, a conversa muda.</p><div class="callout callout-essential"><strong>Vamos correr o risco juntos</strong> A minha frase pro tutor (quando consigo falar) costuma ser: <b>"vamos correr o risco juntos?"</b>. Já deu certo. Mas o "tudo certo" aqui é sempre <b>de curto prazo</b> — esse paciente tem pouco tempo de vida de qualquer forma. Quem libera o paciente pro procedimento é o <b>anestesista</b>. Se der ruim, o rojão é seu.</div></div><div id="a-conversa-dificil-voce-pode-estar-adian" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A conversa difícil: você pode estar adiantando o óbito</h2><p>Um paciente com <strong>ruptura de cordoalha</strong> já está com tudo esgarçado ali dentro. A gente precisa ter consciência disso e saber falar sobre isso <strong>de forma firme</strong>.</p><p>O que eu falo pro veterinário, na lata: "olha, esse paciente tem mais ou menos <strong>um mês de vida</strong>, você tá ligado, né? E a anestesia pode <strong>adiantar isso aí uns 15 dias</strong> — só por submeter ele a esse estresse". Quando você chega com esse papo, você mostra <strong>autoridade</strong> (e precisa ter certeza do que está falando) e coloca <strong>um teco de medo</strong> nele também.</p><p>Ele precisa entender que <strong>não é porque está te chamando que pode botar o paciente em risco</strong> sem dar as devidas explicações e escolhas ao tutor. Essa conversa — encurtar a vida do bicho em troca de tirar o desconforto da boca — é uma conversa que <strong>alguém tem que ter com o tutor</strong>, e muitas vezes essa pessoa é a gente.</p><div class="callout callout-warning"><strong>Não é "alterado, não faço"</strong> Cuidado com o extremo oposto: pedir o exame, ver tudo alterado e cruzar os braços. <b>Calma.</b> Talvez o cachorro precise mesmo do procedimento — talvez esteja insuportável ficar com aquela boca. O procedimento em si <b>tende a ser tranquilo</b>. O problema é o pós.</div></div><div id="nao-ajuste-o-tratamento-so-pra-anestesia" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Não ajuste o tratamento só pra anestesiar</h2><p>Esse é um ponto que eu converso muito com os cardiologistas. Se o paciente estivesse com <strong>tratamento já ajustado</strong>, eu nem teria como exigir 15 dias de ajuste e um novo eco antes de anestesiar — porque, sendo terminal, <strong>o eco ia dar a mesma coisa</strong>.</p><p>Então, quando o paciente acabou de fazer o eco e o cardiologista quer mexer no tratamento: se vai ter que anestesiar agora, <strong>eu prefiro que não ajuste</strong>. Faz os ajustes depois. O raciocínio é: se der problema na sua mão, ia "estourar" de qualquer jeito; e um eco refeito daqui a 15 dias de ajuste <strong>vai estar alterado do mesmo jeito</strong>, porque o paciente é terminal.</p><p>Isso aqui não é questão de termo de responsabilidade (e, sinceramente, termo já não vale muita coisa) — é <strong>conversa alinhada com tutor e veterinário</strong>.</p></div><div id="por-que-ele-descompensa-justo-na-anestes" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Por que ele descompensa justo na anestesia</h2><p>Acordado, esse paciente geralmente está <strong>bem e ativo, porque está se compensando</strong>. O problema é que <strong>na hora da anestesia a gente bagunça tudo</strong>. Você não sabe, por exemplo, se é um paciente que pode soltar um <strong>trombo</strong>.</p><p>Por isso o cuidado todo é com o entorno do procedimento:</p><ul class="body-list"><li>Fazer <strong>de manhã</strong>.</li><li>Num lugar que tenha <strong>recuperação supervisionada</strong>.</li><li>Às vezes a clínica nem tem internação pro paciente ficar — e, dependendo da clínica, até melhor que não tenha, porque tem lugar que interna, deixa o bicho sozinho e vai embora.</li><li>Se não tem pós adequado ali, tem que ter <strong>pra onde encaminhar</strong>, e isso tem que estar combinado antes.</li></ul><div class="callout callout-blue"><strong>Resolver o problema que não é nosso</strong> Alinhar internação, recuperação e encaminhamento não é, tecnicamente, "trabalho do anestesista". Mas é isso que gera <b>diferencial e valorização</b>. Quando você coloca esse cuidado todo e dá tudo certo, o veterinário cria confiança em você. Só que nada disso adianta se você não tem confiança em você.</div></div><div id="mpa-morfina-acepromazina-bem-baixinha" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">MPA: morfina + acepromazina bem baixinha</h2><p>Como não temos mais a <strong>petidina</strong> disponível — que eu gostava muito pra esses casos de odonto —, eu vou de <strong>morfina</strong>, que é o opioide mais seguro que eu tenho aqui.</p><p>E eu associo uma <strong>acepromazina bem baixinha (IM)</strong> pra poder aumentar essa morfina e fazer uma combinação interessante. O resultado é um paciente que <strong>não fica tão chapado</strong>.</p><div class="callout callout-blue"><strong>Por que não chapar</strong> Eu costumo não conectar o eletro antes de induzir justamente porque essa MPA não deixa o paciente tão chapado — se eu for posicionar tudo e prender os cabos, vou estressar, e às vezes isso é pior pro cardiopata do que ajuda. (A <b>monitorização segue obrigatória</b> — é só o <b>timing</b>: eu conecto o ECG na indução, não durante a MPA.)</div></div><div id="inducao-ketamina-lidocaina-propofol-dose" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Indução: ketamina + lidocaína + propofol dose-efeito</h2><p>A indução pra esses casos é a que está lá na plataforma do AVP:</p><ul class="body-list"><li><strong>Ketamina</strong> em dose de coindução — eu faço <strong>1 mg/kg</strong> (coindução, <strong>não dissociativa</strong>).</li><li><strong>Lidocaína</strong> em dose antiarrítmica — <strong>2 mg/kg, SEM vasoconstritor</strong> —, pensando no estímulo doloroso da intubação, que libera catecolamina (e num cardiopata isso não é bom).</li><li><strong>Propofol</strong> em <strong>dose-efeito</strong>, começando com pouco (~1 mg/kg), até o efeito desejado.</li><li><strong>Lidocaína 2% tópica na glote</strong> pra intubar (<strong>SEM vasoconstritor</strong>).</li></ul><p>Repare: eu <strong>não faço fentanil na indução</strong> aqui, porque é odonto e eu vou <strong>priorizar o bloqueio</strong>. Então a indução é basicamente ketamina + lidocaína + propofol dose-efeito + lido na glote.</p></div><div id="preoxigenacao-sem-estressar" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Pré-oxigenação sem estressar</h2><p>Eu pré-oxigeno esse paciente, <strong>desde que eu não o estresse</strong>. As opções, do mais pro menos confortável:</p><ul class="body-list"><li>Colar elizabetano com filme plástico (com a mangueira de silicone do O2 por dentro).</li><li><strong>Máscara</strong> — colocou e ele ficou irritado? Para.</li><li><strong>Sonda nasal</strong> (ideal).</li><li>Pontinha do tubo perto da traqueia / "flow-by" — não serve pra grandes coisas, mas é melhor que nada.</li></ul><p>Deixe uns <strong>5 minutos</strong> num fluxo de <strong>5 a 10 L/min</strong>.</p><div class="callout callout-blue"><strong>Recrute o cirurgião</strong> Geralmente o cirurgião é o primeiro a encher o saco de ficar 5 minutos parado fazendo isso. Vire o jogo: você está montando tudo, e o cara que vai fazer a limpeza de dente não está fazendo nada. "Segura aqui pra mim, me fazendo um favor." O paciente já está sedado, mais tranquilo — e a pré-oxigenação acontece.</div></div><div id="a-alternativa-do-etomidato" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">A alternativa do etomidato</h2><p>E se eu não quiser usar o propofol? Este é exatamente o tipo de caso em que eu gosto do <strong>etomidato</strong> — com ele, o paciente nem fica um pouquinho cianótico. Por que eu falei do propofol antes, então? Porque dá pra fazer com propofol, mas é uma indução <strong>mais arriscada</strong> do que com etomidato.</p><p>O detalhe é que o etomidato <strong>não é dose-efeito</strong> como o propofol: ele tem <strong>dose teto</strong>, e eu preciso associar ele com várias outras coisas.</p><ul class="body-list"><li>Mantenho <strong>ketamina e lidocaína</strong>, e acrescento <strong>midazolam</strong> — e talvez aí sim entre um <strong>fentanil</strong>.</li><li>Diferente do propofol (que eu começo, faço os coindutores e volto pra ele), o etomidato eu deixo <strong>por último</strong>, senão ele pode excitar.</li><li>Ordem sugerida: começo pela lidocaína e ketamina — ou até um fentanil antes, porque o midazolam ou a ketamina podem dar um bate-cabeça no paciente; então dou uma sedadinha de leve com fentanil, bem diluído, bem devagarzinho. Depois os outros coindutores, e <strong>por último o etomidato, muito diluído</strong>.</li></ul><p>Como o etomidato tem dose teto, dá pra usar bem menos — fico numa quantidade mínima, <strong>tipo 0,5 mg/kg</strong>, sendo a <strong>dose teto 4 mg/kg</strong>.</p><div class="callout callout-warning"><strong>Cuidado com volume</strong> Num cardiopata, atenção ao <b>volume infundido</b> — por isso o etomidato vai bem diluído, mas sem exagerar no volume total. Se você não tem etomidato, dá pra acrescentar o midazolam na indução pra diminuir ainda mais o propofol, e, se for o caso, um cheirinho de fentanil. <b>Quanto menos propofol, melhor</b> — só que aí pode ser um pouquinho mais arriscado.</div></div><div id="acepromazina-e-o-refluxo-mitral" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">Acepromazina e o refluxo mitral</h2><p>Numa <strong>endocardiose de mitral</strong>, a <strong>acepromazina</strong> na MPA somada à inalatória <strong>tendem a diminuir o refluxo</strong>. Existe controvérsia sobre isso na literatura, mas, na prática, eu vejo um bom resultado — e é mais um motivo pra ela estar na MPA desse paciente.</p></div><div id="bloqueio-primeiro-fentanil-como-resgate" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Bloqueio primeiro, fentanil como resgate</h2><p>A regra aqui é: <strong>prioriza o bloqueio</strong>. Por isso é tão importante <strong>treinar bloqueio</strong> — é igual treinar punção de artéria, tem que ficar treinando enquanto tem anestesia na mão.</p><p>Tentou o bloqueio e não pegou? <strong>Tenta de novo.</strong> Se ainda assim o paciente puder estar sentindo dor, aí entra com <strong>fentanil</strong> — porque o paciente <strong>não pode sentir dor</strong> nem ficar liberando catecolamina.</p></div><div id="furosemida-preventiva-e-debito-urinario" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Furosemida preventiva e débito urinário</h2><p>Antes de terminar, eu faço uma <strong>furosemida preventiva, na dose de 1 a 2 mg/kg IV</strong>, pra prevenir edema — que é a maior causa de problema no pós desse paciente — e devolver ele à rotina de medicamentos dele.</p><p>Mas tem uma ordem que <strong>não pode inverter</strong>:</p><ul class="body-list"><li>Sonde o paciente desde o começo e <strong>faça o débito urinário ANTES da furosemida</strong>.</li><li>Se você sonda, deixa pra medir o débito depois e já aplica a furosemida, ferrou: não vai ter débito nenhum pra interpretar.</li><li><strong>Faça o débito primeiro, depois aplique a furosemida.</strong></li></ul><div class="callout callout-red"><strong>Se o paciente não produzir urina</strong> Fez o débito e ele <b>não produziu urina</b>? Levanta o alerta. Aí a furosemida entra agora com a intenção de ver se produz — espera uns <b>15 minutos</b>, que já é pra produzir. Por isso você tem que <b>saber a quantidade de débito urinário</b> desse paciente.</div><div class="callout callout-blue"><strong>Leve o seu material</strong> A clínica provavelmente não vai ter: leve <b>espéculo e sonda uretral</b>, e saiba sondar. Treine isso enquanto tiver anestesia — é igual pegar artéria.</div></div><div id="posoperatorio-e-expectativa-realista" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Pós-operatório e expectativa realista</h2><p>Com o <strong>isoflurano</strong>, como eu disse, tende a ser tranquilo. Mas esse paciente é muito <strong>suscetível ao estresse</strong> e tem gesto de cardiopata: você encosta o estetoscópio e provavelmente vai ouvir <strong>estertores e alguma crepitação</strong>.</p><p>É por isso que a furosemida do final existe: fez a furosemida, espera pra ver se está limpando. <strong>Não deixe esse paciente crepitando</strong> — além do risco, isso deixa a galera da clínica apavorada.</p><p>E tem a parte mais dura, que precisa estar dita <strong>desde o começo</strong>: nesse caso específico, deu tudo certo, saiu tudo bem — mas a cachorra <strong>veio a óbito um mês depois</strong>. Isso já era esperado e já tinha sido avisado. Os veterinários têm que assumir essa responsabilidade também, não jogar só na gente.</p><div class="callout callout-blue"><strong>O ponto da conversa</strong> A pergunta de fundo era: ela está sem conseguir comer, a ponto de valer adiantar a anestesia (e o estresse, e o óbito)? Ou ela está comendo, só com a boca fedida, e o tutor prefere ficar mais um mês com a cachorra? Isso tem que ser conversado — e é a gente que vai ter que ter essa conversa. Lembre ainda: tem veterinário que diz "o cardio já liberou" — <b>vá conversar com o cardio mesmo assim</b>. Fale com todo mundo.</div></div><div class="playbook-cta"><h3>Precisa do passo a passo na hora?</h3><p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso.</p><a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a></div></div><div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
