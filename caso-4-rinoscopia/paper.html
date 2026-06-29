@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Rinoscopia: E Agora?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <div class="cover-badge">Café com a Bá</div>
+  <div class="cover-series">Base Anestesia Veterinária</div>
+  <h1 class="cover-title">Rinoscopia —<br><span>E Agora?</span></h1>
+  <p class="cover-subtitle">Do telefonema antes de aceitar o caso ao pós-operatório que suja a sala inteira. Conduta de anestesista volante, organizada pra aplicar sem improvisar.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">Tempo de leitura<strong>12 a 15 min</strong></div>
+    <div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div>
+    <div class="cover-meta-item">Série<strong>Café com a Bá, Caso #4</strong></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- ÍNDICE -->
+  <div class="index-block">
+    <h2>Índice</h2>
+    <div class="index-grid">
+      <div class="index-item"><a href="#problema">O Problema Central</a><span class="index-num">01</span></div>
+      <div class="index-item"><a href="#protocolo">Montando o Protocolo (MPA)</a><span class="index-num">06</span></div>
+      <div class="index-item"><a href="#suspeita">Levantando a Suspeita</a><span class="index-num">02</span></div>
+      <div class="index-item"><a href="#complemento">Quando a MPA Não Bastou</a><span class="index-num">07</span></div>
+      <div class="index-item"><a href="#contaminacao">Contaminação e Limpeza</a><span class="index-num">03</span></div>
+      <div class="index-item"><a href="#dissociativa">Midazolam ou Alfa-2</a><span class="index-num">08</span></div>
+      <div class="index-item"><a href="#bravo">O Paciente Bravo</a><span class="index-num">04</span></div>
+      <div class="index-item"><a href="#inducao">Indução e Bloqueio</a><span class="index-num">09</span></div>
+      <div class="index-item"><a href="#gato">Diferenças no Gato</a><span class="index-num">05</span></div>
+      <div class="index-item"><a href="#pos">Pós-operatório</a><span class="index-num">10</span></div>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div id="problema" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">O Problema Central: você chega sem informação</h2>
+    <div class="callout callout-blue">
+      <strong>Contexto do Paper</strong>
+      Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.
+    </div>
+    <p>A rinoscopia quase nunca é uma emergência. Mas o veterinário te chama sem te dar nenhuma informação sobre o paciente — ele só quer que você anestesie. Você não sabe nada, e muitas vezes só vai descobrir o caso quando chegar na clínica. Pior: às vezes nem o exame está lá, porque ele te enrola até você chegar pra então dizer que achou que tinha feito e não fez.</p>
+    <p>Por isso, a primeira coisa é o posicionamento no telefonema. Seja chatinho de insistir. Pelo menos: é cachorro ou gato? Qual o temperamento? Qual a idade? Com essas informações você já consegue montar meia ideia do protocolo — não dele todo, mas do que precisa evitar.</p>
+    <div class="callout callout-essential">
+      <strong>Regra Central</strong>
+      Quem libera o paciente para o procedimento é o <strong>anestesista</strong> — não o veterinário que ligou. Se der ruim, o rojão é seu.
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div id="suspeita" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">Levantando a Suspeita: não é só tumor</h2>
+    <p>Quais são as principais suspeitas para uma rinoscopia? Tumor é o mais comum, e o veterinário costuma focar nele — principalmente em gato. Mas ele esquece que pode ser fungo, TVT e várias outras coisas. Muitas vezes é a gente que levanta essa suspeita.</p>
+    <p>Isso importa porque a suspeita muda condutas práticas: o que vai ser usado precisa ser limpo depois, e de forma mais pesada que o normal.</p>
+  </div>
+
+  <!-- 3 -->
+  <div id="contaminacao" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">Contaminação e Limpeza de Material</h2>
+    <p>Tudo que for usado tem que ser limpo sempre — mas em rinoscopia, de maneira ainda mais pesada. Deixe de molho. E lembre da traqueia, não só do tubo.</p>
+    <p>Às vezes você usa material da clínica. Eles anestesiam uma rinoscopia, o gato tem fungo, usaram o baraka e ninguém lavou depois. Você chega pra usar e contamina seu paciente. Ou você leva o seu material, usa lá, não limpa, e contamina outro paciente depois. Não tem limite pro que pode dar errado.</p>
+    <div class="callout callout-blue">
+      <strong>Na prática</strong>
+      Material de rino era coisa que eu levava separado, justamente pra não usar o da clínica. Se usar o seu lá, limpe antes de levar pra outro lugar.
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div id="bravo" class="section">
+    <div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div>
+    <h2 class="section-title">O Paciente Bravo: caso Rottweiler</h2>
+    <p>Pense num caso real: um Rottweiler bravo, meia-idade, com suspeita de tumor em cavidade nasal porque está sangrando pelo nariz. Hemograma ok, sem acesso à rua ("descartando" TVT). Tudo isso você vai pensando no caminho até a clínica.</p>
+    <p>Primeiro, mapeie o nível de braveza: o tutor põe a mão? Consegue segurar pra aplicar? Ou é cachorro de cambão? Se o tutor segura, <strong>não deixe ele ir embora até você chegar</strong> — avise isso por telefone. Isso é muito importante.</p>
+    <p>Segundo: Rottweiler de meia-idade sangrando pelo nariz tem grande chance de tumor — e chance de algo em tórax. Às vezes marcaram a rinoscopia antes de fazer raio-x de tórax ou ultrassom. Esse paciente pode ter recuperação mais longa e dificuldade pra sair do oxigênio.</p>
+    <p>Terceiro: prepare-se pro pós-operatório sujo. Ao acordar, ele vai espirrar sangue e lavar tudo. Proteja o monitor, sua cara e sua roupa — ainda mais se você só tem uma e vai pra outra clínica depois.</p>
+    <div class="callout callout-warning">
+      <strong>Confirme antes de ir</strong>
+      A clínica tem adrenalina? O endoscopista costuma pedir pra colocar adrenalina dentro da narina — é item que a clínica precisa ter, então peça que eles forneçam, não gaste a sua. E deixe material de traqueostomia pronto: tudo que é região de cabeça, esteja preparado, ou avise o cirurgião pra deixar pronto.
+    </div>
+    <p style="font-size:13px;color:#999;font-style:italic;">Detalhe de volante: pedir que a clínica forneça a adrenalina, em vez de usar a sua, parece bobagem, mas no fim do mês faz diferença na conta. São desculpinhas que você vai dando.</p>
+  </div>
+
+  <!-- 5 -->
+  <div id="protocolo" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">Montando o Protocolo (MPA)</h2>
+    <p>Quando o tutor consegue segurar o paciente, eu gosto de começar pela minha MPA normal: um sedativo ou tranquilizante com um opióide. Em relação à rinoscopia em si, o opióide tanto faz — vai depender mesmo dos exames do paciente (se é cardiopata ou não) e do quanto você tem segurança com o protocolo.</p>
+    <p>Vomitar não é contraindicação. É desconfortável pra um paciente com sangue saindo pela narina, mas não contraindica a morfina — a não ser que a suspeita seja massa ou <strong>mastocitoma</strong>. Se quiser evitar, faça <strong>metadona</strong>.</p>
+    <p>Para o cachorro muito bravo, sem avaliação cardiológica, se você quer evitar dissociar: uma <strong>dexmedetomidina baixinha com um opióide mais alto</strong>, podendo jogar um acepran bem baixo no meio — pra não ter que aumentar nem o acepran nem a dex. Se fosse dissociar de cara sem avaliação cardio, teria que fazer ketamina alta, que é ruim.</p>
+    <div class="callout callout-blue">
+      <strong>Filosofia</strong>
+      Eu não gosto de chapar o paciente na MPA. Eu gosto que ele <strong>permita que eu canule</strong> — com focinheira e o tutor ajudando a segurar. Depois eu capricho na indução. Lembre: porte grande é mais sensível, não faça dose alta de dex nem de acepran.
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div id="complemento" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">Quando a MPA Não Bastou: complementação</h2>
+    <p>Fez a MPA, esperou os 20 minutos, e o paciente ainda está alerta. Eu também não gosto de aumentar mais do que já fiz. O que dá pra reforçar primeiro é só o alfa-2. (Lembre que a dex humana é mais fraca que a veterinária.)</p>
+    <p>Mas se já está demorando, o endoscopista reclamando, e não dá pra ficar reaplicando sem saber se vai funcionar, você parte pra dissociativa. Como você já fez algo antes, não precisa da dissociativa cheia. Cerca de <strong>5 a 8 de ketamina</strong>, dependendo de como ficou a primeira injeção e do temperamento inicial (numa escala de 8 a 10 de braveza).</p>
+    <h3 class="sub-title">Com o que complementar</h3>
+    <p>Depende do que você fez antes:</p>
+    <ul class="body-list">
+      <li>Fez <strong>dex + metadona</strong>: complemente com ketamina. A dex já está ali pra tirar a rigidez ruim da dissociativa — e você pode até aumentá-la (a dex) um pouco nesse momento.</li>
+      <li>Fez <strong>acepran + metadona</strong> (sem alfa-2): complemente com ketamina + dex, ou ketamina + <strong>midazolam</strong> (intramuscular).</li>
+    </ul>
+    <div class="callout callout-red">
+      <strong>Cuidado com a dose</strong>
+      No caso filmado de uma rot brava, complementei a sedação já feita com alfa-2 e opioide, com + 5 de ketamina e ela ficou doidona — ficou ruim. Ketamina insuficiente numa dissociativa parcial deixa o paciente péssimo. Numa outra vez fiz 8, mas tudo junto na MPA, porque era emergência e a cachorra não permitia fazer em etapas. Não economize na dose errada. Aqui ela chapou demais.
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div id="dissociativa" class="section">
+    <div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div>
+    <h2 class="section-title">Midazolam ou Alfa-2 na Dissociativa</h2>
+    <p>Quando a complementação vira uma dissociativa, como escolher entre midazolam + ketamina e alfa-2 + ketamina? O critério é o <strong>pós-operatório</strong> — além de ser cardiopata ou não.</p>
+    <p>O mais seguro seria o <strong>midazolam</strong>. Mas lembre-se: ele pode prolongar a recuperação e o paciente pode acordar vocalizando. Se você usou midazolam e não tinha acepran na MPA, pode precisar de acepran intravenoso no pós-imediato pra parar a vocalização — e isso prolonga ainda mais.</p>
+    <div class="callout callout-blue">
+      <strong>Por que eu gosto de acepran na MPA</strong>
+      Quando há possibilidade de dissociar, eu gosto da acepromazina pra o paciente acordar mais tranquilo — e ela me poupa de ter que fazer acepran no pós-imediato. Eu não gosto de reverter benzo, nem nada. Não faço fármaco pensando em reverter.
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div id="inducao" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">Indução e Bloqueio Infraorbitário</h2>
+    <p>O bloqueio é o infraorbitário bilateral, só com lidocaína, só pra não ter incômodo ali. Eu não gosto de enfiar o cateter inteiro porque pode chegar no olho — entro só na entrada do forame, com uma seringa de insulina (pode ser um cateter amarelo, entrando só a metadezinha dele).</p>
+    <p>Dose no cão: cerca de 0,5 ml de cada lado (referência 0,05 ml/kg). Não precisa formar bolinha, mas faça — vale a pena. Se fez e não pegou, está incomodando: faça um <strong>bolus de fentanil lento e diluído</strong>, ao longo de uns 10 minutos, desde a indução.</p>
+    <p>Na indução: se você fez a dissociativa na MPA, não precisa de ketamina na indução. Em cão grande, se quiser, pode adiantar o fentanil na indução pra não fazer muito propofol — pode te ajudar, e se o bloqueio não pegar, já tem o fentanil agindo.</p>
+    <div class="callout callout-warning">
+      <strong>Manter plano</strong>
+      O endoscopista entra pela narina, dá uma voltinha e às vezes precisa entrar pela boca pra olhar por trás — onde pode haver tumor que não apareceu pela frente. Ele tem que fazer a parte dele, e você tem que proporcionar isso. Não deixe superficializar. Cão grande pode pedir uma infusão (bolsa santa) pra manter plano sem manter o ISO tão alto. Atenção a vazamento, e lembre que pode haver afecção no pulmão gerando o sangramento e dificultando plano anestésico na inalatória.
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div id="gato" class="section">
+    <div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div>
+    <h2 class="section-title">Diferenças no Gato</h2>
+    <p>No gato, a suspeita geralmente é <strong>fungo</strong>. Reforce a limpeza, jogue o tubo fora, e não use material da clínica nesses casos — leve pelo menos o seu baraka.</p>
+    <p>O protocolo é alfa-2 + opióide. Eu evito dissociar gato de cara por causa do risco dele ter cardiomiopatia hipertrófica; isso não muda. O bloqueio é o mesmo, com um cuidado: a carinha é mais curta, atenção pra não entrar muito no forame e chegar no olho. Cerca de <strong>0,05 mg/kg</strong> de cada lado, <strong>lidocaína SEM vasoconstritor</strong>, com a agulha de insulina na entrada — cuidado pra não lesionar o nervo. Eu uso a agulha mesmo (não corro o cateter) porque o risco de lesão é o mesmo e assim é mais seguro. No gato você provavelmente não vai precisar do bolus de fentanil.</p>
+    <p style="font-size:13px;color:#999;font-style:italic;">Dica: bloqueio não pegou? Tente de novo. Veja se o endoscopista deixa você refazer. Treine — a diferença é absurda, principalmente na hora que ele acorda.</p>
+  </div>
+
+  <!-- 10 -->
+  <div id="pos" class="section">
+    <div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div>
+    <h2 class="section-title">Pós-operatório e Recuperação</h2>
+    <p>Não espere reversão imediata — não vai reverter nada, ainda mais se fez benzo. A recuperação é lenta: como a tranquilização/sedação é baixa e o opióide é alto, acorda de boa, mas pode levar 10 a 15 minutos. Eles acordam ali mesmo; no tempo que você guarda as coisas, já levantaram a cabeça. Vai demorar um pouco mais pra andar.</p>
+    <p>Na hora de extubar, ele dá uma espirrada que lava tudo. Deixe uma compressa na frente, protegendo, ou peça pra alguém fazer isso. Faz diferença.</p>
+    <p>Pra internação, oriente a clínica a usar trazodona, pregabalina ou gabapentina, que deixam o paciente mais calmo — ele vai embora só no fim do dia. Pro pós-imediato, se estiver vocalizando muito, pode fazer acepromazina intravenosa, mais uma dose (<strong>0,005 ou 0,01 mg/kg IV</strong> a depender do porte e nível da excitação), mesmo que tenha feito no começo (assim, IV, passa mais rápido).</p>
+    <p style="font-size:13px;color:#999;font-style:italic;">Às vezes o bloqueio pega de um lado e não do outro — você vai ver a diferença. Se não quiser refazer do lado que não pegou e não estiver na infusão (bolsa santa), faça mais um bolus de fentanil lento e diluído.</p>
+  </div>
+
+  <!-- CTA CHECKLIST -->
+  <div class="playbook-cta">
+    <h3>Precisa do passo a passo na hora?</h3>
+    <p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso — do telefonema ao pós-imediato.</p>
+    <a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a>
+  </div>
+
+  <!-- MODELOS MENTAIS -->
+  <div id="modelos" class="section">
+    <div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Modelos Mentais</span></div>
+    <h2 class="section-title">Perguntas de Ativação</h2>
+    <div class="mental-model"><div class="mm-num">1</div><div class="mm-content"><h4>O vet me ligou sem informação. O que eu pergunto primeiro?</h4><p>Espécie, temperamento e idade. Com isso você já evita o que não pode na MPA antes mesmo de chegar.</p></div></div>
+    <div class="mental-model"><div class="mm-num">2</div><div class="mm-content"><h4>Focaram em tumor. E se for fungo?</h4><p>Em gato, principalmente, pense em fungo — e mude a limpeza do material pra mais pesada. Não use o da clínica sem checar.</p></div></div>
+    <div class="mental-model"><div class="mm-num">3</div><div class="mm-content"><h4>O paciente é bravo e o tutor segura. O que eu faço?</h4><p>Peça que o tutor não vá embora até você chegar. Mire em permitir a canulação, não em chapar na MPA.</p></div></div>
+    <div class="mental-model"><div class="mm-num">4</div><div class="mm-content"><h4>A MPA não bastou e estão me cobrando. Aumento o quê?</h4><p>Primeiro só o alfa-2. Se precisar dissociar, complemente com ~5 a 8 de ketamina conforme a primeira injeção.</p></div></div>
+    <div class="mental-model"><div class="mm-num">5</div><div class="mm-content"><h4>Vou dissociar: midazolam ou alfa-2 com a ketamina?</h4><p>Decida pelo pós-operatório e pela condição cardíaca. Midazolam é mais seguro, mas pode prolongar e vocalizar.</p></div></div>
+    <div class="mental-model"><div class="mm-num">6</div><div class="mm-content"><h4>O bloqueio pegou de um lado só. E agora?</h4><p>Refaça se o endoscopista deixar, ou — se não estiver na bolsa santa — faça mais um bolus de fentanil lento e diluído.</p></div></div>
+  </div>
+
+</div>
+
+<div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
