@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café com a Bá: Corpo Estranho Linear: Cirurgia e Complicações em Endoscopia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .legend-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 48px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .legend-bar span {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot-essential { background: #e74c3c; }
+    .dot-good { background: #3498db; }
+    .dot-optional { background: #27ae60; }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gargalo-card h4 .icon { font-size: 16px; }
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+      .legend-bar { padding: 14px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-badge">Café com a Bá</div>
+    <div class="cover-series">Base Anestesia Veterinária</div>
+    <h1 class="cover-title">Corpo Estranho Linear:<br><span>Cirurgia e Complicações</span><br>em Endoscopia</h1>
+    <p class="cover-subtitle">Transição endoscopia para cirurgia, intercorrências eletrocardiográficas no felino e situações críticas em endoscopia digestiva de cães e gatos.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">Tempo de leitura<strong>15 a 20 min</strong></div>
+      <div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div>
+      <div class="cover-meta-item">Série<strong>Café com a Bá, Caso #3</strong></div>
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div class="legend-bar">
+    <span><div class="dot dot-essential"></div> Indispensável</span>
+    <span><div class="dot dot-optional"></div> Importante</span>
+    <span><div class="dot dot-good"></div> Legal de saber</span>
+  </div>
+
+  <div class="body-wrap">
+
+    <!-- ÍNDICE -->
+    <div class="index-block">
+      <h2>Índice</h2>
+      <div class="index-grid">
+        <div class="index-item"><a href="#contexto">Contexto Clínico</a><span class="index-num">01</span></div>
+        <div class="index-item"><a href="#complicacoes">Complicações em Endoscopia</a><span class="index-num">06</span></div>
+        <div class="index-item"><a href="#transicao">Transição Endoscopia para Cirurgia</a><span class="index-num">02</span></div>
+        <div class="index-item"><a href="#agenda">Agenda e Precificação</a><span class="index-num">07</span></div>
+        <div class="index-item"><a href="#antes-cirurgia">O que Resolver Antes de Sair</a><span class="index-num">03</span></div>
+        <div class="index-item"><a href="#antes-depois">Antes e Depois</a><span class="index-num">08</span></div>
+        <div class="index-item"><a href="#arritmias">Bradicardia e Arritmias no Felino</a><span class="index-num">04</span></div>
+        <div class="index-item"><a href="#modelos">Modelos Mentais</a><span class="index-num">09</span></div>
+        <div class="index-item"><a href="#eletro">Intercorrências Eletrocardiográficas</a><span class="index-num">05</span></div>
+      </div>
+    </div>
+
+    <!-- 1. CONTEXTO -->
+    <div id="contexto" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">A endoscopia pode virar cirurgia. Prepare-se antes de chegar.</h2>
+
+      <p>O caso #3 é a continuação direta do caso anterior: o felino com corpo estranho linear foi para endoscopia, mas a endoscopia confirmou que o objeto já passou para o intestino e não pode ser retirado por via endoscópica. A cirurgia é inevitável.</p>
+
+      <p>O que muda aqui em relação ao caso #2 é a complexidade da transição e o volume de situações que podem complicar o procedimento, tanto na endoscopia em si quanto na cirurgia que se segue.</p>
+
+      <div class="callout callout-blue">
+        <strong>Contexto do Paper</strong>
+        Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O foco é mostrar como pensar, não apenas listar o que fazer.
+      </div>
+
+      <h3 class="sub-title">O que torna esse caso diferente</h3>
+      <ul style="padding-left: 20px; margin-bottom: 16px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">A endoscopia pode se encerrar em cirurgia imediata, sem tempo para replanejar do zero</li>
+        <li style="margin-bottom: 8px;">O felino pode apresentar padrões eletrocardiográficos incomuns que exigem diferenciação rápida</li>
+        <li style="margin-bottom: 8px;">Complicações como pneumotórax e obstrução de via aérea podem surgir durante a endoscopia esofágica</li>
+        <li style="margin-bottom: 8px;">A gestão de agenda e precificação tem impacto direto na viabilidade do caso para o anestesista</li>
+      </ul>
+    </div>
+
+    <!-- 2. TRANSIÇÃO -->
+    <div id="transicao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Transição Endoscopia para Cirurgia: sequência e conduta</h2>
+
+      <p>Quando a endoscopia confirma que o corpo estranho linear já passou para o intestino e não pode ser retirado, especialmente com sinais de intussuscepção, a cirurgia é inevitável. A transição precisa ser planejada antes do início do procedimento.</p>
+
+      <h3 class="sub-title">Sequência de transição</h3>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">01</div>
+          <div class="flow-step-label">Fim da endoscopia</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">02</div>
+          <div class="flow-step-label">Confirma com cirurgião</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">03</div>
+          <div class="flow-step-label">Não acorda: mantém inalatório</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">04</div>
+          <div class="flow-step-label">Bolus fentanil IV</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">05</div>
+          <div class="flow-step-label">Inicia fentanil + cetamina</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">06</div>
+          <div class="flow-step-label">Reduz iso conforme analgesia</div>
+        </div>
+      </div>
+
+      <div class="callout callout-essential">
+        <strong>Regra Prática</strong>
+        Não iniciar infusão de fentanil durante a endoscopia. A analgesia cirúrgica entra apenas quando a cirurgia for confirmada. Iniciar antes é excesso desnecessário e prolonga a recuperação sem benefício.
+      </div>
+
+      <div class="callout callout-blue">
+        <strong>Posicionamento</strong>
+        O anestesista volante não trabalha exclusivamente para um cirurgião. Se a endoscopia confirmar necessidade de cirurgia, o procedimento começa imediatamente, sem coffee breaks ou consultas intermediárias. Isso se estabelece antes de sair para o atendimento.
+      </div>
+    </div>
+
+    <!-- 3. O QUE RESOLVER ANTES -->
+    <div id="antes-cirurgia" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">O que Resolver Antes de Sair: decisões que não cabem no meio do procedimento</h2>
+
+      <div class="rules-block">
+        <h4>Resolvido Antes de Chegar à Clínica</h4>
+        <div class="rule-item">
+          <div class="rule-num">1</div>
+          <div><strong>MPA com metadona.</strong> Butorfanol excluído. Qualquer chance de cirurgia abdominal exige opioide que comporte o procedimento desde a MPA.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">2</div>
+          <div><strong>Preço global negociado.</strong> Contemplando endoscopia, possível cirurgia e hora adicional. Cobrar depois é constrangedor e raramente funciona.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">3</div>
+          <div><strong>Cirurgião avisado.</strong> Opera imediatamente ao fim da endoscopia, se necessário. Sem intervalo.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">4</div>
+          <div><strong>Competência do cirurgião confirmada.</strong> Corpo estranho intestinal com intussuscepção é cirurgia de média complexidade. Não é qualquer cirurgião.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">5</div>
+          <div><strong>Noradrenalina calculada e bomba testada.</strong> Especialmente em cirurgia intestinal com risco de reperfusão. Antes de entrar na sala, não na crise.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">6</div>
+          <div><strong>Material para toracocentese acessível.</strong> Obrigatório em qualquer endoscopia esofágica. Pneumotórax hipertensivo não espera.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ARRITMIAS -->
+    <div id="arritmias" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Bradicardia e Arritmias no Felino: padrão alfa-2 versus emergência real</h2>
+
+      <p>O felino tem variações eletrocardiográficas específicas que aparecem durante a anestesia, especialmente com dexmedetomidina ou manipulação de vísceras abdominais. Confundir os padrões leva a condutas opostas.</p>
+
+      <h3 class="sub-title">Bradicardia reflexa por hipertensão: o padrão alfa-2</h3>
+      <p>A dexmedetomidina causa vasoconstrição periférica, eleva a pressão arterial e, reflexamente, reduz a frequência cardíaca via barorreceptor. Esse é o padrão esperado e não representa arritmia primária.</p>
+
+      <ul style="padding-left: 20px; margin-bottom: 16px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Pressão arterial elevada + FC baixa: padrão típico pós-alfa-2</li>
+        <li style="margin-bottom: 8px;">O QRS pode parecer alterado. Verificar presença da onda P antes de qualquer intervenção</li>
+        <li style="margin-bottom: 8px;">Conduta: aumentar isoflurano. Vasodilatação reduz a pressão e a FC tende a normalizar</li>
+      </ul>
+
+      <div class="callout callout-red">
+        <strong>Erro Frequente</strong>
+        Usar lidocaína IV para tratar bradicardia associada à hipertensão pós-alfa-2. A lidocaína vasodilata, reduz a pressão e eleva a FC por compensação. Mas se houver ritmo de escape ventricular verdadeiro, a lidocaína pode ser letal. A escolha correta é aumentar o isoflurano.
+      </div>
+
+      <h3 class="sub-title">Atropina no felino: quando usar e quando não usar</h3>
+      <p>Atropina eleva a FC mas eleva a pressão arterial junto. Em caso de bradicardia com hipertensão, pode ser perigosa: piora o quadro hipertensivo ao mesmo tempo que eleva a FC. Em felino com cardiomiopatia hipertrófica suspeita ou confirmada, o risco é ainda maior. Usar com critério, somente se a bradicardia não for secundária à hipertensão e não houver suspeita de CMH.</p>
+    </div>
+
+    <!-- 5. ELETRO -->
+    <div id="eletro" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Intercorrências Eletrocardiográficas: diferenciação que define a conduta</h2>
+
+      <h3 class="sub-title">Bloqueio de ramo direito versus ritmo de escape ventricular</h3>
+
+      <table class="data-table">
+        <tr>
+          <th>Parâmetro</th>
+          <th>Bloqueio de Ramo Direito</th>
+          <th>Ritmo de Escape Ventricular</th>
+        </tr>
+        <tr>
+          <td><strong>Onda P</strong></td>
+          <td>Presente, associada ao QRS</td>
+          <td>Ausente ou dissociada</td>
+        </tr>
+        <tr>
+          <td><strong>QRS</strong></td>
+          <td>Alargado, invertido</td>
+          <td>Alargado, morfologia aberrante</td>
+        </tr>
+        <tr>
+          <td><strong>Pressão arterial</strong></td>
+          <td>Geralmente elevada (alfa-2)</td>
+          <td>Pode estar baixa</td>
+        </tr>
+        <tr>
+          <td><strong>Conduta</strong></td>
+          <td>Aumentar iso; observar</td>
+          <td>Suporte hemodinâmico. Sem lidocaína.</td>
+        </tr>
+      </table>
+
+      <h3 class="sub-title">Manipulação intestinal e reperfusão</h3>
+      <p>Ao manipular alças intestinais isquêmicas ou em intussuscepção, o período de reperfusão pode desencadear instabilidade hemodinâmica grave, mesmo que o animal estivesse estável antes.</p>
+
+      <div class="gargalo-grid">
+        <div class="gargalo-card">
+          <h4><span class="icon">⚡</span> Bradicardia + hipertensão</h4>
+          <p>Padrão alfa-2. QRS invertido pode aparecer por alteração vagal. Conduta: aumentar isoflurano.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">🚨</span> Bradicardia + hipotensão</h4>
+          <p>Durante manipulação intestinal: choque séptico ou reperfusão. Noradrenalina em bomba. Não é padrão alfa-2.</p>
+        </div>
+      </div>
+
+      <div class="rules-block">
+        <h4>Hipotensão + Bradicardia por Reperfusão ou Sepse</h4>
+        <div class="rule-item">
+          <div class="rule-num">!</div>
+          <div><strong>Noradrenalina.</strong> Não dopamina, não atropina. Em felinos, a dopamina exige doses muito altas e é ineficaz nesse cenário. A bomba precisa estar calculada e testada antes de entrar na cirurgia. Não improvise na crise.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. COMPLICAÇÕES -->
+    <div id="complicacoes" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Complicações em Endoscopia: o que pode acontecer e como responder</h2>
+
+      <p>Endoscopia não é procedimento de risco zero. O anestesista precisa conhecer as complicações possíveis para se posicionar, precificar e preparar o material adequado antes de começar.</p>
+
+      <h3 class="sub-title">Corpo estranho esofágico: risco de perfuração</h3>
+
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <div class="scenario-header">Risco Principal</div>
+          <div class="scenario-body">
+            Perfuração esofágica durante a retirada, especialmente se o objeto está há mais de 24h e começou a aderir à parede.
+            <ul>
+              <li>Perfuração no mediastino: risco de pneumotórax hipertensivo</li>
+              <li>Sinais: tórax rígido, impossibilidade de ventilar, queda súbita de saturação</li>
+              <li>Região do coração: nervos vagais e estruturas adjacentes em risco</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-header">Conduta</div>
+          <div class="scenario-body">
+            Confirmar com o cirurgião antes de começar: ele opera esôfago torácico se necessário?
+            <ul>
+              <li>Se não: definir encaminhamento antes de iniciar</li>
+              <li>Tórax rígido durante endoscopia esofágica: toracocentese de emergência imediata</li>
+              <li>Não esperar confirmação radiográfica. Ter material disponível.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Fitobezoar: procedimento longo e pressão para cirurgia</h3>
+      <p>A pinça endoscópica retira pequenas quantidades por vez. O procedimento pode ser muito longo. Se o endoscopista sugerir cirurgia por conveniência dele, quem avalia a estabilidade do paciente é o anestesista. Animal estável: a endoscopia continua. Não aceitar pressão para cirurgia desnecessária.</p>
+
+      <div class="callout callout-essential">
+        <strong>Precificação</strong>
+        Cobrar adicional por hora de procedimento. Isso precisa estar estabelecido antes de começar, não após.
+      </div>
+
+      <h3 class="sub-title">Corpo estranho gástrico com dificuldade de preensão</h3>
+      <p>Objetos lisos (bolas, ossos no estômago) podem escorregar da pinça repetidamente. Endoscopistas experientes usam redes e adaptações para melhorar a preensão. Conhecer o endoscopista com quem vai trabalhar é parte da logística do caso.</p>
+
+      <h3 class="sub-title">Corpo estranho deslocado para a traqueia</h3>
+      <p>Raro, mas descrito: objeto deslocado do esôfago para a traqueia durante manobra endoscópica. Sinais imediatos incluem obstrução de via aérea, queda de saturação e impossibilidade de ventilar. Conduta: reposicionamento, ventilação de emergência, traqueostomia se necessário.</p>
+    </div>
+
+    <!-- 7. AGENDA -->
+    <div id="agenda" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de saber</span>
+      </div>
+      <h2 class="section-title">Agenda e Precificação: o que não é combinado antes fica por sua conta</h2>
+
+      <p>Uma endoscopia que vira cirurgia pode segurar o anestesista por quatro horas ou mais. Isso afeta outros compromissos e a relação com outros clientes.</p>
+
+      <div class="gargalo-grid">
+        <div class="gargalo-card">
+          <h4><span class="icon">👤</span> Quem é o endoscopista?</h4>
+          <p>Conhecer o profissional define expectativa de tempo, conduta e se o caso é viável na sua agenda.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">📅</span> O que vem na sequência?</h4>
+          <p>Procedimentos com horário fixo (ortopédico de fora, filhote com restrição de jejum) não podem ser adiados facilmente.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">💰</span> O preço contempla cirurgia?</h4>
+          <p>Preço global com possível cirurgia e adicional por hora, combinado antes. Nunca detalhar item a item.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">🔄</span> Tem substituto se não puder ir?</h4>
+          <p>Indicar outro anestesista de confiança e fazer o alinhamento direto com ele, sem deixar a clínica no vácuo.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-essential">
+        <strong>Regra Prática</strong>
+        Se você não combinou o adicional por hora antes de começar, o problema é seu. Cobrar depois é constrangedor e raramente funciona. Estabeleça o preço completo no início, com clareza. Se algo não acontecer, você desconta.
+      </div>
+    </div>
+
+    <!-- 8. ANTES E DEPOIS -->
+    <div id="antes-depois" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">Antes e Depois: o que muda quando você pensa diferente</h2>
+
+      <div class="before-after">
+        <div class="ba-header">
+          <div>Fundamento</div>
+          <div>Sem o Paper</div>
+          <div>Com o Paper</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">MPA para endoscopia</div>
+          <div class="ba-before">Butorfanol porque "não vai virar cirurgia"</div>
+          <div class="ba-after">Metadona: comporta endoscopia e cirurgia sem trocar protocolo</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Bradicardia + hipertensão</div>
+          <div class="ba-before">Administra lidocaína IV para tratar a arritmia</div>
+          <div class="ba-after">Aumenta isoflurano: reconhece padrão alfa-2</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">QRS alterado no eletro</div>
+          <div class="ba-before">Intervém sem verificar a onda P</div>
+          <div class="ba-after">Verifica onda P antes de qualquer conduta</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Bradicardia + hipotensão</div>
+          <div class="ba-before">Dopamina ou atropina por reflexo</div>
+          <div class="ba-after">Noradrenalina calculada e pronta antes de entrar</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Tórax rígido na endoscopia</div>
+          <div class="ba-before">Força ventilação, aguarda confirmação radiográfica</div>
+          <div class="ba-after">Toracocentese de emergência imediata</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Precificação</div>
+          <div class="ba-before">Preço de endoscopia, sem prever cirurgia ou hora extra</div>
+          <div class="ba-after">Preço global com adicional por hora definido antes</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Pressão do endoscopista para cirurgia</div>
+          <div class="ba-before">Aceita e vai para cirurgia</div>
+          <div class="ba-after">Avalia estabilidade do paciente e decide com autonomia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAYBOOK CTA -->
+    <div class="playbook-cta">
+      <h3>Precisa do passo a passo completo?</h3>
+      <p>O Playbook deste Café com a Bá tem todas as condutas organizadas em formato de checklist, do aceite do caso ao encerramento da cirurgia.</p>
+      <a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Playbook</a>
+    </div>
+
+    <!-- 9. MODELOS MENTAIS -->
+    <div id="modelos" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de saber</span>
+      </div>
+      <h2 class="section-title">Modelos Mentais: Perguntas de Ativação</h2>
+
+      <div class="mental-model">
+        <div class="mm-num">1</div>
+        <div class="mm-content">
+          <h4>Esse procedimento pode virar cirurgia?</h4>
+          <p>Se sim: metadona na MPA, preço global, cirurgião avisado, agenda verificada. Tudo antes de sair.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">2</div>
+        <div class="mm-content">
+          <h4>O animal está bradicárdico e hipertenso ou hipotenso?</h4>
+          <p>Hipertenso: padrão alfa-2, aumentar iso. Hipotenso: sepse ou reperfusão, noradrenalina. Condutas opostas. Ao avaliar o eletro, diferenciar também escape ventricular de extrassístole ventricular: o escape ocorre em bradicardia, como mecanismo de resgate; a extrassístole ocorre sobre ritmo de base presente. A conduta é diferente em cada caso.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">3</div>
+        <div class="mm-content">
+          <h4>Tem onda P no eletro?</h4>
+          <p>Verificar antes de qualquer intervenção antiarrítmica. QRS invertido sem onda P é ritmo de escape: sem lidocaína.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">4</div>
+        <div class="mm-content">
+          <h4>O tórax ficou rígido durante endoscopia esofágica?</h4>
+          <p>Suspeitar de pneumotórax hipertensivo por perfuração. Toracocentese de emergência imediata. Sem esperar radiografia.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">5</div>
+        <div class="mm-content">
+          <h4>Conheço o endoscopista com quem vou trabalhar?</h4>
+          <p>Saber como ele trabalha, qual o limite de tentativa dele e se tem recursos adequados define se o caso é viável na sua agenda.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">6</div>
+        <div class="mm-content">
+          <h4>A bomba de noradrenalina está calculada e testada?</h4>
+          <p>Em cirurgia intestinal com risco de reperfusão: sim, antes de entrar. Não se improvisa na crise.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">7</div>
+        <div class="mm-content">
+          <h4>Verifiquei embaixo da língua antes da indução?</h4>
+          <p>Corpo estranho linear pode estar ancorado ali. O animal sedado não mostra o sinal. Buscar ativamente.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /body-wrap -->
+
+  <div class="paper-footer">
+    © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+  </div>
+
+</body>
+</html>

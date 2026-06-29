@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café com a Bá: Endoscopia para Corpo Estranho Linear em Gato</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .legend-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 48px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .legend-bar span {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot-essential { background: #e74c3c; }
+    .dot-good { background: #3498db; }
+    .dot-optional { background: #27ae60; }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gargalo-card h4 .icon { font-size: 16px; }
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+      .legend-bar { padding: 14px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-badge">Café com a Bá</div>
+    <div class="cover-series">Base Anestesia Veterinária</div>
+    <h1 class="cover-title">Endoscopia para<br><span>Corpo Estranho Linear</span><br>em Gato</h1>
+    <p class="cover-subtitle">Raciocínio clínico, escolha de MPA, indução, manutenção e recuperação, do primeiro contato ao fim do procedimento.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">Tempo de leitura<strong>15 a 20 min</strong></div>
+      <div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div>
+      <div class="cover-meta-item">Série<strong>Café com a Bá, Caso #2</strong></div>
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div class="legend-bar">
+    <span><div class="dot dot-essential"></div> Indispensável</span>
+    <span><div class="dot dot-optional"></div> Importante</span>
+    <span><div class="dot dot-good"></div> Legal de saber</span>
+  </div>
+
+  <div class="body-wrap">
+
+    <!-- ÍNDICE -->
+    <div class="index-block">
+      <h2>Índice</h2>
+      <div class="index-grid">
+        <div class="index-item"><a href="#contexto">Contexto Clínico</a><span class="index-num">01</span></div>
+        <div class="index-item"><a href="#mpa">Medicação Pré-Anestésica</a><span class="index-num">05</span></div>
+        <div class="index-item"><a href="#avaliacao">Avaliação na Chegada</a><span class="index-num">02</span></div>
+        <div class="index-item"><a href="#inducao">Indução Anestésica</a><span class="index-num">06</span></div>
+        <div class="index-item"><a href="#butorfanol">Por que não Butorfanol</a><span class="index-num">03</span></div>
+        <div class="index-item"><a href="#manutencao">Manutenção e Cirurgia</a><span class="index-num">07</span></div>
+        <div class="index-item"><a href="#gargalos">Os 4 Gargalos</a><span class="index-num">04</span></div>
+        <div class="index-item"><a href="#recuperacao">Recuperação</a><span class="index-num">08</span></div>
+        <div class="index-item"><a href="#antes-depois">Antes e Depois</a><span class="index-num">09</span></div>
+        <div class="index-item"><a href="#modelos">Modelos Mentais</a><span class="index-num">10</span></div>
+      </div>
+    </div>
+
+    <!-- 1. CONTEXTO -->
+    <div id="contexto" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">Endoscopia não é procedimento de risco zero. Prepare-se antes de chegar.</h2>
+
+      <p>O caso envolve um felino com suspeita ou confirmação de corpo estranho linear, frequentemente linha, barbante ou fio, encaminhado para endoscopia digestiva. O raciocínio aqui é diferente do corpo estranho esofágico: o risco de vômito existe, mas não é catastrófico, e a grande questão é a altíssima probabilidade de o procedimento evoluir para cirurgia.</p>
+
+      <div class="callout callout-blue">
+        <strong>Contexto do Paper</strong>
+        Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.
+      </div>
+
+      <h3 class="sub-title">Por que corpo estranho linear é diferente</h3>
+      <ul style="padding-left: 20px; margin-bottom: 16px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">A linha geralmente ancora-se sob a língua, verifique <strong>sempre</strong> antes de qualquer procedimento</li>
+        <li style="margin-bottom: 8px;">Não é nada preso no esôfago: o vômito é indesejável, mas não é catastrófico se ocorrer</li>
+        <li style="margin-bottom: 8px;">A chance de progressão de endoscopia para cirurgia é alta, isso define toda a escolha de protocolo</li>
+        <li style="margin-bottom: 8px;">Se ancorado sob a língua: necessário corte simples antes de qualquer tração endoscópica ou cirúrgica</li>
+      </ul>
+
+      <div class="callout callout-blue">
+        <strong>Atenção Prática</strong>
+        Antes de chegar à clínica, oriente a equipe por telefone a verificar embaixo da língua se há linha ancorada. Isso já gera valor para o cliente e pode antecipar a conduta.
+      </div>
+    </div>
+
+    <!-- 2. AVALIAÇÃO -->
+    <div id="avaliacao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Avaliação do Paciente na Chegada: estado clínico e temperamento definem tudo</h2>
+
+      <p>Antes de definir qualquer fármaco, avalie o estado clínico e o temperamento do felino. Esses dois fatores determinam a estratégia de MPA.</p>
+
+      <h3 class="sub-title">Classificação por estado clínico</h3>
+
+      <table class="data-table">
+        <tr>
+          <th>Estado</th>
+          <th>Característica</th>
+          <th>Implicação anestésica</th>
+        </tr>
+        <tr>
+          <td><strong>Alerta / Estável</strong></td>
+          <td>Sem prostração, responsivo, com tônus</td>
+          <td>MPA convencional com alfa-2 em dose baixa + opioide</td>
+        </tr>
+        <tr>
+          <td><strong>Prostrado</strong></td>
+          <td>Deprimido, hiporresponsivo</td>
+          <td>Somente opioide na MPA, alfa-2 com cautela ou sem</td>
+        </tr>
+        <tr>
+          <td><strong>Agressivo / Feral</strong></td>
+          <td>Reativo, não permite manipulação</td>
+          <td>Dose maior de alfa-2 ou associação com dissociativo em dose baixa</td>
+        </tr>
+      </table>
+
+      <h3 class="sub-title">Exames disponíveis</h3>
+      <p>Na realidade da anestesia volante, a disponibilidade de exames tende a ser limitada. Planeje a conduta para o cenário mais restrito:</p>
+      <ul style="padding-left: 20px; font-size: 14px; margin-bottom: 14px;">
+        <li style="margin-bottom: 8px;">Hemograma isolado: orientativo, mas insuficiente para avaliação metabólica</li>
+        <li style="margin-bottom: 8px;">Ultrassom: confirma localização e natureza do corpo estranho; não substitui avaliação hemodinâmica</li>
+        <li style="margin-bottom: 8px;">Sem bioquímico: o paciente ainda entra, ajuste a conduta ao que você tem</li>
+      </ul>
+    </div>
+
+    <!-- 3. BUTORFANOL -->
+    <div id="butorfanol" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Por que Butorfanol está Excluído neste Cenário</h2>
+
+      <p>O butorfanol tem excelente perfil em felinos para procedimentos de curta duração e baixa dor. No entanto, é inadequado aqui por um motivo central:</p>
+
+      <div class="rules-block">
+        <h4>Regra Fundamental</h4>
+        <div class="rule-item">
+          <div class="rule-num">!</div>
+          <div>Se há chance real de o procedimento evoluir de endoscopia para <strong>cirurgia abdominal</strong>, o butorfanol é insuficiente como analgésico. Troca por metadona, que comporta tanto endoscopia quanto laparotomia, e evita a necessidade de repetir a indução ou trocar o opioide no meio do procedimento.</div>
+        </div>
+      </div>
+
+      <div class="gargalo-grid">
+        <div class="gargalo-card">
+          <h4><span class="icon">❌</span> Butorfanol</h4>
+          <p>Analgesia teto baixo, inadequado para dor cirúrgica abdominal. Use apenas em biópsia isolada, sem chance de cirurgia.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">⚠️</span> Morfina</h4>
+          <p>Válida em endoscopia isolada ou cirurgia, mas risco de excitação como MPA em felinos, uso criterioso.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">✅</span> Metadona</h4>
+          <p>Opção padrão para este cenário, comporta endoscopia e eventual cirurgia, sem o risco de excitação da morfina.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">💡</span> Regra simples</h4>
+          <p>Endoscopia que pode virar cirurgia = metadona. Endoscopia de biópsia sem risco cirúrgico = butorfanol ou morfina.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. GARGALOS -->
+    <div id="gargalos" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de saber</span>
+      </div>
+      <h2 class="section-title">Os 4 Gargalos do Anestesista em Endoscopia</h2>
+
+      <p>Se você não sabe que a endoscopia pode virar cirurgia, não sabe escolher o opioide certo, não verifica a língua do gato, não cobra por hora adicional, você está só colocando fármaco. A clínica percebe.</p>
+
+      <div class="gargalo-grid">
+        <div class="gargalo-card">
+          <h4><span class="icon">💊</span> Opioide errado na MPA</h4>
+          <p>Butorfanol num caso que vai virar cirurgia abdominal. Resultado: analgesia insuficiente e necessidade de repetir indução.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">👅</span> Não verificou a língua</h4>
+          <p>Linha ancorada embaixo da língua não vista antes da endoscopia. O cirurgião vai descobrir, mas você perdeu a chance de criar valor.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">💉</span> Infusão antes da hora</h4>
+          <p>Iniciar fentanil em infusão durante a endoscopia, quando o procedimento ainda não evoluiu para cirurgia. Excesso de analgesia desnecessária.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">💰</span> Preço fechado sem prever cirurgia</h4>
+          <p>Não contemplou endoscopia + possível cirurgia no valor global. A surpresa depois de horas de procedimento é difícil de cobrar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. MPA -->
+    <div id="mpa" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Medicação Pré-Anestésica: não existe fórmula única</h2>
+
+      <p>A escolha da MPA é condicionada ao estado clínico e ao temperamento do felino. O objetivo é sedação suficiente para canulação venosa sem estresse excessivo, não anestesia profunda.</p>
+
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <div class="scenario-header">Alerta e Tolerante</div>
+          <div class="scenario-body">
+            Dexmedetomidina em dose baixa (~3–4 mcg/kg veterinária) + metadona.
+            <ul>
+              <li>✓ Sedação leve para canulação</li>
+              <li>⚠ Pode vomitar com alfa-2, aceitável neste caso</li>
+              <li>⚠ Monitorar queda com pescoço fletido</li>
+              <li>✓ Material de intubação pronto antes da MPA agir</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-header">Prostrado</div>
+          <div class="scenario-body">
+            Somente opioide (metadona).
+            <ul>
+              <li>✗ Alfa-2 com extrema cautela ou sem</li>
+              <li>⚠ Depressão somada ao estado deprimido pode ser deletéria</li>
+              <li>✓ Titular propofol com cuidado redobrado na indução</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-header">Agressivo / Feral</div>
+          <div class="scenario-body">
+            Dex baixa + metadona como primeira tentativa.
+            <ul>
+              <li>⚠ Se insuficiente: cetamina 2–3 mg/kg IM (não dissociativa)</li>
+              <li>✗ Cetamina ≥5 mg/kg: risco morte súbita por CMH</li>
+              <li>💡 Focinheira pode auxiliar na contenção</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-warning">
+        <strong>Risco do dissociativo em felinos</strong>
+        Doses realmente dissociativas de cetamina (a partir de 5 mg/kg) em felinos com suspeita de cardiomiopatia hipertrófica, prevalente na espécie, aumentam o risco de morte súbita. Prefira doses baixas (2–3 mg/kg) apenas para facilitar o manejo, não para induzir dissociação completa.
+      </div>
+    </div>
+
+    <!-- 6. INDUÇÃO -->
+    <div id="inducao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Indução Anestésica: titulação e atenção à língua</h2>
+
+      <h3 class="sub-title">Verificação obrigatória antes de intubar</h3>
+      <p>Olhe embaixo da língua. Linha ancorada = corte antes de qualquer tração endoscópica ou cirúrgica. Essa verificação deve acontecer na indução e durante o procedimento se o cirurgião tiver dificuldade para puxar a linha.</p>
+
+      <h3 class="sub-title">Sequência de indução</h3>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">01</div>
+          <div class="flow-step-label">Cetamina IV baixa (se não usada na MPA)</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">02</div>
+          <div class="flow-step-label">Propofol titulado, seringa de 1 mL</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">03</div>
+          <div class="flow-step-label">Lidocaína na glote</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">04</div>
+          <div class="flow-step-label">Intubação + verificar língua</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">05</div>
+          <div class="flow-step-label">Monitoramento mínimo ativo</div>
+        </div>
+      </div>
+
+      <div class="callout callout-warning">
+        <strong>Atenção: Propofol e Alfa-2</strong>
+        Felinos que receberam dexmedetomidina tendem a colapsar com doses menores de propofol. Reduzir a dose esperada e titular com cautela extrema. Parada cardiorrespiratória já foi observada nessa associação quando o propofol foi administrado em dose habitual.
+      </div>
+
+      <h3 class="sub-title">Monitoramento mínimo na indução</h3>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Estetoscópio sobre o tórax (estagiário ou auxiliar) se não houver monitor</li>
+        <li style="margin-bottom: 8px;">Observação visual de movimentos respiratórios</li>
+        <li style="margin-bottom: 8px;">Oxímetro posicionado assim que possível</li>
+      </ul>
+    </div>
+
+    <!-- 7. MANUTENÇÃO E CIRURGIA -->
+    <div id="manutencao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Manutenção e Evolução para Cirurgia: protocolo em camadas</h2>
+
+      <h3 class="sub-title">Fase de endoscopia</h3>
+      <p>A manutenção inalatória é a escolha padrão. Evita acúmulo de adjuvantes desnecessários, a endoscopia, em si, não é procedimento doloroso.</p>
+
+      <ul style="padding-left: 20px; margin-bottom: 16px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Isoflurano: suficiente para o plano cirúrgico da endoscopia</li>
+        <li style="margin-bottom: 8px;"><strong>Não iniciar infusão de fentanil</strong> nesta fase: se não evoluir para cirurgia, é excesso desnecessário</li>
+        <li style="margin-bottom: 8px;">Atenção à insuflação gástrica: ar no estômago pode comprimir o diafragma e alterar o padrão respiratório</li>
+      </ul>
+
+      <div class="callout callout-essential">
+        <strong>Regra Prática</strong>
+        Não trate endoscopia como cirurgia abdominal desde o início. Monte o protocolo em camadas: endoscopia → confirma que vai à cirurgia → adiciona analgesia para cirurgia. Evita excesso de fármacos e recuperação prolongada desnecessariamente.
+      </div>
+
+      <h3 class="sub-title">Se evoluir para cirurgia</h3>
+      <p>A MPA com metadona já comporta o procedimento cirúrgico. Não é necessário repetir MPA.</p>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Bolus de fentanil IV antes de iniciar a cirurgia</li>
+        <li style="margin-bottom: 8px;">Iniciar infusão de fentanil + cetamina conforme protocolo habitual de cirurgia abdominal</li>
+        <li style="margin-bottom: 8px;">Manter inalatório na concentração ajustada para cirurgia, geralmente menor que o necessário sem infusão</li>
+      </ul>
+
+      <div class="callout callout-blue">
+        <strong>Precificação</strong>
+        Se já sabe que há alta probabilidade de cirurgia na sequência, passe um valor global contemplando endoscopia + possível cirurgia. Se não houver cirurgia, ofereça desconto. Detalhar cada item separadamente gera questionamentos e coloca você em posição vulnerável.
+      </div>
+    </div>
+
+    <!-- 8. RECUPERAÇÃO -->
+    <div id="recuperacao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Recuperação: o felino com alfa-2 tem características próprias</h2>
+
+      <h3 class="sub-title">Conduta padrão</h3>
+      <ul style="padding-left: 20px; margin-bottom: 16px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Desligar o inalatório assim que o procedimento terminar</li>
+        <li style="margin-bottom: 8px;">Mudar o decúbito periodicamente, estimula o despertar e melhora a ventilação</li>
+        <li style="margin-bottom: 8px;">Manter oxigenação suplementar até saturação estável</li>
+        <li style="margin-bottom: 8px;">Monitorar pupila, midríase persistente indica efeito residual de alfa-2</li>
+        <li style="margin-bottom: 8px;">Desintubar no primeiro reflexo de deglutição confiável, não esperar despertar completo</li>
+      </ul>
+
+      <div class="callout callout-warning">
+        <strong>Atenção: Saturação pós-extubação</strong>
+        Após extubação, o felino pode demorar para saturar adequadamente quando alfa-2 foi utilizado. Monitorar com oxímetro e retornar ao oxigênio se necessário. A mudança de decúbito acelera o retorno à saturação normal.
+      </div>
+
+      <h3 class="sub-title">Quando reverter a dexmedetomidina</h3>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Procedimento &lt; 40–45 min: considerar reversão com atipamezol IM (metade da dose)</li>
+        <li style="margin-bottom: 8px;">Procedimento mais longo: efeito da dex já está diminuindo, reversão pode causar excitação</li>
+        <li style="margin-bottom: 8px;">Após reversão: avisar a equipe sobre agitação transitória de ~5 minutos, esperada e passageira</li>
+      </ul>
+    </div>
+
+    <!-- 9. ANTES E DEPOIS -->
+    <div id="antes-depois" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">Antes e Depois: o que muda quando você pensa diferente</h2>
+
+      <div class="before-after">
+        <div class="ba-header">
+          <div>Fundamento</div>
+          <div>Sem o Paper</div>
+          <div>Com o Paper</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Opioide na MPA</div>
+          <div class="ba-before">Butorfanol porque "é endoscopia"</div>
+          <div class="ba-after">Metadona, comporta endoscopia e cirurgia</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Língua do gato</div>
+          <div class="ba-before">Não verifica, descobre na cirurgia</div>
+          <div class="ba-after">Orienta equipe por telefone + verifica na indução</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Infusão de fentanil</div>
+          <div class="ba-before">Inicia durante endoscopia "por precaução"</div>
+          <div class="ba-after">Só adiciona quando cirurgia confirmada</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Propofol na indução</div>
+          <div class="ba-before">Dose habitual, animal colapsa</div>
+          <div class="ba-after">Titulado em seringa de 1 mL com alfa-2 presente</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Honorário</div>
+          <div class="ba-before">Preço de endoscopia isolada, cirurgia vira surpresa</div>
+          <div class="ba-after">Valor global contemplando possibilidade de cirurgia</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Recuperação</div>
+          <div class="ba-before">Extuba e aguarda despertar sem intervenção</div>
+          <div class="ba-after">Muda decúbito, monitora saturação, critério para reverter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAYBOOK CTA -->
+    <div class="playbook-cta">
+      <h3>Precisa do passo a passo completo?</h3>
+      <p>O Playbook deste Café com a Bá tem todas as condutas organizadas em formato de checklist, do primeiro contato ao fim da recuperação.</p>
+      <a class="playbook-btn" href="checklist.html" target="_blank">→ Acessar o Playbook</a>
+    </div>
+
+    <!-- 10. MODELOS MENTAIS -->
+    <div id="modelos" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de saber</span>
+      </div>
+      <h2 class="section-title">Modelos Mentais: Perguntas de Ativação</h2>
+
+      <div class="mental-model">
+        <div class="mm-num">1</div>
+        <div class="mm-content">
+          <h4>Verifiquei embaixo da língua?</h4>
+          <p>Linha ancorada exige corte antes de endoscopia ou cirurgia. Oriente a equipe por telefone antes de chegar.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">2</div>
+        <div class="mm-content">
+          <h4>Esse procedimento pode virar cirurgia?</h4>
+          <p>Se sim: esqueça o butorfanol. Metadona comporta os dois cenários.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">3</div>
+        <div class="mm-content">
+          <h4>Qual o estado clínico real do gato agora?</h4>
+          <p>Alerta, prostrado ou agressivo, cada um tem uma estratégia de MPA completamente diferente.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">4</div>
+        <div class="mm-content">
+          <h4>Reduzi a dose de propofol por causa da alfa-2?</h4>
+          <p>A alfa-2 reduz drasticamente a necessidade. Titular em seringa de 1 mL. Parada cardiorrespiratória já aconteceu com dose habitual.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">5</div>
+        <div class="mm-content">
+          <h4>Fiz lidocaína na glote antes de intubar?</h4>
+          <p>Sempre. Laringoespasmo no felino é real e ocorre rápido.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">6</div>
+        <div class="mm-content">
+          <h4>Incluí a cirurgia no honorário?</h4>
+          <p>Passe um valor global que contemple a possibilidade. Desconte se não houver cirurgia, nunca detalhe item a item.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /body-wrap -->
+
+  <div class="paper-footer">
+    © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+  </div>
+
+</body>
+</html>

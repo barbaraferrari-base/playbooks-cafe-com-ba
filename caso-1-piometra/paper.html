@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café com a Bá: Cadela Cardiopata com Piometra</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* CAPA */
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span {
+      color: var(--blue-accent);
+    }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    /* LEGENDA */
+    .legend-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 48px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .legend-bar span {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-essential {
+      background: #e74c3c;
+    }
+
+    /* Vermelho fogo */
+    .dot-good {
+      background: #3498db;
+    }
+
+    /* Azul */
+    .dot-optional {
+      background: #27ae60;
+    }
+
+    /* Verde */
+
+    /* CORPO */
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    /* ÍNDICE */
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .index-item a:hover {
+      color: var(--blue-accent);
+    }
+
+    .index-num {
+      color: var(--blue-accent);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* SEÇÕES */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential {
+      background: #fffbe6;
+      border-left: 4px solid var(--accent-yellow);
+    }
+
+    .callout-warning {
+      background: #fff2ee;
+      border-left: 4px solid #e07c4a;
+    }
+
+    .callout-blue {
+      background: #eef6fb;
+      border-left: 4px solid var(--blue-accent);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    /* REGRAS */
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* GARGALOS */
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gargalo-card h4 .icon {
+      font-size: 16px;
+    }
+
+    .gargalo-card p {
+      font-size: 13px;
+      margin: 0;
+      color: #666;
+    }
+
+    /* PROTOCOLO - cards de cenário */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul {
+      padding-left: 16px;
+      margin: 8px 0;
+    }
+
+    .scenario-body li {
+      margin-bottom: 6px;
+    }
+
+    /* FLUXO */
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 140px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label {
+      font-weight: 600;
+      color: var(--teal);
+      font-size: 12px;
+    }
+
+    /* TABELA ANTES/DEPOIS */
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child {
+      border-bottom: none;
+    }
+
+    .ba-row:nth-child(even) {
+      background: #fafbfc;
+    }
+
+    .ba-topic {
+      font-weight: 600;
+      color: var(--teal);
+    }
+
+    .ba-before {
+      color: #c0392b;
+    }
+
+    .ba-after {
+      color: #27ae60;
+    }
+
+    /* PLAYBOOK LINK */
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    /* MODELOS MENTAIS */
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .mm-content p {
+      font-size: 13px;
+      color: #666;
+      margin: 0;
+    }
+
+    /* FOOTER */
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    .paper-footer a {
+      color: var(--blue-accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap {
+        padding: 32px 20px 60px;
+      }
+
+      .cover {
+        padding: 40px 24px 36px;
+      }
+
+      .cover-title {
+        font-size: 28px;
+      }
+
+      .index-grid,
+      .gargalo-grid,
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-steps {
+        flex-direction: column;
+      }
+
+      .flow-step::after {
+        display: none;
+      }
+
+      .ba-header,
+      .ba-row {
+        grid-template-columns: 1fr;
+      }
+
+      .legend-bar {
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-badge">Café com a Bá</div>
+    <div class="cover-series">Base Anestesia Veterinária</div>
+    <h1 class="cover-title">Cadela Cardiopata<br>Descompensada com<br><span>Piometra Fechada</span><br>para Anestesia
+    </h1>
+    <p class="cover-subtitle">Do primeiro contato ao pós-operatório: como pensar, agir e criar valor em cada etapa de um
+      caso urgente.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">Tempo de leitura<strong>20 a 25 min</strong></div>
+      <div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários e interessados na área</strong></div>
+      <div class="cover-meta-item">Série<strong>Café com a Bá</strong></div>
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div class="legend-bar">
+    <span>
+      <div class="dot dot-essential"></div> Indispensável
+    </span>
+    <span>
+      <div class="dot dot-optional"></div> Importante
+    </span>
+    <span>
+      <div class="dot dot-good"></div> Legal de saber
+    </span>
+  </div>
+
+  <div class="body-wrap">
+
+    <!-- ÍNDICE -->
+    <div class="index-block">
+      <h2>Índice</h2>
+      <div class="index-grid">
+        <div class="index-item"><a href="#intro">Introdução</a><span class="index-num">01</span></div>
+        <div class="index-item"><a href="#gargalos">Os 4 Gargalos do Anestesista</a><span class="index-num">05</span>
+        </div>
+        <div class="index-item"><a href="#primeiro-contato">O Primeiro Contato</a><span class="index-num">02</span>
+        </div>
+        <div class="index-item"><a href="#protocolo">Protocolo e MPA</a><span class="index-num">06</span></div>
+        <div class="index-item"><a href="#avaliacao">Avaliação do Paciente</a><span class="index-num">03</span></div>
+        <div class="index-item"><a href="#inducao">Indução e Manutenção</a><span class="index-num">07</span></div>
+        <div class="index-item"><a href="#logistica">Logística e Posicionamento</a><span class="index-num">04</span>
+        </div>
+        <div class="index-item"><a href="#pos">Pós-operatório</a><span class="index-num">08</span></div>
+        <div class="index-item"><a href="#antes-depois">Antes e Depois</a><span class="index-num">09</span></div>
+        <div class="index-item"><a href="#modelos">Modelos Mentais</a><span class="index-num">10</span></div>
+      </div>
+    </div>
+
+    <!-- INTRODUÇÃO -->
+    <div id="intro" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">Anestesia não é só protocolo. É raciocínio clínico com estratégia.</h2>
+
+      <p>A clínica te ligou. Tem uma piometra. O responsável pelo paciente (tutor) está cotando preço. É feriado. Você
+        não sabe nada do paciente
+        ainda.</p>
+
+      <p>Esse é o cenário mais comum, e o que mais separa um anestesista que cria valor de um que só aplica fármaco. A
+        diferença não está no protocolo. Está em tudo que acontece antes e depois dele.</p>
+
+      <p>Neste Paper, vamos estudar como o Café com a Bá de 04 de maio de 2026 foi conduzido: um caso fictício baseado
+        em situações reais, com todos os pontos de decisão que um anestesista veterinário enfrenta quando recebe esse
+        tipo de chamado.</p>
+
+      <div class="callout callout-blue">
+        <strong>Contexto do Paper</strong>
+        Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre
+        anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar,
+        não só o que
+        fazer.
+      </div>
+    </div>
+
+    <!-- PRIMEIRO CONTATO -->
+    <div id="primeiro-contato" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de Saber</span>
+      </div>
+      <h2 class="section-title">O Primeiro Contato: onde tudo começa (e onde tudo pode dar errado)</h2>
+
+      <p>O tutor está cotando preço na cidade. A clínica já é sua cliente. A informação que você tem: piometra,
+        cardiopata, feriado.</p>
+
+      <p>A maioria dos anestesistas passa o preço. Pergunta para o cliente veterinário se está bom. Fica esperando.</p>
+
+      <div class="rules-block">
+        <h4>As 3 Regras do Primeiro Contato</h4>
+        <div class="rule-item">
+          <div class="rule-num">1</div>
+          <div><strong>Nunca passe preço sem perguntar sobre o paciente.</strong> Você não pode precificar o que não
+            conhece. Cada informação que você levanta muda o risco, e o valor do seu trabalho.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">2</div>
+          <div><strong>Nunca pergunte se o preço está bom.</strong> Nunca vai estar. Eles sempre vão dar um migué pra
+            você baixar. Passe
+            o preço mais alto da sua tabela para aquele contexto (emergência, feriado, fora de horário) e siga em
+            frente.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">3</div>
+          <div><strong>Coloque prazo para fechar e/ou manter o valor.</strong> O tutor está cotando com outros
+            veterinários. Você precisa ter
+            disponibilidade confirmada, e isso significa dar um prazo: "Preciso de resposta em 1 hora, pois a partir daí
+            não estou mais disponível ou o preço muda."</div>
+        </div>
+      </div>
+
+      <div class="callout callout-warning">
+        <strong>Atenção</strong>
+        Se o cliente não tiver cartão, limite ou condições de pagar, o problema é da clínica, não seu. É a clínica que
+        te chama que vai te pagar. Deixe isso claro desde o início. Isso é posicionamento, não arrogância.
+      </div>
+    </div>
+
+    <!-- AVALIAÇÃO -->
+    <div id="avaliacao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Avaliação do Paciente: as perguntas que você precisa fazer</h2>
+
+      <p>A clínica não vai saber te dar as respostas. Mas você precisa fazer as perguntas, e orientá-los a buscar as
+        informações com o tutor.</p>
+
+      <h3 class="sub-title">Pergunta 1: Piometra aberta ou fechada?</h3>
+      <p>Essa é a pergunta mais importante. Piometra fechada é emergência absoluta. Há risco real de ruptura uterina.
+        Pacientes clinicamente estáveis já morreram por adiamentos. Você deve se impor para garantir a urgência da
+        cirurgia no mesmo dia.</p>
+
+      <div class="callout callout-essential">
+        <strong>Essencial</strong>
+        Se a piometra for fechada: não aceite "fazer amanhã, depois do feriado, para ficar mais barato". A economia de
+        um dia pode custar a
+        vida do animal, e a sua reputação junto.
+      </div>
+
+      <h3 class="sub-title">Pergunta 2: Qual o tamanho do útero no ultrassom?</h3>
+      <p>O pacientepode estar bem clinicamente, mas o útero pode estar enorme. Um útero grande com piometra fechada
+        significa risco iminente de ruptura, mesmo em piometra aberta. Avise. Coloque prognóstico na mesa antes de
+        qualquer decisão de adiar.</p>
+
+      <h3 class="sub-title">Pergunta 3: Quais exames estão disponíveis?</h3>
+      <p>É impressionante como muitas clínicas mandam o paciente para fazer ultrassom num centro de diagnóstico e não
+        aproveitam para
+        pedir um hemograma. Você vai precisar monitorar débito urinário ativamente, com ou sem buiquímico disponível e
+        isso
+        exige que você esteja preparado sondar uma fêmea, leve espéculo, e faça essa coleta você mesmo.</p>
+
+      <h3 class="sub-title">Pergunta 4: Como está sendo tratada a cardiopatia?</h3>
+      <p>Nunca foi no cardiologista? Trata no olho? Só tem sopro e "estava ficando cansada"? Tudo isso muda a sua
+        conduta. Quando não há avaliação especializada, trate como cardiopata baseando-se na doença mais prevalente para
+        aquela raça e porte, como endocardiose de mitral em uma Shih Tzu idosa, por exemplo.</p>
+    </div>
+
+    <!-- LOGÍSTICA -->
+    <div id="logistica" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">Logística e Posicionamento: antes de pensar em protocolo, pense nisso</h2>
+
+      <p>O protocolo anestésico não deve ser sua primeira preocupação. A prioridade é o contexto clínico e a estrutura
+        disponível.</p>
+
+      <h3 class="sub-title">A clínica tem internação adequada?</h3>
+      <p>O maior risco desse paciente não é só o trans-anestésico: é, igualmente o pós-operatório. Um cardiopata
+        descompensado que
+        acorda sem monitoramento pode evoluir para edema pulmonar em minutos. Se não há internação com acompanhamento, o
+        risco ao paciente
+        aumenta significativamente.</p>
+
+      <div class="callout callout-warning">
+        <strong>Regra de ouro</strong>
+        Se a cirurgia for à tarde e não houver internação disponível, não hesite em recusar o caso ou exigir
+        encaminhamento para local com estrutura adequada. Isso não é falta de disposição; é responsabilidade. Se você
+        aceitar por falta de opção de todos (e eu já fiz muito isso), vá preparado para segurar o rojão no pós
+        operatório, e cobre por isso.
+      </div>
+
+      <h3 class="sub-title">Em que horário a cirurgia será feita?</h3>
+      <p>Negocie para que o procedimento seja realizado pela manhã sempre que possível. "Fazer depois do almoço" num
+        cardiopata sem internação noturna é colocar o paciente em risco desnecessário.</p>
+
+      <h3 class="sub-title">Como você vai cobrar?</h3>
+      <p>Nesses casos, não passe preço fechado. Deixe claro que há possibilidade de adicional por hora de acompanhamento
+        no pós. O cardiopata pode não sair do oxigênio, precisar de dobutamina, dopamina, e você vai estar lá enquanto
+        isso acontecer.</p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">01</div>
+          <div class="flow-step-label">Recebe chamado</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">02</div>
+          <div class="flow-step-label">Faz perguntas</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">03</div>
+          <div class="flow-step-label">Passa preço máximo</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">04</div>
+          <div class="flow-step-label">Define prazo</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">05</div>
+          <div class="flow-step-label">Confirma estrutura</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">06</div>
+          <div class="flow-step-label">Vai para a clínica</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GARGALOS -->
+    <div id="gargalos" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de saber</span>
+      </div>
+      <h2 class="section-title">Os 4 Gargalos do Anestesista que Só Anestesia</h2>
+
+      <p>Se você não sabe orientar a clínica, não sabe explicar o risco, não sabe prever o que pode dar errado, você
+        está só colocando fármaco. Se der uma zica e você não sabe o que fazer, você fica nervoso. E a clínica nunca
+        mais te liga.</p>
+
+      <div class="gargalo-grid">
+        <div class="gargalo-card">
+          <h4><span class="icon">📞</span> Comunicação reativa</h4>
+          <p>Fica esperando informação da clínica em vez de orientar ativamente o que precisa ser perguntado ao tutor.
+          </p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">💰</span> Precificação às cegas</h4>
+          <p>Passa preço sem entender o caso. Pergunta se está bom. Não coloca prazo. Perde o feriado esperando.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">🧪</span> Protocolo sem contexto</h4>
+          <p>Vai direto ao protocolo sem saber quem é o paciente, quais exames existem, como está a cardiopatia.</p>
+        </div>
+        <div class="gargalo-card">
+          <h4><span class="icon">⏱️</span> Pós-operatório ignorado</h4>
+          <p>Não prevê o tempo de acompanhamento. Não cobra por isso. Fica preso sem ter incluído no honorário.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROTOCOLO -->
+    <div id="protocolo" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Protocolo e MPA: não existe receita única</h2>
+
+      <p>O protocolo vai depender do estado clínico real do paciente no momento da avaliação. O que muda entre os
+        cenários não é só o fármaco: é a lógica inteira.</p>
+
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <div class="scenario-header">Paciente Calma e Compensada</div>
+          <div class="scenario-body">
+            MPA com morfina ou metadona (Bárbara prefere metadona em abdominais) em dose mais alta, para sedação leve e
+            analgesia robusta.
+            <ul>
+              <li>Evite acepromazina (hipotensora)</li>
+              <li>Evite dexmedetomidina (cardiopata sem eco)</li>
+              <li>Midazolam pode causar excitação e prolongar o pós, embora seja uma opção associada ao opioide da MPA
+              </li>
+              <li>Não deixe o paciente sozinho no pré</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-header">Descompensada por Sepse</div>
+          <div class="scenario-body">
+            Metadona sozinha, associada ou não a benzodiazepínico.
+            <ul>
+              <li>Midazolam também pode causar hipotensão tardia e vocalização no pós (em pacientes mais idosos)</li>
+              <li>Não use midazolam na MPA nesse cenário</li>
+              <li>Se muito brava: anestesia dissociativa na MPA pode ser necessária (em breve teremos um caso real no
+                Café com a Bá)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-header">Ruptura Uterina / Sepse Avançada</div>
+          <div class="scenario-body">
+            Cogite induzir diretamente, sem fazer MPA
+            <ul>
+              <li>Midazolam entra como co-indutor junto dos demais</li>
+              <li>Objetivo: reduzir dose de propofol</li>
+              <li>Velocidade é prioridade, mas sem perda de qualidade e segurança</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INDUÇÃO -->
+    <div id="inducao" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Indução, Manutenção e Analgesia</h2>
+
+      <h3 class="sub-title">Alguns co-indutores recomendados</h3>
+      <p>A indução com múltiplos co-indutores visa minimizar a depressão cardiovascular e reduzir a dose total de
+        propofol. A combinação habitual da Bárbara pode incluir:</p>
+
+      <ul style="padding-left: 20px; margin-bottom: 16px; font-size: 14px;">
+        <li style="margin-bottom: 8px;"><strong>Lidocaína IV</strong>: antiarrítmico na indução, reduz estímulo
+          arritmogênico da intubação e proporciona analgesia (intubar é doloroso)</li>
+        <li style="margin-bottom: 8px;"><strong>Cetamina</strong>: analgesia e redução da dose de propofol; balanceia
+          efeitos cardiodepressores</li>
+        <li style="margin-bottom: 8px;"><strong>Propofol</strong>: agente indutor principal, com dose reduzida pelos
+          co-indutores</li>
+        <li style="margin-bottom: 8px;"><strong>Bolus de fentanil</strong>: pré-infusão, responsável, também, pela
+          analgesia na
+          manutenção escolhida pela Bárbara</li>
+      </ul>
+
+      <div class="callout callout-warning">
+        <strong>Atenção</strong>
+        Etomidato é contraindicado em casos de sepse. Seu uso em cardiopatas SEM sepse com avaliação cardiológica prévia
+        será abordado em outro Café com a Bá.
+      </div>
+
+      <h3 class="sub-title">Lidocaína na glote</h3>
+      <p>Mesmo fazendo lidocaína IV, aplique localmente na glote. O tempo de efeito da IV dura cerca de 18 minutos. A
+        lidocaína da
+        glote atua no
+        reflexo laríngeo e contribui para o pós-imediato mais confortável.</p>
+
+      <h3 class="sub-title">Manutenção: a "Bolsa Santa"</h3>
+      <p>A infusão de fentanil + cetamina nas taxas utilizadas pela Bárbara em associação com a escolha da MPA é a
+        manutenção analgésica preferida pela Bárbara nesse
+        contexto. Não é
+        "Bolsa Santa" só por usar esses fármacos; é pela combinação certa de taxas.</p>
+
+      <div class="callout callout-essential">
+        <strong>Por que a Bárbara não dá preferência ao remifentanil?</strong>
+        O remifentanil causa liberação de vasopressina em altas taxas, frequentemente necessárias quando associado à
+        inalatória, o que pode ser prejudicial em cardiopatas. Além disso, sua analgesia é inferior à do fentanil pela
+        menor penetração tecidual. A literatura traz informações sobre questionamentos sobre esse possível malefício
+        para cardiopatas, mas, independente disso, a Bárbara prefere fentanil.
+      </div>
+
+      <h3 class="sub-title">Inalatória vs TIVA</h3>
+      <p>A anestesia inalatória é preferida à TIVA nesse contexto pela Bárbara. A TIVA exigiria muitos adjuvantes que
+        podem prolongar
+        a recuperação e causar maior depressão cardiorrespiratória. A vasodilatação da inalatória pode, inclusive, ser
+        benéfica para o cardiopata.</p>
+
+      <h3 class="sub-title">Regra de ouro da piometra como emergência</h3>
+      <p>Foco único: remoção do útero. Não tira tumor de mama nem de baço que aparecer. Não olha para o dente. Não faz
+        nada além do
+        que é necessário. Anestesia não é vitamina: cada minuto a mais na mesa é risco a mais.</p>
+    </div>
+
+    <!-- PÓS-OPERATÓRIO -->
+    <div id="pos" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-essential"></div>
+        <span class="section-label">Indispensável</span>
+      </div>
+      <h2 class="section-title">Pós-operatório: onde o cardiopata pode te surpreender</h2>
+
+      <h3 class="sub-title">Débito urinário</h3>
+      <p>Monitoramento obrigatório desde o início. Sonde a paciente. Se não produzir urina no débito urinário, entre com
+        furosemida e faça as manobras. Sem bioquímico disponível, o débito urinário é sua principal janela renal.</p>
+
+      <p>Se o paciente não tiver bioquímico e você não monitorar, qualquer insuficiência renal pré-existente pode ser
+        atribuída à sua anestesia.</p>
+
+      <h3 class="sub-title">Furosemida no final do procedimento</h3>
+      <p>Dose baixa de furosemida ao final é aconselhável para o pós-imediato, pois previne edema pulmonar cardiogênico.
+        Converse com cardiologista de referência sobre a dose ideal.</p>
+
+      <div class="callout callout-essential">
+        <strong>Sonda no pós</strong>
+        Cogite encaminhar o paciente para a internação com a sonda uretral. Clínicas têm resistência, mas com a
+        furosemida, o
+        paciente vai produzir muita urina, e reter pode causar desconforto e agitação, o que é péssimo para o paciente
+        internado.
+      </div>
+
+      <h3 class="sub-title">Suporte hemodinâmico</h3>
+      <p>Tenha dobutamina e dopamina disponíveis. Se o paciente estiver hipotenso e descompensado no pós, você precisa
+        de suporte pressórico enquanto estabiliza para transferência ou internação. Também tenha noradrenalina para
+        associar à dobutamina se for necessário.</p>
+
+      <h3 class="sub-title">Tempo de observação</h3>
+      <p>Mínimo de 30 minutos adicionais após a extubação: ausculta, pressão arterial, parâmetros. Isso deve estar
+        incluído no honorário desde o início.</p>
+
+      <h3 class="sub-title">Encaminhamento cardiológico</h3>
+      <p>Após a recuperação, indique cardiologista. Se você conhece um volante na região, faça o link. Passe o caso,
+        diga como foi a anestesia. Isso cria valor para a clínica, fideliza o cliente e posiciona você como referência.
+      </p>
+
+      <h3 class="sub-title">Sobre fazer chorar o tutor</h3>
+      <p>Na conversa de risco antes da cirurgia, não economize. Seja direto sobre a gravidade. Se tudo der certo, você
+        vira o herói. É assim que a clínica te lembra, e te liga da próxima vez.</p>
+    </div>
+
+    <!-- ANTES E DEPOIS -->
+    <div id="antes-depois" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-optional"></div>
+        <span class="section-label">Importante</span>
+      </div>
+      <h2 class="section-title">Antes e Depois: o que muda quando você pensa diferente</h2>
+
+      <div class="before-after">
+        <div class="ba-header">
+          <div>Fundamento</div>
+          <div>Sem o Paper</div>
+          <div>Com o Paper</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Primeiro contato</div>
+          <div class="ba-before">Passa preço, pergunta se tá bom, fica esperando</div>
+          <div class="ba-after">Faz perguntas, passa preço máximo, coloca prazo</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Avaliação</div>
+          <div class="ba-before">Vai pro protocolo sem saber nada do paciente</div>
+          <div class="ba-after">Faz as 4 perguntas essenciais, orienta a clínica</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Exames</div>
+          <div class="ba-before">Espera o que a clínica tiver</div>
+          <div class="ba-after">Monitora débito urinário, sonda, age com o que tem</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Protocolo</div>
+          <div class="ba-before">Um protocolo para todos os casos</div>
+          <div class="ba-after">Adapta ao estado clínico real: 3 cenários distintos</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Pós-operatório</div>
+          <div class="ba-before">Vai embora após extubação</div>
+          <div class="ba-after">Monitora 30+ min, furosemida, suporte hemodinâmico</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-topic">Honorário</div>
+          <div class="ba-before">Preço fechado, sem prever o pós</div>
+          <div class="ba-after">Previsão com adicional por hora de acompanhamento</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAYBOOK CTA -->
+    <div class="playbook-cta">
+      <h3>Precisa do passo a passo completo?</h3>
+      <p>O Playbook deste Café com a Bá tem todas as condutas organizadas em formato de checklist, do primeiro contato
+        ao encaminhamento cardiológico.</p>
+      <a class="playbook-btn" href="checklist.html" target="_blank">→ Acessar o Playbook</a>
+    </div>
+
+    <!-- MODELOS MENTAIS -->
+    <div id="modelos" class="section">
+      <div class="section-tag">
+        <div class="dot-tag dot-good"></div>
+        <span class="section-label">Legal de saber</span>
+      </div>
+      <h2 class="section-title">Modelos Mentais: Perguntas de Ativação</h2>
+
+      <div class="mental-model">
+        <div class="mm-num">1</div>
+        <div class="mm-content">
+          <h4>Piometra aberta ou fechada?</h4>
+          <p>Essa é a primeira pergunta. Ela define a urgência, o risco e o tamanho do meu honorário.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">2</div>
+        <div class="mm-content">
+          <h4>A clínica tem internação para um cardiopata?</h4>
+          <p>Se não tem, o risco pós-operatório passa para o tutor, mas é você quem precisa comunicar isso antes de
+            aceitar o caso.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">3</div>
+        <div class="mm-content">
+          <h4>Quais exames estão disponíveis?</h4>
+          <p>Se não tem bioquímico, o débito urinário é minha janela renal. Sei sondar uma fêmea? Tenho espéculo? Sei
+            quais são os valores normais de débito urinário</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">4</div>
+        <div class="mm-content">
+          <h4>Qual é o estado clínico real agora?</h4>
+          <p>O protocolo muda completamente entre paciente compensada, descompensada por sepse e ruptura uterina. Não
+            existe um protocolo único.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">5</div>
+        <div class="mm-content">
+          <h4>Incluí o tempo de pós no meu honorário?</h4>
+          <p>Mínimo 30 minutos de observação. Mais se necessário suporte hemodinâmico. Isso não é extra; é parte do
+            serviço.</p>
+        </div>
+      </div>
+
+      <div class="mental-model">
+        <div class="mm-num">6</div>
+        <div class="mm-content">
+          <h4>Estou sendo útil ou só anestesiando?</h4>
+          <p>Se você só coloca fármaco, qualquer um pode te substituir. Se você orienta, previne, encaminha e cria
+            valor, a clínica não te troca.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /body-wrap -->
+
+  <div class="paper-footer">
+    © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do
+    AVP - Anestesia Veterinária na Prática
+  </div>
+
+</body>
+
+</html>

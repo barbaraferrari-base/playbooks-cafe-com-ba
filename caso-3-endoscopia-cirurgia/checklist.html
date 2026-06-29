@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playbook Café com a Bá Caso #3: Corpo Estranho Linear</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --teal: #0a2a35;
+    --blue-accent: #4fa3c8;
+    --light-bg: #f4f7f9;
+    --white: #ffffff;
+    --gray-text: #444;
+    --border: #dce5ea;
+    --accent-yellow: #e8c94b;
+    --green: #27ae60;
+    --orange: #e07c4a;
+    --red: #c0392b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light-bg);
+    color: var(--gray-text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* CAPA */
+  .cover {
+    background: var(--teal);
+    color: white;
+    padding: 60px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(79,163,200,0.12);
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: var(--blue-accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .cover-series {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: white;
+  }
+
+  .cover-title span { color: var(--blue-accent); }
+
+  .cover-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 520px;
+    margin-bottom: 40px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 24px;
+  }
+
+  .cover-meta-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cover-meta-item strong {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 2px;
+  }
+
+  /* CORPO */
+  .body-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 48px 80px;
+  }
+
+  /* INTRO */
+  .intro-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .intro-block p { margin-bottom: 0; }
+
+  /* BLOCO DE CHECKLIST */
+  .checklist-section {
+    margin-bottom: 48px;
+  }
+
+  .checklist-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .checklist-icon {
+    background: var(--teal);
+    color: white;
+    font-size: 18px;
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .checklist-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--teal);
+    line-height: 1.2;
+  }
+
+  .checklist-subtitle {
+    font-size: 12px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* ITENS */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .check-item:hover {
+    border-color: var(--blue-accent);
+    transition: border-color 0.2s;
+  }
+
+  .checkbox {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .checkbox:hover {
+    border-color: var(--blue-accent);
+    background: #eef6fb;
+  }
+
+  .check-item.checked .checkbox {
+    background: var(--blue-accent);
+    border-color: var(--blue-accent);
+  }
+
+  .check-item.checked .checkbox::after {
+    content: '✓';
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .check-item.checked .check-text {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+
+  .check-text {
+    flex: 1;
+    color: var(--gray-text);
+    line-height: 1.5;
+  }
+
+  .check-text strong {
+    color: var(--teal);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 14px;
+  }
+
+  .check-text span {
+    font-size: 13px;
+    color: #777;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .tag-critical { background: #fdf0f0; color: var(--red); border: 1px solid #f5c6c6; }
+  .tag-warning { background: #fff6ee; color: var(--orange); border: 1px solid #fad4b4; }
+  .tag-ok { background: #f0faf4; color: var(--green); border: 1px solid #b2dfc4; }
+
+  /* ALERTA CLÍNICO */
+  .alert-box {
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+
+  .alert-critical {
+    background: #fdf0f0;
+    border: 1px solid #f5c6c6;
+    border-left: 4px solid var(--red);
+  }
+
+  .alert-warning {
+    background: #fff6ee;
+    border: 1px solid #fad4b4;
+    border-left: 4px solid var(--orange);
+  }
+
+  .alert-blue {
+    background: #eef6fb;
+    border: 1px solid #bde0f2;
+    border-left: 4px solid var(--blue-accent);
+  }
+
+  .alert-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    color: #555;
+  }
+
+  /* DIVISOR */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* DECISÃO RÁPIDA */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .decision-card {
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 13px;
+  }
+
+  .decision-if {
+    background: var(--teal);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .decision-then {
+    background: #eef6fb;
+    border: 1px solid #bde0f2;
+  }
+
+  .decision-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    opacity: 0.6;
+  }
+
+  .decision-if .decision-label { color: var(--blue-accent); opacity: 1; }
+  .decision-then .decision-label { color: var(--blue-accent); }
+
+  .decision-text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .decision-if .decision-text { color: white; }
+  .decision-then .decision-text { color: var(--teal); }
+
+  /* FOOTER */
+  .paper-footer {
+    background: var(--teal);
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    text-align: center;
+    padding: 20px 48px;
+    letter-spacing: 0.5px;
+  }
+
+  .paper-footer a { color: var(--blue-accent); text-decoration: none; }
+
+  /* PRINT */
+  @media print {
+    .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .check-item { break-inside: avoid; }
+  }
+
+  @media (max-width: 640px) {
+    .body-wrap { padding: 32px 20px 60px; }
+    .cover { padding: 40px 24px 36px; }
+    .cover-title { font-size: 28px; }
+    .decision-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <div class="cover-badge">Playbook Café com a Bá Caso #3</div>
+  <div class="cover-series">Anestesia Veterinária na Prática 2026</div>
+  <h1 class="cover-title">Corpo Estranho Linear:<br><span>Checklist Completo</span></h1>
+  <p class="cover-subtitle">Do aceite do caso à crise em cirurgia. Condutas organizadas para aplicar na hora sem improvisar.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">Formato<strong>Checklist interativo</strong></div>
+    <div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div>
+    <div class="cover-meta-item">Série<strong>Café com a Bá</strong></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="intro-block">
+    <p>Este Playbook é o complemento operacional do Paper do Caso #3. Marque cada item conforme avança no caso. Clique em qualquer item para marcá-lo como concluído.</p>
+    <p style="margin-top: 10px; color: #c0392b; font-size: 13px;">⚠️ A marcação dos itens não é salva. Se fechar esta aba ou o navegador, o progresso se perde.</p>
+  </div>
+
+  <!-- BLOCO 1: PRÉ-CASO -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">📋</div>
+      <div>
+        <div class="checklist-title">Antes de Aceitar o Caso</div>
+        <div class="checklist-subtitle">Decisões que não podem ser improvisadas no meio do procedimento</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Identificar quem é o endoscopista <span class="tag tag-critical">Crítico</span></strong>
+        <span>Conhecer o profissional define expectativa de tempo, conduta e se o caso é viável na sua agenda.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Verificar agenda há margem para atraso?</strong>
+        <span>Procedimentos com horário fixo na sequência (ortopédico de fora, filhote com restrição de jejum) não podem ser adiados facilmente.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Confirmar se há cirurgião disponível para operar imediatamente se necessário <span class="tag tag-critical">Crítico</span></strong>
+        <span>Corpo estranho intestinal com intussuscepção é cirurgia de média complexidade. Não todo cirurgião está preparado.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Negociar preço global contemplando endoscopia + possível cirurgia + hora adicional <span class="tag tag-critical">Crítico</span></strong>
+        <span>Não fechar preço de endoscopia sem incluir o cenário de conversão. Cobrar depois é constrangedor e raramente funciona.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Verificar se o CE está há mais de 24h (esofágico)</strong>
+        <span>Risco de aderência à parede e perfuração esofágica. Define o nível de preparação para complicações.</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCO 2: MATERIAL -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">🎒</div>
+      <div>
+        <div class="checklist-title">Material a Levar Sem Exceção</div>
+        <div class="checklist-subtitle">Prepare antes de sair. Na crise não há tempo para improvisar.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Noradrenalina calculada e bomba de infusão testada <span class="tag tag-critical">Crítico</span></strong>
+        <span>Especialmente em cirurgia intestinal com risco de reperfusão ou sepse. Não improvise em crise.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Material para toracocentese acessível <span class="tag tag-critical">Crítico</span></strong>
+        <span>Obrigatório em endoscopia esofágica. Pneumotórax hipertensivo não espera confirmação radiográfica.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Metadona na mala butorfanol fora do protocolo</strong>
+        <span>MPA que comporta cirurgia abdominal. Não existe "não vai virar cirurgia" como argumento farmacológico.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Monitoração hemodinâmica completa, se possível <span class="tag tag-critical">Crítico</span></strong>
+        <span>Eletrocardiógrafo, monitor de pressão arterial, oxímetro (SpO2), capnógrafo, termômetro e doppler vascular. A diferenciação entre padrão alfa-2, reperfusão e arritmia primária depende da leitura conjunta desses parâmetros.</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCO 3: MPA E PRÉ-INDUÇÃO -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">💉</div>
+      <div>
+        <div class="checklist-title">MPA, Pré-Indução e Indução</div>
+        <div class="checklist-subtitle">Antes de colocar o animal no inalatório</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Metadona como opioide da MPA</strong>
+        <span>Única escolha que comporta a transição para cirurgia abdominal sem troca de protocolo.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>NÃO iniciar infusão de fentanil durante a endoscopia <span class="tag tag-warning">Atenção</span></strong>
+        <span>Analgesia cirúrgica só quando a cirurgia for confirmada. Iniciar antes é antecipação desnecessária.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Verificar embaixo da língua no momento de intubar <span class="tag tag-critical">Crítico</span></strong>
+        <span>Corpo estranho linear pode estar ancorado ali. A verificação é feita uma vez, no momento da intubação: a linha é identificada ou não.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Nunca esquecer do risco de CMH no felino</strong>
+        <span>Se houver suspeita de cardiomiopatia hipertrófica, cuidado com as doses de atropina a serem usadas, especialmente se a pressão arterial estiver alta.</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCO 4: DURANTE A ENDOSCOPIA -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">🔬</div>
+      <div>
+        <div class="checklist-title">Durante a Endoscopia Monitoramento</div>
+        <div class="checklist-subtitle">O que observar a cada momento</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Monitorar eletro, pressão arterial, SpO2, capnografia e temperatura continuamente no felino</strong>
+        <span>Padrões específicos que podem surgir: bradicardia reflexa por hipertensão, bloqueio de ramo, ritmo de escape. Capnografia e temperatura ajudam a identificar alterações metabólicas e ventilatórias precoces.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Se QRS alterado: verificar presença da onda P ANTES de qualquer conduta <span class="tag tag-critical">Crítico</span></strong>
+        <span>Onda P presente e associada ao QRS: bloqueio de ramo, mais frequentemente direito, que se apresenta com QRS de aspecto invertido e geralmente não necessita de conduta ou intervenção. Onda P ausente ou dissociada: ritmo de escape ventricular, mais comum nesse contexto. Pode ser também extrassístole ventricular, embora mais rara nesse cenário. Condutas diferentes em cada caso. O valor real da FC é determinante para diferenciar escape de extrassístole: não confiar na FC exibida pelo eletrocardiógrafo. Usar a FC do oxímetro (SpO2) ou confirmar por ausculta.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Diferenciar escape ventricular de extrassístole ventricular <span class="tag tag-critical">Crítico</span></strong>
+        <span>Escape ocorre em bradicardia, como mecanismo de resgate na ausência de estímulo supraventricular: tratar a bradicardia de base, sem lidocaína. Extrassístole ventricular confirmada: pode-se usar lidocaína, mas é preciso ter certeza de que não se trata de escape ventricular antes de administrar.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Bradicardia + hipertensão → aumentar isoflurano <span class="tag tag-ok">Padrão alfa-2</span></strong>
+        <span>NÃO usar lidocaína IV. A lidocaína vasodilata e pode ser letal se houver ritmo de escape ventricular real. Cuidado também com atropina neste caso: eleva a FC mas eleva a pressão junto, o que piora o quadro hipertensivo.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Em endoscopia esofágica: vigilância ativa para rigidez torácica</strong>
+        <span>Tórax rígido + impossibilidade de ventilar: suspeita de pneumotórax hipertensivo por perfuração. Confirmar antes de começar se o cirurgião sabe operar tórax se necessário, e se há para onde encaminhar o paciente caso não haja UTI no local da cirurgia.</span>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- DECISÃO RÁPIDA: ELETRO -->
+  <div class="alert-box alert-blue">
+    <div class="alert-title">Decisão Rápida Interpretação do Eletro</div>
+    <div class="decision-grid">
+      <div class="decision-card decision-if">
+        <div class="decision-label">Se</div>
+        <div class="decision-text">Bradicardia + hipertensão + QRS alterado</div>
+      </div>
+      <div class="decision-card decision-then">
+        <div class="decision-label">Então</div>
+        <div class="decision-text">Aumentar isoflurano. NÃO usar lidocaína.</div>
+      </div>
+      <div class="decision-card decision-if">
+        <div class="decision-label">Se</div>
+        <div class="decision-text">Bradicardia + hipotensão durante manipulação intestinal</div>
+      </div>
+      <div class="decision-card decision-then">
+        <div class="decision-label">Então</div>
+        <div class="decision-text">Noradrenalina em bomba. NÃO é padrão alfa-2.</div>
+      </div>
+      <div class="decision-card decision-if">
+        <div class="decision-label">Se</div>
+        <div class="decision-text">Tórax rígido + impossibilidade de ventilar</div>
+      </div>
+      <div class="decision-card decision-then">
+        <div class="decision-label">Então</div>
+        <div class="decision-text">Toracocentese de emergência imediata.</div>
+      </div>
+      <div class="decision-card decision-if">
+        <div class="decision-label">Se</div>
+        <div class="decision-text">QRS aberrante em bradicardia, sem onda P</div>
+      </div>
+      <div class="decision-card decision-then">
+        <div class="decision-label">Então</div>
+        <div class="decision-text">Escape ventricular: tratar a bradicardia de base. Sem lidocaína.</div>
+      </div>
+      <div class="decision-card decision-if">
+        <div class="decision-label">Se</div>
+        <div class="decision-text">QRS aberrante prematuro sobre ritmo de base presente</div>
+      </div>
+      <div class="decision-card decision-then">
+        <div class="decision-label">Então</div>
+        <div class="decision-text">Extrassístole ventricular: avaliar causa e frequência antes de intervir.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCO 5: TRANSIÇÃO PARA CIRURGIA -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">🔄</div>
+      <div>
+        <div class="checklist-title">Transição para Cirurgia</div>
+        <div class="checklist-subtitle">Quando a endoscopia confirma necessidade cirúrgica</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Confirmar com cirurgião: opera agora ou acorda o animal?</strong>
+        <span>Decisão tomada imediatamente ao fim da endoscopia. Sem intervalo, sem coffee break.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>NÃO acordar o animal: manter no inalatório e ajustar plano anestésico</strong>
+        <span>A transição direta evita estresse, reindução e perda de tempo crítico.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Bolus de fentanil IV ao início da cirurgia <span class="tag tag-critical">Crítico</span></strong>
+        <span>Primeiro passo da analgesia cirúrgica. Entra ao iniciar a cirurgia, desde que a endoscopia não tenha justificado essa analgesia potente antes.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Iniciar infusão de fentanil + cetamina (Bolsa Santa)</strong>
+        <span>Manutenção analgésica padrão para cirurgia intestinal. Reduzir concentração de iso conforme analgesia.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Monitoramento reforçado: eletro, pressão arterial, FC, SpO2, capnografia e temperatura. Atenção máxima na manipulação intestinal.</strong>
+        <span>Período de reperfusão de alças isquêmicas é o momento de maior risco hemodinâmico.</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCO 6: EMERGÊNCIAS -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">🚨</div>
+      <div>
+        <div class="checklist-title">Emergências Condutas Imediatas</div>
+        <div class="checklist-subtitle">Protocolos que precisam estar memorizados antes de entrar na sala</div>
+      </div>
+    </div>
+
+    <div class="alert-box alert-critical">
+      <div class="alert-title">Pneumotórax Hipertensivo</div>
+      Tórax rígido + ventilação impossível durante endoscopia esofágica → toracocentese de emergência imediata. Não esperar radiografia. Ter agulha e seringa acessíveis antes de começar.
+    </div>
+
+    <div class="alert-box alert-critical">
+      <div class="alert-title">Hipotensão + Bradicardia por Reperfusão ou Sepse</div>
+      NÃO usar dopamina (eficaz somente em doses altas, que são arriscadas). NÃO usar atropina. Noradrenalina em bomba de infusão calculada e testada antes da cirurgia. Não improvise.
+    </div>
+
+    <div class="alert-box alert-warning">
+      <div class="alert-title">CE Deslocado para Traqueia</div>
+      Mais comum em corpos estranhos aderidos, como ossos e bifinhos. Obstrução de via aérea + queda de saturação + impossibilidade de ventilar. Tentar reposicionar, ventilação de emergência, traqueostomia se necessário.
+    </div>
+
+    <div class="alert-box alert-warning">
+      <div class="alert-title">Ritmo de Escape Ventricular NÃO lidocaína</div>
+      QRS alargado sem onda P ou com onda P dissociada. Suporte hemodinâmico. A lidocaína nesse cenário pode ser fatal.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCO 7: ENCERRAMENTO -->
+  <div class="checklist-section">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div>
+        <div class="checklist-title">Encerramento e Posicionamento</div>
+        <div class="checklist-subtitle">O que garantir antes de ir embora</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Registrar duração real do procedimento</strong>
+        <span>Base para a cobrança adicional por hora. Se definida antes, é direito seu.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Confirmar estabilidade hemodinâmica antes de extubação</strong>
+        <span>Pressão, FC, saturação dentro dos parâmetros. Não extuba animal instável.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Passar caso ao responsável pela internação com todas as intercorrências documentadas</strong>
+        <span>Qualquer alteração transanestésica precisa estar registrada: protege você e o paciente.</span>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <strong>Aplicar aprendizado na precificação do próximo caso similar</strong>
+        <span>Se esse caso demorou mais do que o previsto e você não cobrou: é a última vez. Ajuste o preço global para a próxima endoscopia com risco de conversão.</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /body-wrap -->
+
+<div class="paper-footer">
+  © 2026 Bárbara Ferrari Anestesia Veterinária na Prática | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP
+</div>
+
+<script>
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+  }
+</script>
+
+</body>
+</html>
