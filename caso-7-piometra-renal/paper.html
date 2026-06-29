@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #7</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover"><div class="cover-badge">Café com a Bá</div><div class="cover-series">Base Anestesia Veterinária</div><h1 class="cover-title">Piometra na Cadela Brava —<br><span>A MPA é o Divisor de Águas</span></h1><p class="cover-subtitle">Rottweiler monorrim, brava, suspeita de piometra. Por que dissociar de cara, o combo maravilha, e como a MPA lida na hora muda o jogo.</p><div class="cover-meta"><div class="cover-meta-item">Tempo de leitura<strong>12 a 15 min</strong></div><div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div><div class="cover-meta-item">Série<strong>Café com a Bá · Caso #7</strong></div></div></div><div class="body-wrap"><div class="index-block"><h2>Índice</h2><div class="index-grid"><div class="index-item"><a href="#a-mpa-e-o-divisor-de-aguas">A MPA é o Divisor de Águas</a><span class="index-num">01</span></div><div class="index-item"><a href="#o-caso-rottweiler-com-1-rim-brava-e-com-">O Caso: Rottweiler com 1 Rim, Brava e com Suspeita de Piometra</a><span class="index-num">02</span></div><div class="index-item"><a href="#mapeando-a-braveza-o-tutor-segura-ou-e-c">Mapeando a Braveza: o Tutor Segura ou é Cambão?</a><span class="index-num">03</span></div><div class="index-item"><a href="#por-que-eu-dissociei-de-cara-nesse-dia">Por Que Eu Dissociei de Cara Nesse Dia</a><span class="index-num">04</span></div><div class="index-item"><a href="#o-combo-maravilha-e-o-que-mudou-nessa-ca">O Combo Maravilha (e o que mudou nessa cadela)</a><span class="index-num">05</span></div><div class="index-item"><a href="#a-questao-renal-e-a-cautela-com-o-alfa2">A Questão Renal e a Cautela com o Alfa-2</a><span class="index-num">06</span></div><div class="index-item"><a href="#inducao-e-manutencao">Indução e Manutenção</a><span class="index-num">07</span></div><div class="index-item"><a href="#bloqueio-por-que-nao-nesse-caso">Bloqueio: Por Que Não Nesse Caso</a><span class="index-num">08</span></div><div class="index-item"><a href="#recuperacao-do-combo-maravilha">Recuperação do Combo Maravilha</a><span class="index-num">09</span></div><div class="index-item"><a href="#a-terceira-anestesia-calibrando-a-dose">A Terceira Anestesia: Calibrando a Dose</a><span class="index-num">10</span></div><div class="index-item"><a href="#cachorro-de-cambao-logistica-e-seguranca">Cachorro de Cambão: Logística e Segurança</a><span class="index-num">11</span></div><div class="index-item"><a href="#quando-acertar-a-mpa-e-sem-graca">Quando Acertar a MPA é "Sem Graça"</a><span class="index-num">12</span></div><div class="index-item"><a href="#perguntas-de-ativacao">Perguntas de Ativação</a><span class="index-num">13</span></div></div></div><div id="a-mpa-e-o-divisor-de-aguas" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A MPA é o Divisor de Águas</h2><div class="callout callout-blue"><strong>Contexto do Paper</strong> Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.</div><p>Esse caso começa por uma tese: a <strong>MPA (medicação pré-anestésica) é o grande diferencial</strong>. Não é detalhe, é o que define se o resto do procedimento vai ser tranquilo ou um inferno. Quando a MPA está bem feita, tudo flui; quando ela é mal feita, <strong>estraga todo o resto</strong> — pode ter certeza disso.</p><p>Por isso eu já não gosto dessa coisa de "fazer <strong>MPA intravenosa</strong>". A MPA é justamente pra você conseguir manipular o paciente com mais tranquilidade — então ela é <strong>IM</strong> mesmo. "Ah, mas IM dói." Dói, mas dá pra evitar ter que segurar um cachorro que não está tranquilo só pra pegar a veia. Esse aperto todo pra canular um bicho estressado é muito mais estressante (e mais perigoso) do que a picada da MPA.</p><div class="callout callout-blue"><strong>Por que isso é o coração do caso</strong> A anestesia desse paciente acaba sendo tranquila principalmente porque a MPA está bem inserida no contexto. Se você acerta a MPA — e isso vem de experiência, repertório e erro — a anestesia tende a ser até <b>sem graça</b>, daquelas em que o pessoal acha que o anestesista "não faz nada". É exatamente esse o objetivo.</div></div><div id="o-caso-rottweiler-com-1-rim-brava-e-com-" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Caso: Rottweiler com 1 Rim, Brava e com Suspeita de Piometra</h2><p>Eu anestesiei essa cadela <strong>três vezes</strong>; aqui o foco é a <strong>segunda anestesia, a da piometra</strong>.</p><p>A história dela, resumida:</p><ul class="body-list"><li><strong>1ª anestesia:</strong> veio de Campinas (120 km), suspeita de tumor no rim e de hemorragia ativa, pra fazer tomografia. Anestesiaram lá, mas não fizeram a tomo porque ela "caiu demais" e ficaram com medo — chegou na minha mão <strong>dissociadíssima, ketamina máxima</strong>, porque ela é brava. Abriu: não tinha hemorragia nenhuma e o rim não tinha tumor evidente. Fizeram biópsia, não castraram. Justamente por <strong>não estar sangrando</strong> é que ela sobreviveu.</li><li><strong>No intervalo:</strong> foi a uma oncologista, saiu o histopatológico, tinha algo no rim e ela <strong>tirou o rim</strong>. Passou a ser uma cadela de <strong>um rim só (monorrim)</strong>.</li><li><strong>2ª anestesia (esta):</strong> voltou com <strong>suspeita de piometra</strong> (nem totalmente confirmada), clinicamente muito bem. Rottweiler de uns <strong>6–7 anos, porte grande, brava</strong> — daquelas que abanam o rabo te olhando e querendo te matar.</li></ul><p>Esse é aquele caso em que eu fiz <strong>tudo o que não é indicado</strong> fazer naquele contexto — mas precisei fazer <strong>pelo temperamento dela</strong>.</p><div class="callout callout-blue"><strong>O fio condutor renal</strong> Ela é <b>monorrim</b> e tem histórico oncológico. A própria clínica tinha receio de sedar muito por causa do rim. Esse é o dilema: a teoria empurra pra uma sedação mais leve e controlada, e o paciente real (brava, porte grande, sem avaliação cardio) te empurra pro lado oposto.</div></div><div id="mapeando-a-braveza-o-tutor-segura-ou-e-c" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Mapeando a Braveza: o Tutor Segura ou é Cambão?</h2><p>Antes do protocolo vem a pergunta operacional: <strong>qual o nível de braveza e quem consegue conter?</strong></p><ul class="body-list"><li>O tutor <strong>põe a mão e segura na coleira</strong>? Então eu tenho opção. Dá pra começar mais leve.</li><li>É <strong>cachorro de cambão</strong> (aquele que nem o tutor segura)? Aí não tem muito o que pensar: <strong>tem que dissociar</strong> mesmo.</li></ul><p>Quando o tutor pelo menos segura, eu tenho a alternativa de <strong>não dissociar de cara</strong>: começar pelo analgésico (opioide) com um tranquilizante/sedativo, esperar uns 20 minutos, e só então complementar com ketamina se não for suficiente.</p><p>E o que é "suficiente" pra mim? Suficiente é <strong>conseguir canular a veia sem estressar</strong> o bicho — não precisa desmanchar o paciente. Mas, eventualmente, eu desmancho.</p><div class="callout callout-warning"><strong>Avise por telefone</strong> Se o tutor é quem segura, <b>não deixe ele ir embora antes de você chegar</b>. Sem ele, a opção mais leve já era.</div></div><div id="por-que-eu-dissociei-de-cara-nesse-dia" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Por Que Eu Dissociei de Cara Nesse Dia</h2><p>No dia da piometra eu bati o olho e optei por <strong>já dissociar direto</strong>, em vez de tentar a abordagem mais leve. O raciocínio:</p><ul class="body-list"><li>A alternativa leve seria opioide mais alto + um <strong>alfa-2 (dexmedetomidina) baixinho</strong> e <strong>esperar uns 20 minutos</strong> pra ver se dava pra canular (nem que fosse com focinheira).</li><li>Só que isso é <strong>tempo que a clínica não curte</strong> esperar, e <strong>sem garantia</strong>.</li><li>Some: cadela meia-idade, <strong>porte grande</strong> (mais sensível), <strong>sem avaliação cardiológica</strong> — o que me deixou <strong>cautelosa com a dose de dex</strong>.</li></ul><p>Conclusão: dissociar direto me pareceu o caminho mais limpo. "Em que situação, numa pós-graduação, alguém indicaria dissociar uma cadela dessas?" Quase ninguém — e é exatamente esse o ponto: aqui fora você nem sempre faz o que aprendeu na pós; às vezes faz o que aprendeu <strong>pra não fazer</strong>.</p><p>(No combo que eu acabei fazendo, o <strong>alfa-2 entrou sim — mas baixinho</strong>. Ver a seção do Combo Maravilha.)</p></div><div id="o-combo-maravilha-e-o-que-mudou-nessa-ca" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Combo Maravilha (e o que mudou nessa cadela)</h2><p>O que eu chamo de <strong>combo maravilha</strong> é a dissociativa feita <strong>direto na MPA</strong>. A receita base é um tranquilizante + opioide alto + ketamina dissociativa + benzodiazepínico. Foi o que eu fiz aqui, com <strong>uma troca importante por causa da piometra</strong>:</p><ul class="body-list"><li><strong>Dexmedetomidina (alfa-2) baixinha, 1 a 2 mcg/kg</strong> — entrou <strong>no lugar da acepromazina</strong>. Por quê? Porque era <strong>piometra, com risco de sepse</strong>, e a acepromazina (somada ao isoflurano) poderia <strong>exacerbar a hipotensão</strong>. Então a acepromazina saiu e o alfa-2 entrou baixinho.</li><li><strong>Opioide alto: metadona.</strong></li><li><strong>Ketamina em dose dissociativa: 8 a 10 mg/kg IM.</strong> Acima de 5 — dose de "2" não dissocia, é a famosa "meia punheta".</li><li><strong>Midazolam</strong> (benzodiazepínico).</li><li><strong>Tudo IM.</strong></li></ul><h3 class="sub-title">Por que midazolam junto da ketamina</h3><p>Em casos sem histórico, eu prefiro dissociar com <strong>midazolam</strong> a chapar no alfa-2 — nunca tive problema nessa misturinha. Quando a gente dissocia, é a associação da ketamina <strong>com o midazolam ou com o alfa-2</strong> que a torna dissociativa de verdade; entre os dois como par da ketamina, eu prefiro o midazolam.</p><h3 class="sub-title">O papel (ausente) da acepromazina aqui</h3><p>A acepromazina entraria no combo pra o paciente <strong>acordar mais tranquilo</strong>. Como nessa cadela eu <strong>não usei a acepromazina</strong>, havia mais chance de ela <strong>recuperar batendo cabeça</strong> (agitada) — então eu fiz <strong>um pouco mais de ketamina</strong> do que o normal que eu faria pra ela.</p><div class="callout callout-warning"><strong>Prepare-se para a recuperação</strong> O combo maravilha não demora tanto pra acordar, mas a <b>recuperação é mais prolongada</b> que o normal. Esteja preparado.</div></div><div id="a-questao-renal-e-a-cautela-com-o-alfa2" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">A Questão Renal e a Cautela com o Alfa-2</h2><p>O pano de fundo o tempo todo é o <strong>rim único</strong>. A própria clínica tinha receio de sedar muito por causa do rim. A cautela com o <strong>alfa-2 (dexmedetomidina)</strong> veio principalmente de <strong>porte grande</strong> (mais sensível), <strong>idade</strong> e <strong>ausência de avaliação cardiológica</strong> — fatores que se empilham com o cenário renal. Por isso, quando o alfa-2 entrou, entrou <strong>baixinho (1 a 2 mcg/kg)</strong>.</p></div><div id="inducao-e-manutencao" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Indução e Manutenção</h2><p>Com ela já dissociada e "chapada" (tem vídeo dela no colo do tutor, com a língua de fora), foi pra mesa e eu <strong>induzi como faço geralmente</strong> — o que muda pouco, muda mais conforme a idade.</p><ul class="body-list"><li><strong>Sem ketamina analgésica na indução</strong>, porque eu já tinha dissociado ela na MPA.</li><li><strong>Lidocaína.</strong></li><li>Comecei meu <strong>bolus de fentanil</strong> — <strong>lento e bem diluído</strong> (diluído pra pelo menos <strong>10× o volume</strong>, feito em <strong>5 a 10 minutos</strong>).</li><li><strong>Propofol em dose-efeito.</strong></li><li>Emendei a <strong>bolsa santa</strong> (infusão de <strong>ketamina + fentanil</strong>) pra manutenção.</li></ul></div><div id="bloqueio-por-que-nao-nesse-caso" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">Bloqueio: Por Que Não Nesse Caso</h2><p>Bloqueio por ultrassom eu não faço — aprendi por <strong>neurolocalizador</strong> (mais pra ortopédico) na época em que o ultrassom estava só começando, e não entrei nessa pegada.</p><p>Mas o ponto é outro: mesmo que eu fizesse bloqueio por ultrassom, <strong>eu não faria neste caso</strong> de suspeita de piometra — por <strong>risco de ruptura do útero</strong> e por <strong>tempo</strong> (é emergência, não dá pra ficar muito ali atrás de bloqueio).</p><div class="callout callout-blue"><strong>Infusão não substitui bloqueio</strong> Sem desmerecer o bloqueio: se puder fazer, faça. Mas o protocolo analgésico de <b>infusão</b>, embora nunca substitua um bloqueio, vai muito bem aqui.</div></div><div id="recuperacao-do-combo-maravilha" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Recuperação do Combo Maravilha</h2><p>Recuperação mais prolongada que o normal: conte uns <strong>15 a 20 minutos</strong>. Ela acorda um pouco ali, às vezes <strong>vocalizando</strong> — depende muito de você ter colocado ou não a acepromazina no começo (sem ela, mais chance de acordar batendo cabeça).</p><p><strong>Sem reverter nada.</strong> O paciente não vai embora 100% como chegou — fica um pouco grogue —, mas <strong>sem risco de via aérea fechada</strong>. Use os parâmetros de sempre pra liberar.</p></div><div id="a-terceira-anestesia-calibrando-a-dose" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">A Terceira Anestesia: Calibrando a Dose</h2><p>Tive a chance de anestesiar a mesma cadela uma <strong>terceira vez</strong>, à noite (~20h), pra endoscopia de retirada de corpo estranho (engoliu um ursinho). Aqui dá pra ver como a MPA muda conforme o contexto — <strong>mesma cachorra, doses diferentes</strong>:</p><ul class="body-list"><li>Hoje <strong>não é piometra</strong>, então eu <strong>posso fazer a acepromazina</strong>.</li><li>Mas é à noite e ela <strong>não fica internada</strong> (vai embora) — então não posso prolongar muito a recuperação.</li><li>Conduta: <strong>acepromazina + midazolam + ketamina + opioide, sem alfa-2, e com menos ketamina</strong>. Comecei pelo opioide e esperei pra ver se, com focinheira, ela deixava canular. Bati o olho e já sabia: não ia dar — e não deu.</li><li>Entrei então com <strong>ketamina (5 mg/kg IM) + midazolam</strong>. Ela "ficou uma bosta", foi pra Cracolândia, mas <strong>deixou canular e não atacava</strong> — que era o que eu precisava. Focinheira, canulou, fez a endoscopia, acordou relativamente rápido (uns 20 min) e foi embora pouco depois, <strong>sem reverter nada</strong>.</li></ul><div class="callout callout-blue"><strong>Comparativo que vale ouro</strong> O grande aprendizado das anestesias 2 (piometra) e 3 (corpo estranho) é a <b>diferença de MPA / de doses na mesma paciente</b>. É a MPA, lida na hora, que muda o jogo.</div></div><div id="cachorro-de-cambao-logistica-e-seguranca" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Cachorro de Cambão: Logística e Segurança</h2><p>Cachorro de cambão eu <strong>não economizo</strong>, não. Já participei de muita campanha de vacinação de raiva, com bicho bravo no cambão. Se precisar de cambão, vai no cambão. Se precisar dentro do carro, segurando um lado com a cabeça e a bunda pro outro, vai também.</p><p>Mas tem uma <strong>regra de ouro de logística</strong>:</p><ul class="body-list"><li>Deixe <strong>tudo preparado no centro cirúrgico antes de sedar</strong> — você aplica e fica junto.</li><li>Se der alguma zica, você já está ali: já corre pro centro cirúrgico, já intuba, já canula. <strong>Não dá pra aplicar e só então montar a sala.</strong></li><li>Não dá pra deixar o bicho caindo com ninguém olhando. O ideal é deixar tudo pronto e aplicar com calma.</li></ul><div class="callout callout-warning"><strong>Avise o tutor antes</strong> Conta o que vai acontecer e fala <b>a pior coisa que pode acontecer</b>: metadona deixa o bicho taquipneico, morfina pode vomitar, ele vai cair, vai ficar de língua de fora. Já aconteceu de deixarem a tutora entrar pra "dar tchau" bem na hora da dissociativa e a pessoa surtar ("socorro, a cachorra tá morrendo!"). O tutor não sabe com o que está lidando — às vezes acha que é só uma sedação.</div><div class="callout callout-blue"><strong>Eu não sou adestradora</strong> Quando o tutor não segura e ainda te desafia ("quero ver quem é o homem que vai segurar"): você está ali pra <b>anestesiar, não pra segurar</b>. Se não quer ter cachorro bravo na hora do veterinário, te avisei.</div></div><div id="quando-acertar-a-mpa-e-sem-graca" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">Quando Acertar a MPA é "Sem Graça"</h2><p>Fechando o raciocínio: <strong>não tem regra pra MPA</strong>. Tem que pensar no que você pode causar, principalmente no <strong>pós-operatório</strong> — pensando no paciente, na estrutura da clínica e na sua própria pressa. Não dá pra ser hipócrita: cada um tem uma realidade.</p><p>Quando você acerta a MPA, a anestesia vira aquela coisa <strong>chatinha, sem graça</strong>, em que parece que o anestesista fica sentado de boa enquanto o cirurgião é o figurão. Mas é isso mesmo: o trabalho bem feito na MPA é <strong>invisível</strong> — e é o que segurou o caso inteiro. Se der ruim, <strong>o rojão é seu</strong>.</p></div><div id="perguntas-de-ativacao" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Modelos Mentais</span></div><h2 class="section-title">Perguntas de Ativação</h2><div class="mental-model"><div class="mm-num">1</div><div class="mm-content"><h4>O tutor segura ou é cambão?</h4><p>Define se dá pra começar leve ou se eu dissocio de cara.</p></div></div><div class="mental-model"><div class="mm-num">2</div><div class="mm-content"><h4>O que é "suficiente" aqui?</h4><p>Canular sem estressar — não precisa desmanchar o paciente.</p></div></div><div class="mental-model"><div class="mm-num">3</div><div class="mm-content"><h4>Vou dissociar: midazolam ou alfa-2 junto da ketamina?</h4><p>Sem histórico e sem cardio, prefiro o midazolam como par da ketamina.</p></div></div><div class="mental-model"><div class="mm-num">4</div><div class="mm-content"><h4>Coloquei tranquilizante pra ela acordar tranquila?</h4><p>Se não (como aqui, sem acepromazina), mais risco de acordar batendo cabeça — e talvez precise de mais ketamina.</p></div></div><div class="mental-model"><div class="mm-num">5</div><div class="mm-content"><h4>O paciente vai internar ou vai embora hoje?</h4><p>Internado x à noite muda o quanto eu posso prolongar a recuperação.</p></div></div><div class="mental-model"><div class="mm-num">6</div><div class="mm-content"><h4>O centro cirúrgico está 100% pronto antes de eu aplicar?</h4><p>Em cambão, isso não é opcional.</p></div></div></div><div class="playbook-cta"><h3>Precisa do passo a passo na hora?</h3><p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso.</p><a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a></div></div><div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
