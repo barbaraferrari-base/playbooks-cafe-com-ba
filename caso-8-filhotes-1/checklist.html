@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #8: Checklist</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+      --green: #27ae60;
+      --orange: #e07c4a;
+      --red: #c0392b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79,163,200,0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .intro-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .intro-block p { margin-bottom: 0; }
+
+    .checklist-section { margin-bottom: 48px; }
+
+    .checklist-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .checklist-icon {
+      background: var(--teal);
+      color: white;
+      font-size: 18px;
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .checklist-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--teal);
+      line-height: 1.2;
+    }
+
+    .checklist-subtitle {
+      font-size: 12px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .check-item:hover { border-color: var(--blue-accent); }
+
+    .checkbox {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .check-item:hover .checkbox { border-color: var(--blue-accent); background: #eef6fb; }
+
+    .check-item.checked .checkbox {
+      background: var(--blue-accent);
+      border-color: var(--blue-accent);
+    }
+
+    .check-item.checked .checkbox::after {
+      content: '✓';
+      position: absolute;
+      top: -1px; left: 2px;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .check-item.checked .check-text {
+      text-decoration: line-through;
+      color: #aaa;
+    }
+
+    .check-text { flex: 1; color: var(--gray-text); line-height: 1.5; }
+    .check-text strong { color: var(--teal); display: block; margin-bottom: 2px; font-size: 14px; }
+    .check-text span { font-size: 13px; color: #777; }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .tag-critical { background: #fdf0f0; color: var(--red); border: 1px solid #f5c6c6; }
+    .tag-warning  { background: #fff6ee; color: var(--orange); border: 1px solid #fad4b4; }
+    .tag-ok       { background: #f0faf4; color: var(--green); border: 1px solid #b2dfc4; }
+
+    .alert-box {
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .alert-critical { background: #fdf0f0; border: 1px solid #f5c6c6; border-left: 4px solid var(--red); }
+    .alert-warning  { background: #fff6ee; border: 1px solid #fad4b4; border-left: 4px solid var(--orange); }
+    .alert-blue     { background: #eef6fb; border: 1px solid #bde0f2; border-left: 4px solid var(--blue-accent); }
+    .alert-yellow   { background: #fffbe6; border: 1px solid #f5e6a0; border-left: 4px solid var(--accent-yellow); }
+
+    .alert-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .decision-card { border-radius: 8px; padding: 18px 20px; font-size: 13px; }
+    .decision-if   { background: var(--teal); color: rgba(255,255,255,0.9); }
+    .decision-then { background: #eef6fb; border: 1px solid #bde0f2; }
+
+    .decision-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .decision-if   .decision-label { color: var(--blue-accent); }
+    .decision-then .decision-label { color: var(--blue-accent); }
+
+    .decision-text { font-size: 14px; font-weight: 600; line-height: 1.4; }
+    .decision-if   .decision-text { color: white; }
+    .decision-then .decision-text { color: var(--teal); }
+
+    .progress-bar-wrap {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .progress-label { font-size: 13px; color: #888; white-space: nowrap; }
+    .progress-track { flex: 1; background: #eee; border-radius: 4px; height: 8px; }
+    .progress-fill  { background: var(--blue-accent); height: 8px; border-radius: 4px; width: 0%; transition: width 0.3s; }
+    .progress-count { font-size: 13px; font-weight: 600; color: var(--teal); white-space: nowrap; }
+
+    .reset-btn {
+      background: none; border: 1px solid var(--border); color: #999;
+      font-size: 11px; padding: 6px 12px; border-radius: 4px; cursor: pointer;
+      font-family: inherit; white-space: nowrap; transition: all 0.2s;
+    }
+    .reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .check-item { break-inside: avoid; }
+      .reset-btn { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .decision-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!--  O conteudo e montado automaticamente a partir do bloco      -->
+<!--  CONTEUDO la no final desta pagina. Voce NAO mexe aqui.      -->
+<!-- ============================================================ -->
+<div id="app"></div>
+
+<div class="paper-footer">© 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática</div>
+
+
+<!-- ============================================================ -->
+<!--  MOTOR (o codigo que monta a pagina). NAO PRECISA MEXER.     -->
+<!-- ============================================================ -->
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  const RAW = document.getElementById('conteudo').textContent;
+  const KEY = 'cafe-bá-' + (location.pathname || 'rinoscopia');
+
+  // ---- parser simples de blocos ----
+  const lines = RAW.split('\n');
+  let i = 0;
+  const meta = {};
+  // front-matter entre as primeiras linhas "chave: valor" ate uma linha "---"
+  while (i < lines.length && lines[i].trim() !== '---') {
+    const m = lines[i].match(/^([a-zA-Z_]+):\s*(.*)$/);
+    if (m) meta[m[1]] = m[2].trim();
+    i++;
+  }
+  i++; // pula o ---
+
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // **negrito** -> <strong-inline>
+  const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  // tags [critico] [atencao] [ok] no fim de um titulo de item
+  function pullTag(t) {
+    const map = { 'critico':['tag-critical','Crítico'], 'atencao':['tag-warning','Atenção'], 'ok':['tag-ok','OK'] };
+    const m = t.match(/\s*\[(critico|atencao|ok)\]\s*$/i);
+    if (!m) return t;
+    const [cls,label] = map[m[1].toLowerCase()];
+    return t.replace(m[0],'') + ` <span class="tag ${cls}">${label}</span>`;
+  }
+
+  let html = '';
+  let itemIndex = 0;
+
+  // capa
+  html += `<div class="cover">
+    <div class="cover-badge">${esc(meta.badge||'Playbook Café com a Bá')}</div>
+    <div class="cover-series">${esc(meta.serie||'')}</div>
+    <h1 class="cover-title">${(meta.titulo||'').replace(/\|/g,'<br>').replace(/\{(.+?)\}/g,'<span>$1</span>')}</h1>
+    <p class="cover-subtitle">${esc(meta.subtitulo||'')}</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">Formato<strong>${esc(meta.formato||'Checklist interativo')}</strong></div>
+      <div class="cover-meta-item">Para quem é<strong>${esc(meta.publico||'Anestesistas Veterinários')}</strong></div>
+      <div class="cover-meta-item">Série<strong>${esc(meta.colecao||'Café com a Bá')}</strong></div>
+    </div>
+  </div>`;
+
+  html += `<div class="body-wrap">`;
+
+  // bloco a bloco
+  while (i < lines.length) {
+    let line = lines[i];
+    const t = line.trim();
+
+    if (t === '' ) { i++; continue; }
+
+    // intro:  > texto
+    if (t.startsWith('> ')) {
+      let buf = [];
+      while (i < lines.length && lines[i].trim().startsWith('> ')) {
+        buf.push(inline(lines[i].trim().slice(2)));
+        i++;
+      }
+      html += `<div class="intro-block"><p>${buf.join('<br>')}</p></div>`;
+      html += `<div class="progress-bar-wrap">
+        <span class="progress-label">Progresso</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-count" id="progressCount">0 / 0</span>
+        <button class="reset-btn" onclick="resetProgress()">limpar</button>
+      </div>`;
+      continue;
+    }
+
+    // secao:  ## icone | Titulo | subtitulo
+    if (t.startsWith('## ')) {
+      const parts = t.slice(3).split('|').map(x=>x.trim());
+      const icon = parts[0]||'📋', title = parts[1]||'', sub = parts[2]||'';
+      html += `<div class="checklist-section">
+        <div class="checklist-header">
+          <div class="checklist-icon">${icon}</div>
+          <div>
+            <div class="checklist-title">${esc(title)}</div>
+            ${sub?`<div class="checklist-subtitle">${esc(sub)}</div>`:''}
+          </div>
+        </div>`;
+      i++;
+      // itens ate proxima secao / divisoria / fim
+      while (i < lines.length) {
+        let l = lines[i].trim();
+        if (l === '' ) { i++; continue; }
+        if (l.startsWith('## ') || l === '---') break;
+
+        // item:  - Titulo :: descricao
+        if (l.startsWith('- ')) {
+          const body = l.slice(2);
+          const sep = body.split('::');
+          const head = pullTag(inline(sep[0].trim()));
+          const desc = sep[1] ? `<span>${inline(sep[1].trim())}</span>` : '';
+          const id = 'it'+(itemIndex++);
+          html += `<div class="check-item" data-id="${id}" onclick="toggle(this)">
+            <div class="checkbox"></div>
+            <div class="check-text"><strong>${head}</strong>${desc}</div>
+          </div>`;
+          i++; continue;
+        }
+
+        // alerta:  ! tipo | titulo | texto   (tipo: critico/atencao/azul/regra)
+        if (l.startsWith('! ')) {
+          const p = l.slice(2).split('|').map(x=>x.trim());
+          const map = {critico:'alert-critical',atencao:'alert-warning',azul:'alert-blue',regra:'alert-yellow'};
+          const cls = map[(p[0]||'').toLowerCase()] || 'alert-blue';
+          html += `<div class="alert-box ${cls}">
+            ${p[1]?`<div class="alert-title">${esc(p[1])}</div>`:''}
+            ${inline(p[2]||'')}
+          </div>`;
+          i++; continue;
+        }
+
+        // decisao:  ? SE texto :: ENTAO texto
+        if (l.startsWith('? ')) {
+          const body = l.slice(2);
+          const sep = body.split('::');
+          html += `<div class="decision-grid">
+            <div class="decision-card decision-if"><div class="decision-label">Se</div><div class="decision-text">${inline((sep[0]||'').trim())}</div></div>
+            <div class="decision-card decision-then"><div class="decision-label">Então</div><div class="decision-text">${inline((sep[1]||'').trim())}</div></div>
+          </div>`;
+          i++; continue;
+        }
+
+        i++; // linha ignorada
+      }
+      html += `</div>`;
+      // divisoria apos secao
+      if (lines[i] && lines[i].trim()==='---') { html += `<hr class="divider">`; i++; }
+      continue;
+    }
+
+    i++; // qualquer outra coisa ignora
+  }
+
+  html += `</div>`;
+  document.getElementById('app').innerHTML = html;
+
+  // ---- progresso salvo no aparelho ----
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+  document.querySelectorAll('.check-item').forEach(el=>{
+    if (saved[el.dataset.id]) el.classList.add('checked');
+  });
+
+  window.toggle = function(el){
+    el.classList.toggle('checked');
+    saved[el.dataset.id] = el.classList.contains('checked');
+    localStorage.setItem(KEY, JSON.stringify(saved));
+    updateProgress();
+  };
+  window.resetProgress = function(){
+    saved = {};
+    localStorage.removeItem(KEY);
+    document.querySelectorAll('.check-item.checked').forEach(el=>el.classList.remove('checked'));
+    updateProgress();
+  };
+  function updateProgress(){
+    const all = document.querySelectorAll('.check-item');
+    const done = document.querySelectorAll('.check-item.checked');
+    const pct = all.length ? Math.round(done.length/all.length*100) : 0;
+    const f = document.getElementById('progressFill');
+    const c = document.getElementById('progressCount');
+    if (f) f.style.width = pct+'%';
+    if (c) c.textContent = done.length+' / '+all.length;
+  }
+  updateProgress();
+});
+</script>
+
+
+<!-- ================================================================= -->
+<!--                                                                   -->
+<!--   ███  CONTEUDO — E SO AQUI QUE VOCE EDITA  ███                   -->
+<!--                                                                   -->
+<!--   Regras rapidas:                                                 -->
+<!--   • Capa: as linhas "chave: valor" no topo, ate o ---             -->
+<!--       titulo: use | para quebrar linha e {azul} pra cor azul      -->
+<!--   • Intro: linhas comecando com  >                                -->
+<!--   • Secao: ## emoji | Titulo da secao | subtitulo                 -->
+<!--   • Item:  - Titulo do item :: descricao do item                  -->
+<!--       marque urgencia no fim do titulo: [critico] [atencao] [ok]  -->
+<!--   • Alerta: ! tipo | Titulo | texto   (tipo: critico/atencao/     -->
+<!--             azul/regra)                                           -->
+<!--   • Decisao: ? SE isso :: ENTAO aquilo                            -->
+<!--   • Use **palavra** pra deixar em negrito                         -->
+<!--   • Separe blocos grandes com uma linha so com  ---               -->
+<!--                                                                   -->
+<!-- ================================================================= -->
+<script type="text/plain" id="conteudo">
+badge: Café com a Bá
+serie: Base Anestesia Veterinária · Caso #8
+titulo: Anestesia em Filhotes —|{Checklist · Parte 1}
+subtitulo: Pra usar no caso real, na ordem do procedimento. Sem explicação — o porquê está no Paper. Toque pra marcar; o progresso fica salvo neste aparelho.
+formato: Checklist interativo
+publico: Anestesistas Veterinários
+colecao: Café com a Bá
+---
+
+> Operacional, na ordem do procedimento. Toque em qualquer item pra concluir. O progresso fica salvo neste aparelho.
+
+## 📞 | Antes de aceitar / Preparo |
+- Identificar a faixa etária do filhote :: dias / semanas / 1-2 meses / 3-4 meses
+- Antecipar o procedimento provável da faixa :: atresia anal, fenda palatina, fratura, intussuscepção, oftálmica
+- Orientar jejum curto ou nenhum :: glicose na boca ou sachê se chegar em jejum
+- Separar tubos 2,0 e 2,5 (com e sem cuff) e cateter laranja (de bovino)
+- Levar o próprio baraka e a máscara pequena de vedação preta
+- Preparar material de via intraóssea
+- Deixar a atropina preparada
+- Doppler / monitor prontos :: sem manguito, ao menos o sinal de fluxo
+
+## 🧰 | MPA (janela curtíssima) |
+- Aplicar a MPA e canular rápido :: metabolismo acelerado, sedação dura minutos
+- Evitar benzodiazepínico [atencao]
+- Evitar lidocaína sistêmica [atencao]
+- Evitar acepromazina [atencao]
+- Dexmedetomidina: vigiar bradicardia e pressão :: atropina pronta [critico]
+- Cão: metadona conforme o caso :: nos exemplos, 0,4 mg/kg IM
+- Gato: dissociativa com alfa-2, não benzodiazepínico :: atenção à FC [critico]
+- Cronometrar a janela :: sedação em ~5 min, recuperação em ~5 min
+
+## 🏥 | Acesso |
+- Canular assim que sedar :: não perca a janela
+- Aproveitar o sangue do acesso para dosar a glicemia
+- Amputação de membro torácico: canular no membro pélvico
+- Sem veia? Via intraóssea :: dissociar antes e fazer botão anestésico [critico]
+- Sem intraóssea? Tentar jugular, se o procedimento não for próximo da cabeça
+- Último recurso: máscara de isoflurano
+
+## 💉 | Indução |
+- Ketamina como coindutor + propofol
+- Sem lidocaína no neonato :: imaturidade hepática [atencao]
+- Lidocaína tópica na glote antes de intubar
+- Testar o tubo: 2,0 / 2,5, com ou sem cuff — ver qual passa
+- Levar para a inalatória :: mais segurança fora do ambiente hospitalar
+
+## 🎯 | Bloqueio (conforme o caso) |
+- Definir o bloqueio :: peridural / retrobulbar / paravertebral cervical + plexo braquial
+- Paravertebral / plexo: inclinar o paciente para o lado da cirurgia :: anestésico desce, não atinge a medula
+- Evitar bloqueio bilateral :: risco de nervo frênico no plexo braquial [critico]
+- Recalcular a dose tóxica para o gato filhote (menor) :: bupivacaína + lidocaína sem vasoconstritor
+- Amputação: bupivacaína no coto nervoso antes de seccionar :: dor fantasma
+- Amputação: pedir ao cirurgião que recubra o coto nervoso com músculo
+- Amputação / grande porte: esvaziar a bexiga
+
+## 🌙 | Manutenção |
+- Manter o plano de isoflurano :: sem cuff há vazamento e maior consumo
+- Controlar a temperatura ativamente [critico]
+- Não superficializar
+- Plano B se o bloqueio falhar: bolus de fentanil ± ketamina em infusão/bolus
+
+## ⏱️ | Recuperação / Pós |
+- Checar a glicemia ao final [critico]
+- Saber repor glicose :: bolus ou infusão, se necessário
+- Mão sempre no paciente :: ao desligar, já desperta, muito rápido [critico]
+- Atenção à dor (acorda vocalizando) e à excitação pela inalatória
+- Baraka e máscara à mão na recuperação
+</script>
+
+</body>
+</html>

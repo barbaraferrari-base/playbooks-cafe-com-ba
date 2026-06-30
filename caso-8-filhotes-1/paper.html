@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #8</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover"><div class="cover-badge">Café com a Bá</div><div class="cover-series">Base Anestesia Veterinária</div><h1 class="cover-title">Anestesia em Filhotes —<br><span>Parte 1: As Primeiras Faixas</span></h1><p class="cover-subtitle">Neonato e filhote de semanas. A fisiologia que comanda o protocolo, três casos reais e os cuidados que mudam o desfecho.</p><div class="cover-meta"><div class="cover-meta-item">Tempo de leitura<strong>14 a 16 min</strong></div><div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div><div class="cover-meta-item">Série<strong>Café com a Bá · Caso #8</strong></div></div></div><div class="body-wrap"><div class="index-block"><h2>Índice</h2><div class="index-grid"><div class="index-item"><a href="#anestesia-em-filhote-nao-e-uma-coisa-so-">Anestesia em Filhote Não É Uma Coisa Só: As Faixas Etárias</a><span class="index-num">01</span></div><div class="index-item"><a href="#a-fisiologia-que-comanda-o-protocolo">A Fisiologia que Comanda o Protocolo</a><span class="index-num">02</span></div><div class="index-item"><a href="#caso-1-neonato-com-miiase-perianal">Caso 1 — Neonato com Miíase Perianal</a><span class="index-num">03</span></div><div class="index-item"><a href="#o-que-faria-hoje-nesse-neonato">O Que Faria Hoje Nesse Neonato</a><span class="index-num">04</span></div><div class="index-item"><a href="#quando-nao-ha-acesso-venoso-intraossea-e">Quando Não Há Acesso Venoso: Intraóssea e Máscara</a><span class="index-num">05</span></div><div class="index-item"><a href="#glicemia-temperatura-e-jejum">Glicemia, Temperatura e Jejum</a><span class="index-num">06</span></div><div class="index-item"><a href="#caso-2-trauma-cranioencefalico-filhote-d">Caso 2 — Trauma Cranioencefálico (filhote de semanas)</a><span class="index-num">07</span></div><div class="index-item"><a href="#procedimentos-por-faixa-e-os-cuidadoscha">Procedimentos por Faixa e os Cuidados-Chave</a><span class="index-num">08</span></div><div class="index-item"><a href="#caso-3-amputacao-de-membro-toracico-gati">Caso 3 — Amputação de Membro Torácico (gatinho de 2 meses)</a><span class="index-num">09</span></div><div class="index-item"><a href="#a-recuperacao-do-filhote-desligou-acordo">A Recuperação do Filhote: Desligou, Acordou</a><span class="index-num">10</span></div><div class="index-item"><a href="#a-conversa-de-custo-e-risco">A Conversa de Custo e Risco</a><span class="index-num">11</span></div><div class="index-item"><a href="#perguntas-de-ativacao">Perguntas de Ativação</a><span class="index-num">12</span></div></div></div><div id="anestesia-em-filhote-nao-e-uma-coisa-so-" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Anestesia em Filhote Não É Uma Coisa Só: As Faixas Etárias</h2><div class="callout callout-blue"><strong>Contexto do Paper</strong> Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.</div><p>Esta é a Parte 1 de uma série de três sobre anestesia em filhotes. O tema é extenso, então será dividido: aqui se fecham as duas primeiras faixas etárias; as demais ficam para os próximos encontros.</p><p>"Filhote" não é uma categoria única. Há faixas etárias, e cada uma tem fisiologia, procedimentos típicos e intercorrências próprias. Da mais nova para a mais velha:</p><ul class="body-list"><li><strong>Neonato / dias</strong> — recém-abriu os olhos ou ainda de olhos fechados, mamando. Traumas e alterações congênitas.</li><li><strong>Filhote de semanas</strong> — traumas e alterações congênitas.</li><li><strong>1 a 2 meses</strong> — fraturas em membro, intussuscepção (verminose ou corpo estranho), oftálmicas por trauma ou infecção (gatos).</li><li><strong>3 a 4 meses</strong> — intussuscepção (corpo estranho ou verminose), fraturas, oftálmicas em braquicefálicos.</li></ul><div class="callout callout-blue"><strong>Até 4 meses, conduza como neonato</strong> O recorte prático: até os 4 meses, trate como neonato, com todos os cuidados de imaturidade descritos a seguir. As faixas servem para antecipar quais procedimentos e intercorrências esperar. Pode-se subdividir em 0–2 e 2–4 meses; de 4 a 5–6 meses, considere pediátrico conforme o porte e a espécie.</div></div><div id="a-fisiologia-que-comanda-o-protocolo" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A Fisiologia que Comanda o Protocolo</h2><p>Antes do protocolo, entenda o paciente — é da fisiologia do filhote que sai tudo o que muda na anestesia.</p><ul class="body-list"><li><strong>Fígado imaturo</strong> — o benzodiazepínico se comporta de forma imprevisível e pode prolongar a recuperação. Em parte, o metabolismo acelerado compensa, deixando a situação num meio-termo.</li><li><strong>Metabolismo acelerado</strong> — os fármacos entram e saem rápido. A metadona que num adulto leva ~20 min para fazer efeito, no filhote age em ~10 min. Isso é favorável (o efeito colateral também passa rápido) e desfavorável (a janela de sedação é curtíssima).</li><li><strong>Pressão dependente da frequência cardíaca</strong> — o filhote não compensa bem a bradicardia. No adulto, a bradicardia ainda sustenta a pressão; no filhote, derruba o débito e a pressão cai junto. Por isso o alfa-2 exige cuidado redobrado.</li><li><strong>Glicemia</strong> — monitore sempre; o filhote afastado da mãe descompensa rápido.</li><li><strong>Temperatura</strong> — risco frequente e potencialmente fatal: atenção à hipotermia em todo procedimento.</li></ul><div class="callout callout-red"><strong>Atropina preparada</strong> A <b>dexmedetomidina</b> não é contraindicada no filhote, mas exige vigilância à <b>bradicardia</b>, porque a pressão pode cair sem a compensação esperada. Mantenha a <b>atropina pronta</b> ao lado.</div></div><div id="caso-1-neonato-com-miiase-perianal" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Caso 1 — Neonato com Miíase Perianal</h2><p>O filhote mais novo que ela anestesiou, ainda na residência: cão de porte grande, recém-aberto os olhos, mamando, com <strong>miíase</strong> na região perianal. Era preciso retirar a miíase; a melhor analgesia, em ambulatório, seria uma <strong>peridural</strong>.</p><div class="callout callout-warning"><strong>Por que era possível ali (e talvez não no seu contexto)</strong> Tratava-se de hospital-escola, com três centros cirúrgicos a postos para qualquer intercorrência. Essa abordagem <b>não é recomendada</b> em local sem cirurgia imediata: dissociar e fazer peridural sem retaguarda cirúrgica é arriscado demais.</div><h3 class="sub-title">O raciocínio do protocolo</h3><p>A dose mínima dissociativa de <strong>ketamina</strong>, para ela, é <strong>5 mg/kg</strong> — não 2. A questão era associá-la a um benzodiazepínico ou a um alfa-2; ambos têm inconvenientes no filhote:</p><ul class="body-list"><li><strong>Benzodiazepínico</strong> — fígado imaturo, recuperação possivelmente arrastada.</li><li><strong>Alfa-2</strong> — bradicardia, problemática porque a pressão depende da FC. (À época, também não se autorizava alfa-2 no ambulatório; hoje seria uma opção.)</li></ul><p>Disponíveis, havia o inalatório e a ketamina S. Por ser um paciente muito jovem, optou-se por <strong>arriscar a ketamina isolada</strong>. A associação habitual (benzo ou alfa-2) serve para conter rigidez, recuperação ruim e vocalização da dissociação — mas, num neonato de olhos mal abertos, esses efeitos, ainda que ocorressem, incomodariam pouco.</p><h3 class="sub-title">Sequência realizada</h3><p>Fez a ketamina isolada e obteve o <strong>acesso venoso</strong> — ponto crítico: com acesso, é possível aprofundar com um pouco de propofol, intubar, oxigenar e ainda dispor da veia para uma emergência. Um <strong>Doppler</strong> garantiu ao menos o sinal de fluxo (sem manguito, não havia como medir pressão). Manteve a sedação, realizou a peridural às cegas com seringa e agulha de insulina, retirou a miíase e o paciente recuperou bem.</p></div><div id="o-que-faria-hoje-nesse-neonato" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">O Que Faria Hoje Nesse Neonato</h2><p>O que ela passou a fazer depois, e recomenda hoje: <strong>associar um opioide à ketamina</strong> — atualmente, <strong>metadona</strong>.</p><p>A objeção comum ("metadona também causa bradicardia") procede, mas no metabolismo acelerado do filhote o efeito é muito passageiro.</p><p>Abordagem atual, passo a passo:</p><ul class="body-list"><li><strong>Metadona 0,4 mg/kg IM</strong>, aguardando ~10 min (no filhote, o efeito surge na metade do tempo do adulto).</li><li><strong>Garantir o acesso venoso</strong> desde o início — não necessariamente para iniciar o procedimento, mas para ter a veia. Aproveite o sangue do acesso para já dosar a <strong>glicemia</strong>.</li><li><strong>Ketamina como coindutor + propofol</strong>, <strong>sem lidocaína</strong> (paciente muito jovem, imaturidade hepática).</li><li><strong>Lidocaína tópica na glote</strong>, intubação e manutenção <strong>inalatória</strong>, para mais segurança fora do ambiente hospitalar. Seria anestesia geral, sem dúvida.</li></ul><p>Neste caso específico (apenas retirar a miíase), metadona + ketamina por via venosa já bastariam; a peridural torna-se <strong>opcional</strong>.</p></div><div id="quando-nao-ha-acesso-venoso-intraossea-e" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Quando Não Há Acesso Venoso: Intraóssea e Máscara</h2><p>E quando o filhote é difícil e não se consegue canular? É preciso <strong>dominar a via intraóssea</strong>.</p><div class="callout callout-warning"><strong>Treine a intraóssea antes de precisar</strong> Aproveite filhotes que vieram a óbito em cesáreas para treinar: confirme a entrada e o posicionamento corretos. O treino vale o esforço — essa via será necessária com frequência.</div><p>Não se punciona a intraóssea com o paciente acordado: fazer só metadona seria insuficiente e doloroso. <strong>Dissocia-se primeiro (metadona + ketamina)</strong> e faz-se um <strong>botão anestésico</strong> no ponto da punção.</p><ul class="body-list"><li>Opioide: metadona ou morfina — há ressalva à <strong>morfina isolada</strong> (sem acepromazina ou dexmedetomidina) pelo risco de excitação. Os melhores resultados, aqui, vêm da <strong>metadona isolada</strong>.</li><li>Sem acesso nem na jugular? Recorra à <strong>máscara</strong>: dissocia e mantém em máscara de <strong>isoflurano</strong>; a analgesia continua sendo a do opioide.</li><li><strong>Intubação</strong>: sondas <strong>2,0 ou 2,5</strong>, com ou sem cuff — teste qual passa. Se nenhuma passar, um <strong>cateter laranja</strong> (de uso em bovinos) resolve; tenha um à mão. Persistindo a dificuldade, mantenha a máscara, ciente do maior consumo de isoflurano.</li></ul></div><div id="glicemia-temperatura-e-jejum" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Glicemia, Temperatura e Jejum</h2><p>Três cuidados transversais a todo filhote:</p><ul class="body-list"><li><strong>Glicemia</strong> — cheque ao final de todo procedimento. Saiba repor glicose: nem sempre é só um bolus; às vezes é necessária <strong>infusão</strong>. Tenha o esquema pronto antes de precisar.</li><li><strong>Temperatura</strong> — preocupação permanente. A maior dificuldade técnica costuma ser a canulação do filhote pequeno; o controle térmico vem logo atrás.</li><li><strong>Jejum</strong> — evite jejum prolongado. Oriente a mãe a alimentar; se o filhote chegar em jejum, ofereça glicose na boca ou um sachê. Na intubação, programe-se contra o <strong>refluxo</strong> — não mantenha o paciente deitado.</li></ul><div class="callout callout-warning"><strong>Jejum curto, atenção ao refluxo</strong> É o equilíbrio do filhote: sem comer por muito tempo, hipoglicemia; tendo comido, proteja a via aérea contra refluxo na indução. Em último caso, alimentar e induzir vômito — sempre com bom senso.</div></div><div id="caso-2-trauma-cranioencefalico-filhote-d" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Caso 2 — Trauma Cranioencefálico (filhote de semanas)</h2><p>Filhote de border collie, de canil, na faixa de semanas, fora da residência: a mãe mordeu-lhe a cabeça, resultando em <strong>trauma cranioencefálico (TCE)</strong> com crises convulsivas.</p><ul class="body-list"><li>Iniciou <strong>metadona</strong> e manteve <strong>infusão de propofol</strong>, que não controlou as convulsões.</li><li>Passou ao <strong>tiopental</strong>. Importante: <strong>tiopental não se faz em infusão</strong> — usa-se em <strong>bolus</strong> para conter a crise. O bolus de tiopental é o recurso que segura a convulsão quando o propofol não basta.</li><li>A intenção terapêutica era tratar o TCE com <strong>osmoterapia (solução hipertônica / manitol)</strong> para reduzir o edema cerebral.</li><li>Empregou também <strong>metadona 0,4 mg/kg IM</strong>.</li></ul><p>O edema não regrediu e o desfecho foi a eutanásia. Não era um caso de anestesia, mas de <strong>terapia intensiva</strong> — coma induzido.</p></div><div id="procedimentos-por-faixa-e-os-cuidadoscha" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Procedimentos por Faixa e os Cuidados-Chave</h2><p>Antecipar os procedimentos típicos de cada fase permite preparar-se para eles e para as intercorrências:</p><ul class="body-list"><li><strong>Neonato / dias</strong> — a miíase do Caso 1 é exceção; o mais comum é <strong>atresia anal</strong>. Também aparecem <strong>fenda palatina</strong> e outras alterações congênitas, muitas vezes não detectadas na reanimação da cesárea. Pode haver trauma.</li><li><strong>1 a 2 meses</strong> — fraturas em membros, intussuscepção (verminose ou corpo estranho), oftálmicas por infecção em gatinhos.</li><li><strong>3 a 4 meses</strong> — intussuscepção (corpo estranho ou verminose) e fraturas. A partir de ~40 dias, oftálmicas em <strong>braquicefálicos</strong> (shih tzu, bulldog).</li></ul><div class="callout callout-blue"><strong>Examine o filhote na reanimação</strong> Ao reanimar um filhote de cesárea, mesmo com equipe, <b>abra a boca</b> (fenda palatina) e verifique <b>micção e defecação</b> (atresia). Muitas alterações congênitas passam despercebidas e só se manifestam depois, debilitando o filhote.</div><p>Cuidados de protocolo válidos para todas as faixas:</p><ul class="body-list"><li>Aplicar a <strong>MPA e canular rapidamente</strong> — metabolismo acelerado, janela de sedação curta.</li><li><strong>Evitar benzodiazepínico, lidocaína e acepromazina.</strong></li><li><strong>Dexmedetomidina</strong> com vigilância máxima à <strong>bradicardia</strong> (queda de pressão); <strong>atropina pronta</strong>.</li></ul></div><div id="caso-3-amputacao-de-membro-toracico-gati" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Caso 3 — Amputação de Membro Torácico (gatinho de 2 meses)</h2><p>Gatinho de 2 meses, muito pequeno, resgatado de rua com a pata dilacerada — indicada a <strong>amputação do membro torácico</strong>. Dócil, mas felino: mesmo filhote, reage à manipulação.</p><h3 class="sub-title">Protocolo e a janela curta</h3><p>Fez a dissociativa com a mesma <strong>ketamina de 5 mg/kg IM</strong>, porém com <strong>alfa-2</strong> em vez de benzodiazepínico — em gatos ela usa ainda menos benzodiazepínico que em cães, prefere o alfa-2 e mantém atenção à <strong>FC</strong> (mais alta no felino, o que compensa um pouco, mesmo no filhote).</p><div class="callout callout-red"><strong>Janela de minutos — não se distraia</strong> Aplicada a dissociativa, em ~5 min o gatinho estava sedado e foi canulado; em mais ~5 min, já se recuperava. <b>Aproveite essa janela</b> e mantenha vigilância: perder o tempo de canular é fácil.</div><p>Como a amputação seria do membro torácico, o <strong>acesso foi obtido no membro pélvico (safena)</strong>, por falta de espaço à frente. Usou um <strong>cateter mais fino que o amarelo (26G)</strong> — difícil de trabalhar, pois é tão fino que <strong>não reflui sangue</strong>, tornando a punção praticamente às cegas; o amarelo não passaria nessa região.</p><h3 class="sub-title">O bloqueio</h3><p>Realizou bloqueio <strong>paravertebral cervical</strong> (às cegas, com experiência), que acabou combinando paravertebral e <strong>plexo braquial</strong>. O plexo braquial isolado não cobre amputação alta, mas, num filhote tão pequeno, é possível alcançar pontos mais proximais.</p><p>Cuidados do bloqueio:</p><ul class="body-list"><li><strong>Incline</strong> levemente o paciente para o lado da cirurgia, para o anestésico descer e não atingir a medula.</li><li><strong>Evite bloqueio bilateral.</strong> No paravertebral cervical o risco é menor (não atinge o nervo frênico); no plexo braquial, o <strong>frênico</strong> é alcançado — especialmente preocupante num paciente tão pequeno.</li></ul><p>Empregou <strong>lidocaína associada à bupivacaína</strong>. Como a <strong>dose tóxica no gato é menor</strong> — ainda mais num filhote —, calcule com folga: no máximo <strong>~0,5 mg/kg de bupivacaína com ~4 mg/kg de lidocaína, sem vasoconstritor</strong>, recalculando a dose tóxica para o gato filhote. O volume foi fracionado em quatro pontos, numa região muito reduzida.</p><h3 class="sub-title">"E se não pegar?" e os cuidados da amputação</h3><p>Pergunte sempre "e se não pegar?". Caso o bloqueio falhasse: <strong>bolus de fentanil</strong>, com possibilidade de manter <strong>ketamina em infusão</strong>. Como o fluido já ocupava a única bomba de seringa, junto à inalatória, o mais provável seria <strong>fentanil + ketamina em bolus</strong>.</p><div class="callout callout-blue"><strong>Toda amputação: bupivacaína no nervo + bexiga vazia</strong> Antes de seccionar o nervo, instile <b>bupivacaína</b> na porção que permanece no corpo (prevenção de <b>dor fantasma</b>) e peça ao cirurgião que <b>recubra o coto nervoso com músculo</b>. Essa bupivacaína é para o pós-operatório. <b>Esvazie a bexiga</b>: vale para qualquer amputação ou cirurgia de grande porte, sob risco de o paciente acordar desconfortável.</div><p>Intubou com <strong>tubo 2,5 sem cuff</strong> (não havia com cuff; o 2,0 com cuff passaria, o 2,5 com cuff não). Sem cuff há vazamento de isoflurano para a sala, e o consumo supera o de um cão de 20 kg. Em retrospecto, o 2,0 com cuff passaria.</p></div><div id="a-recuperacao-do-filhote-desligou-acordo" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A Recuperação do Filhote: Desligou, Acordou</h2><p>Tenha claro: é um paciente que, ao desligar, <strong>já desperta</strong> — muito rápido.</p><ul class="body-list"><li>Com dor, acorda vocalizando.</li><li>Pela inalatória pode apresentar <strong>excitação</strong> (depende da MPA) — tudo muito acelerado.</li><li><strong>Nunca vire as costas</strong> para guardar materiais. Se alguém o acompanhar por você, que seja sempre com a <strong>mão no paciente</strong>. É um ponto em que ela insiste muito com estagiários.</li></ul><div class="callout callout-blue"><strong>Leve seu material de via aérea</strong> Leve o seu próprio <b>baraka</b> — não conte com o da clínica. Tenha a <b>máscara pequena, de vedação preta</b>, para esses filhotes. Sem acesso e sem intraóssea, a máscara é o último recurso.</div></div><div id="a-conversa-de-custo-e-risco" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">A Conversa de Custo e Risco</h2><p>Um procedimento ambulatorial em filhote — mesmo "só uma sedação" — custa hoje o mesmo, ou mais, que num cão de 20 kg. Não é questão de peso: o <strong>metabolismo acelerado</strong>, a proporção em relação ao tamanho e o <strong>risco elevado</strong> justificam o valor.</p><div class="callout callout-blue"><strong>Saiba explicar o preço</strong> "Cobra de um filhote de meio quilo o mesmo de um cão de 20 kg?" Proporcionalmente, sim — e o <b>risco é muito maior</b>. Saber explicar isso ao tutor faz parte do trabalho.</div></div><div id="perguntas-de-ativacao" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Modelos Mentais</span></div><h2 class="section-title">Perguntas de Ativação</h2><div class="mental-model"><div class="mm-num">1</div><div class="mm-content"><h4>Qual a faixa etária do filhote — e o que ela me faz antecipar?</h4><p>Até 4 meses, conduza como neonato. Cada faixa tem procedimentos típicos (atresia anal, fenda palatina, fratura, intussuscepção, oftálmica) e intercorrências próprias.</p></div></div><div class="mental-model"><div class="mm-num">2</div><div class="mm-content"><h4>Por que o alfa-2 exige cuidado redobrado no filhote?</h4><p>A pressão depende da frequência cardíaca, e o filhote não compensa a bradicardia: a pressão cai junto. Mantenha a atropina preparada.</p></div></div><div class="mental-model"><div class="mm-num">3</div><div class="mm-content"><h4>Não consegui acesso venoso. Qual a sequência?</h4><p>Dissocie (metadona + ketamina), faça o botão anestésico e a via intraóssea. Sem ela, tente a jugular; último recurso, máscara de isoflurano.</p></div></div><div class="mental-model"><div class="mm-num">4</div><div class="mm-content"><h4>Qual a dose dissociativa mínima de ketamina no filhote, e com o que associar?</h4><p>5 mg/kg (não 2). Associe a benzodiazepínico ou alfa-2 conforme o caso — no gato, prefira o alfa-2, de olho na FC.</p></div></div><div class="mental-model"><div class="mm-num">5</div><div class="mm-content"><h4>Por que checar glicemia e temperatura é inegociável?</h4><p>O filhote afastado da mãe descompensa rápido, e a hipotermia é risco potencialmente fatal. Saiba repor glicose (bolus ou infusão).</p></div></div><div class="mental-model"><div class="mm-num">6</div><div class="mm-content"><h4>O que mais muda na recuperação do filhote?</h4><p>Ao desligar, ele já desperta — muito rápido. Mão sempre no paciente; atenção à dor (vocalização) e à excitação pela inalatória.</p></div></div></div><div class="playbook-cta"><h3>Precisa do passo a passo na hora?</h3><p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso.</p><a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a></div></div><div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
