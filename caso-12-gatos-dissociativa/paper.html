@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #12</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover"><div class="cover-badge">Café com a Bá</div><div class="cover-series">Base Anestesia Veterinária</div><h1 class="cover-title">Dissociativa em Gatos —<br><span>O Risco que "Gato Não Morre" Esconde</span></h1><p class="cover-subtitle">Por que o gato é o paciente que mais sofre, a cardiomiopatia hipertrófica que mata na anestesia, e o protocolo seguro do eletivo à dissociativa.</p><div class="cover-meta"><div class="cover-meta-item">Tempo de leitura<strong>16 a 18 min</strong></div><div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div><div class="cover-meta-item">Série<strong>Café com a Bá · Caso #12</strong></div></div></div><div style="background:#fff;border-bottom:1px solid #dce5ea;padding:14px 48px;display:flex;gap:28px;flex-wrap:wrap;align-items:center;font-size:12px;color:#888;"><span style="display:flex;align-items:center;gap:8px;"><div class="dot-tag dot-essential"></div>Indispensável</span><span style="display:flex;align-items:center;gap:8px;"><div class="dot-tag dot-important"></div>Importante</span><span style="display:flex;align-items:center;gap:8px;"><div class="dot-tag dot-good"></div>Legal de saber</span></div><div class="body-wrap"><div class="index-block"><h2>Índice</h2><div class="index-grid"><div class="index-item"><a href="#gato-nao-morre-por-que-voce-quase-nao-e-">"Gato Não Morre": Por que Você Quase Não É Chamada</a><span class="index-num">01</span></div><div class="index-item"><a href="#por-que-a-dissociativa-funciona-tao-bem-">Por que a Dissociativa "Funciona" Tão Bem no Gato</a><span class="index-num">02</span></div><div class="index-item"><a href="#a-pergunta-que-falta-e-quando-mata-cardi">A Pergunta que Falta: e Quando Mata? — Cardiomiopatia Hipertrófica</a><span class="index-num">03</span></div><div class="index-item"><a href="#dex-nao-resolve-o-problema-e-a-ketamina">Dex Não Resolve: o Problema É a Ketamina</a><span class="index-num">04</span></div><div class="index-item"><a href="#o-protocolo-no-gato-eletivo-mpa">O Protocolo no Gato Eletivo (MPA)</a><span class="index-num">05</span></div><div class="index-item"><a href="#preparo-permanencia-e-acesso">Preparo, Permanência e Acesso</a><span class="index-num">06</span></div><div class="index-item"><a href="#material-de-intubacao-e-laringoespasmo">Material de Intubação e Laringoespasmo</a><span class="index-num">07</span></div><div class="index-item"><a href="#inducao-femea-e-macho">Indução: Fêmea e Macho</a><span class="index-num">08</span></div><div class="index-item"><a href="#quando-precisa-dissociar-mesmo-assim">Quando Precisa Dissociar Mesmo Assim</a><span class="index-num">09</span></div><div class="index-item"><a href="#reversao-e-recuperacao">Reversão e Recuperação</a><span class="index-num">10</span></div><div class="index-item"><a href="#peridural-so-para-treinar">Peridural: Só para Treinar</a><span class="index-num">11</span></div><div class="index-item"><a href="#erros-que-matam-laringoespasmo-e-o-gato-">Erros que Matam: Laringoespasmo e o Gato Obstruído</a><span class="index-num">12</span></div><div class="index-item"><a href="#perguntas-de-ativacao">Perguntas de Ativação</a><span class="index-num">13</span></div></div></div><div id="gato-nao-morre-por-que-voce-quase-nao-e-" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">"Gato Não Morre": Por que Você Quase Não É Chamada</h2><div class="callout callout-blue"><strong>Contexto do Paper</strong> Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.</div><p>A justificativa para não chamar anestesista para gato é quase sempre a mesma: "gato não morre" — argumento que vem antes até do "o tutor não quer pagar". No fundo, a questão é o <strong>medo (ou a falta dele)</strong> de perder o paciente. Se o veterinário teme perder, ele tira a anestesia do próprio bolso; se o tutor pode pagar e é um animal que ele não teme perder, faz sem sequer oferecer anestesista.</p><p>E o gato é justamente o paciente que ele "não teme perder" — por isso o gato sofre. Não se trata de ser contra mutirão ou campanha (foi participando de campanhas que ela se tornou anestesista, pedindo para ficar nas dissociativas). O ponto não é proibir, é <strong>saber explicar o risco</strong> — ao veterinário e ao tutor, em linguagem simples — para que ao menos seja oferecido.</p><div class="callout callout-essential"><strong>Regra Central</strong> Quem libera o paciente é o <b>anestesista</b>, não o veterinário que ligou. E, se algo der errado, a responsabilidade é sua. Por isso o risco precisa ser explicado e registrado — mesmo que você acabe perdendo o procedimento.</div></div><div id="por-que-a-dissociativa-funciona-tao-bem-" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Por que a Dissociativa "Funciona" Tão Bem no Gato</h2><p>O gato, em geral, já tem frequência cardíaca mais alta. Ao receber um alfa-2 (uma xilazina, por exemplo), ele não cai tanto quanto o cão. Associando ketamina, vira praticamente uma anestesia geral — embora tecnicamente seja <strong>contenção química</strong>. Dá para realizar o procedimento, o que não significa que o paciente não esteja sentindo dor.</p><p>Por isso o protocolo de campanha "pega": doses altas de ketamina com doses altas de xilazina. Às vezes entra um benzodiazepínico, que no gato seda em excesso e pode durar dias. Costuma ficar só <strong>xilazina + ketamina</strong> — até porque revertem o alfa-2 depois, e um opioide associado poderia cursar com excitação na reversão. Seguem o que aprenderam porque "a fórmula não mata".</p></div><div id="a-pergunta-que-falta-e-quando-mata-cardi" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A Pergunta que Falta: e Quando Mata? — Cardiomiopatia Hipertrófica</h2><p>O gato tem predisposição genética à <strong>cardiomiopatia hipertrófica (CMH)</strong>: o músculo cardíaco cresce para dentro, a parede espessa e sobra pouco espaço para o volume que deveria ser ejetado. Hoje há gatos diagnosticados já aos 2 anos.</p><p>Não é doença "de raça": acreditava-se que fosse, mas é apenas porque o gato de raça é mais bem cuidado e levado a especialista. <strong>Qualquer gato pode ter, inclusive o vira-lata</strong> — os grandes desastres das campanhas de castração. Gatis sérios examinam os pais justamente para rastrear cardiopatia.</p><div class="callout callout-blue"><strong>O caso que ela cita</strong> Uma clínica grande e renomada prometeu à tutora que o procedimento seria com anestesista (entendem "inalatória" como "anestesista"), cobraram, apresentaram a anestesista para a conversa — e, na hora, fizeram dissociativa sem anestesista. Excesso de confiança somado à falta de ética; o excesso de confiança vem antes e foi normalizado.</div><h3 class="sub-title">Por que a CMH mata na anestesia</h3><p>Com pouco espaço interno, o coração precisa bater ainda mais rápido para compensar o baixo volume ejetado e manter o débito. Um protocolo que <strong>eleva ainda mais a frequência cardíaca</strong> pode levar à morte súbita. O exemplo clássico é a <strong>ketamina na dose de 10 mg/kg</strong> — a dose alta de campanha "feita em qualquer paciente". Ela evita até doses baixas de ketamina no gato: sem ecocardiograma, não se sabe o tamanho real do coração por dentro ("em alguns, só passa uma caneta"). É muito individual; só o eco mostra.</p><div class="callout callout-warning"><strong>A outra causa de morte</strong> É o gato que, após a MPA, cai com o pescoço fletido sem que ninguém perceba — descoberto no foco ou no pós. Mas a morte súbita logo após a aplicação costuma ser a hipertrófica. Mesmo o que sobrevive à campanha pode desenvolver sintomas e ser diagnosticado depois: o tutor que economizou na castração gasta muito mais adiante, com pouca chance de recuperação.</div><div class="callout callout-blue"><strong>Modelo mental dela</strong> Como não tem eco da maioria dos gatos que anestesia, ela conduz <b>todo gato como se tivesse hipertrófica</b> — a mesma lógica de tratar todo idoso sem exames como cardiopata.</div></div><div id="dex-nao-resolve-o-problema-e-a-ketamina" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Dex Não Resolve: o Problema É a Ketamina</h2><p>Com a dexmedetomidina vendida "como a solução definitiva", muitos passaram a usá-la em dose de bula — e a perder pacientes também. O erro de raciocínio é achar que <strong>trocar a xilazina pela dex já resolve</strong>. Não resolve: na CMH, o problema maior é a <strong>ketamina</strong>, não o alfa-2.</p><p>Trocar apenas o alfa-2 só encarece. Na prática, a xilazina é até mais adequada ao que esse protocolo busca (aprofundar a condição dissociativa), por ser mais pesada.</p></div><div id="o-protocolo-no-gato-eletivo-mpa" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Protocolo no Gato Eletivo (MPA)</h2><p>Aqui se fala do gato em que o veterinário aceitou contratar anestesista — uma anestesia normal, não a dissociativa para operar. Ela prefere começar pela MPA com <strong>alfa-2 + opioide</strong>, mas não na mesma proporção do cão.</p><ul class="body-list"><li><strong>Metadona</strong>: usa a mesma dose em cães e gatos.</li><li><strong>Morfina</strong>: dose bem menor no gato (cautela com excitação, ainda mais em eletivo).</li><li><strong>Alfa-2</strong>: nunca em dose de bula (muito altas), por ser perigoso. Pode ser xilazina ou dex.</li><li><strong>Macho</strong>: prefere <strong>dex + morfina</strong> a dex + metadona, por dar menos bradicardia.</li><li><strong>Fêmea</strong>: prefere <strong>metadona</strong> na MPA, pela melhor analgesia abdominal.</li></ul><h3 class="sub-title">Faixa de dose que ela usa</h3><ul class="body-list"><li><strong>Dexmedetomidina</strong> pré-eletiva: começa em <strong>4 ou 5 e vai no máximo a 8 mcg/kg</strong>, conforme o temperamento (dex veterinária, mais forte que a humana).</li><li>Caso real: um gato persa dócil em que chegou a <strong>10 mcg/kg</strong> de dex sem efeito relevante.</li><li><strong>Xilazina</strong> (quando opta por ela): começa em <strong>1, máximo 2 mg/kg</strong> — seda bem.</li></ul><div class="callout callout-blue"><strong>Filosofia</strong> A meta da MPA não é sedar excessivamente — é fazer o gato permitir o acesso. Mas é individual: alguns sedam muito mesmo com dose baixa, então <b>fique junto do paciente</b>.</div></div><div id="preparo-permanencia-e-acesso" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Preparo, Permanência e Acesso</h2><p>Após a MPA, ela mantém o gato na sala de cirurgia, dentro da própria caixa, enquanto monta o centro cirúrgico — por dois motivos: estar pronta para canular e evitar que o gato caia com o pescoço fletido sem que ninguém veja.</p><ul class="body-list"><li>O gato vai vomitar — esteja preparada para não sujar os pertences dele.</li><li>Lembre-se da <strong>vasoconstrição periférica</strong>: canular é mais difícil. Ela vai direto ao cateter amarelo, sem insistir no azul (conforme o tamanho do gato).</li><li>A MPA leva uns <strong>15 minutos</strong> para fazer efeito — use o tempo para preparar todo o material.</li></ul></div><div id="material-de-intubacao-e-laringoespasmo" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Material de Intubação e Laringoespasmo</h2><ul class="body-list"><li><strong>Não reutilize sonda em gato.</strong> O risco de transmitir FIV/FeLV é grande e nem sempre há esses diagnósticos. Tenha estoque de sondas 2,5, 3, 3,5 e 4 e use uma nova por gato.</li><li>Deixe junto uma <strong>sonda SEM cuff</strong>, para laringoespasmo, intercorrência ou traqueostomia. Mantenha tudo pronto até o fim — o laringoespasmo pode ocorrer depois.</li><li>O laringoespasmo costuma surgir na intubação, <strong>após a fase crítica</strong> — por isso o material de resgate fica pronto.</li></ul><h3 class="sub-title">Intubar o gato macho</h3><p>Há quem não intube o gato macho. É possível não intubar, mas ela <strong>intuba todos</strong>: quando contratada, considera serviço completo = via aérea protegida. Com o propofol, o gato perde o reflexo de proteção e pode regurgitar (e é difícil mantê-lo em jejum — provavelmente já vomitou).</p><div class="callout callout-warning"><strong>Tá dando certo até dar errado</strong> O problema de não intubar aparece na complicação: um propofol mais rápido causa apneia, é preciso ventilar, e o gato não está intubado — então você tenta intubar às pressas, com ele já despertando, e o risco de laringoespasmo dispara. Se optar por não intubar: mantenha monitorado, no oxigênio, vigiando a ventilação, porque o propofol derruba a saturação.</div></div><div id="inducao-femea-e-macho" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Indução: Fêmea e Macho</h2><h3 class="sub-title">Co-indução com ketamina</h3><p>Quando não usou dissociativa na MPA, ela gosta de associar <strong>ketamina ao propofol</strong> como co-indutor: a dex deprime muito e, somada ao propofol, deprime ainda mais — a ketamina dá um estímulo antes do propofol e regulariza. Por isso, na indução, <strong>começa pela ketamina</strong> (até porque dex + propofol também causa midríase).</p><h3 class="sub-title">Fêmea (castração)</h3><ul class="body-list"><li>Indução: <strong>propofol + ketamina</strong>. A ketamina da indução dura uns 10 minutos — às vezes precisa repetir.</li><li>Em geral, sem fentanil na indução; com alfa-2 na MPA + ketamina, a analgesia já basta. Em um caso mais grave, faria <strong>fentanil diluído, lento, numa seringa de 5 ml</strong> (na bomba ou na mão).</li><li>Quando a seringa está terminando, o cirurgião costuma já estar ligando o útero — ainda restam alguns minutos de fentanil. Se atrasar (perdeu o coto, sangrando): mais um bolus de fentanil ou a infusão (bolsa santa).</li><li>Não gosta de instilar nada na cavidade, em fêmea.</li></ul><h3 class="sub-title">Macho (castração) — bloqueio intratesticular</h3><ul class="body-list"><li>Sem fentanil na indução; faz <strong>bloqueio intratesticular com lidocaína + bupivacaína meio a meio</strong>, cerca de <strong>0,5 ml em cada testículo</strong> e mais <strong>0,25 a 0,5 ml na linha de incisão</strong>, <strong>SEM vasoconstritor</strong>.</li><li>Pode bloquear ambos os testículos pela mesma linha ou uma linha por testículo.</li><li>O intratesticular tem <strong>latência mais lenta</strong> (precisa banhar todas as terminações). Como a cirurgia é rápida, ela prioriza a latência: manda o cirurgião paramentar enquanto isso e, às vezes, faz ela mesma a tricotomia para ganhar 2–3 minutos antes de liberar.</li></ul><div class="callout callout-blue"><strong>Não esqueça do olho</strong> Quase todo gato rotaciona o olho (às vezes um sim, outro não). Se <b>não rotacionar, coloque pomada no olho</b> — vale também para o cão — para evitar ressecamento e úlcera em procedimentos longos. Isso também é de sua responsabilidade.</div></div><div id="quando-precisa-dissociar-mesmo-assim" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Quando Precisa Dissociar Mesmo Assim</h2><p>Há gato que não seda o suficiente para o acesso, ou é agressivo demais. Pode ser preciso partir para a <strong>dissociativa</strong> — mas, mesmo assim, ela começa com alfa-2 + opioide. Se já fez o alfa-2, não precisa de midazolam para dissociar (ele entraria se não houvesse alfa-2).</p><p>Antes de dissociar um gato sem exame, ela <strong>explica os riscos ao veterinário</strong> (a fase de risco de descompensação/morte súbita por CMH) e faz a <strong>dose mínima de dissociativa, que para ela é 5 mg/kg de ketamina</strong>.</p><div class="callout callout-red"><strong>Por que evitar a dissociativa cheia</strong> Há um protocolo forte com <b>15 mg/kg de ketamina</b> — uma dose muito alta, que imobiliza completamente o paciente, a ponto de até ela, que não é cirurgiã, conter o animal sozinha. Mas é sempre dose máxima e muito perigosa: <b>diante de um gato com hipertrófica, essa dose pode matá-lo</b> ou levá-lo a descompensar e ir para a UTI. Por isso: havendo suspeita de CMH, <b>evite a dissociativa ou peça ecocardiograma antes</b>.</div></div><div id="reversao-e-recuperacao" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Reversão e Recuperação</h2><ul class="body-list"><li><strong>Fêmea</strong>: ela evita reverter, para manter a analgesia abdominal do alfa-2 (mais conforto). Desperta em cerca de 5 a 10 minutos; vai virando o gato de lado para estimular e desmamando do oxigênio.</li><li><strong>Macho</strong>: reverte rápido, em geral só com a reversão do alfa-2.</li><li>Se já se passaram uns 40 minutos e se usou dexmedetomidina, reverter tende a causar excitação — então, entre 20 e 30 minutos, prefira <strong>metade da dose do reversor</strong>, se julgar necessário reverter.</li><li><strong>Reverta sempre por via intramuscular, nunca intravenosa</strong> (considera o IV abrupto demais, mesmo diluído e lento) — e por IM já é rápido. No macho, pode ir com a dose cheia (a MPA pode pesar).</li></ul><div class="callout callout-warning"><strong>Sinal de alerta</strong> Gato em midríase, demorando a acordar e que dessatura ao sair do oxigênio: pense em <b>reverter metade da dose IM</b>, independentemente do tempo.</div></div><div id="peridural-so-para-treinar" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">Peridural: Só para Treinar</h2><p>Peridural em gato, para ela, só faz sentido como <strong>treino</strong> — foi o que fez na residência (em todas as fêmeas, até em piometra; a residência serve para isso). Fora dela, na OH de cliente, <strong>não recomenda</strong>: não compensa o risco. Só a fez na própria gata, para testar volume à vontade. E, ainda assim: conforme o volume, a peridural pode não alcançar os ovários — pega só a região do útero, de modo que, ao tracionar o ovário, o gato sente, exigindo o bolus de fentanil.</p></div><div id="erros-que-matam-laringoespasmo-e-o-gato-" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Erros que Matam: Laringoespasmo e o Gato Obstruído</h2><h3 class="sub-title">O laringoespasmo</h3><p>Ela já montou protocolo com mentorado de ônibus de castração, onde não se intuba. O laringoespasmo costuma vir de <strong>tentar intubar com muita dificuldade</strong> ou de <strong>não fazer lidocaína na glote</strong>. Mas a lidocaína na glote tem um contraponto: pode causar <strong>plug/obstrução na sonda</strong>. Já houve gato que morreu em hospital de referência por sonda obstruída por plug que ninguém percebeu. Tudo tem prós e contras.</p><div class="callout callout-blue"><strong>Quanto menos a gente sabe, menos medo a gente tem</strong> É por isso que muitos não chamam anestesista: "fazia com a fórmula de sempre e dava certo; agora deu errado, volto ao que dava certo". É compreensível — mas são os detalhes que fazem diferença, e o que deu certo antes não garante que dará certo sempre.</div><h3 class="sub-title">O gato obstruído</h3><p>Caso trazido por aluno: gato obstruído, obeso, para cistotomia. Acordou, deglutiu uma vez e, ao esvaziar o cuff para extubar, parou. A MPA fora <strong>0,2 mg/kg de metadona</strong> e nenhuma outra analgesia; o gato não foi desobstruído nem teve cistocentese antes, com eletrólitos alterados (provável hipercalemia).</p><ul class="body-list"><li><strong>Crítica de dose</strong>: 0,2 mg/kg de metadona isolada é pouco. Ela usaria ketamina na indução (mais eficiente) e <strong>metadona 0,4 mg/kg</strong>, junto com o alfa-2 (com cautela), para mais analgesia.</li><li><strong>O recado clínico</strong>: gato obstruído com eletrólitos alterados/hipercalemia precisa ser <strong>estabilizado/desobstruído antes</strong>. No oxigênio ele aguentava; ao sair do oxigênio é que descompensou. Sem corrigir o eletrólito e com a obstrução, não há condição.</li><li>Este gato estava obstruído havia 2 dias e entrou em cirurgia sem estabilização — caso muito difícil, ainda mais sem eletrocardiograma no trans-operatório.</li></ul><div class="callout callout-blue"><strong>Próximo encontro</strong> Ela encerrou prometendo um fluxograma das situações em que o gato obstruído pode chegar — dá para subdividir em quatro, cada uma rendendo um encontro (o próximo: gato obstruído).</div></div><div id="perguntas-de-ativacao" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Modelos Mentais</span></div><h2 class="section-title">Perguntas de Ativação</h2><div class="mental-model"><div class="mm-num">1</div><div class="mm-content"><h4>Por que o gato é o paciente que mais sofre na anestesia?</h4><p>Porque é o que o veterinário "não teme perder" — então não oferece anestesista. O papel aqui é explicar e registrar o risco, em linguagem simples.</p></div></div><div class="mental-model"><div class="mm-num">2</div><div class="mm-content"><h4>Qual a cardiopatia que mata o gato na anestesia, e em quem suspeitar?</h4><p>A cardiomiopatia hipertrófica (CMH). Suspeite em qualquer gato, inclusive vira-lata — sem eco, conduza todos como se tivessem CMH.</p></div></div><div class="mental-model"><div class="mm-num">3</div><div class="mm-content"><h4>Trocar a xilazina pela dexmedetomidina resolve o risco da CMH?</h4><p>Não. O problema maior é a ketamina (que eleva a FC), não o alfa-2. Trocar só o alfa-2 apenas encarece.</p></div></div><div class="mental-model"><div class="mm-num">4</div><div class="mm-content"><h4>Qual a dose mínima de dissociativa no gato — e qual evitar?</h4><p>Mínima de 5 mg/kg de ketamina, sempre com alfa-2 + opioide. Evite a dose cheia (15 mg/kg): em CMH, pode matar.</p></div></div><div class="mental-model"><div class="mm-num">5</div><div class="mm-content"><h4>Por que intubar o gato macho e ter sonda sem cuff à mão?</h4><p>Via aérea protegida é serviço completo; o propofol abole o reflexo e há risco de regurgitação. A sonda sem cuff fica pronta para laringoespasmo, que costuma surgir já na intubação.</p></div></div><div class="mental-model"><div class="mm-num">6</div><div class="mm-content"><h4>Como reverter o alfa-2 no gato?</h4><p>Sempre por via IM, nunca IV. Macho pode levar a dose cheia; passados ~40 min ou com risco de excitação, prefira metade da dose.</p></div></div></div><div class="playbook-cta"><h3>Precisa do passo a passo na hora?</h3><p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso.</p><a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a></div></div><div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
