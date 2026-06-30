@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #10</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover"><div class="cover-badge">Café com a Bá</div><div class="cover-series">Base Anestesia Veterinária</div><h1 class="cover-title">Anestesia em Filhotes —<br><span>Parte 3: Fratura e a Tala que Vira Armadilha</span></h1><p class="cover-subtitle">Fratura de rádio e ulna no filhote pequeno. A tala curativa que vira conserto, o bloqueio com latência e o risco de automutilação.</p><div class="cover-meta"><div class="cover-meta-item">Tempo de leitura<strong>14 a 16 min</strong></div><div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div><div class="cover-meta-item">Série<strong>Café com a Bá · Caso #10</strong></div></div></div><div class="body-wrap"><div class="index-block"><h2>Índice</h2><div class="index-grid"><div class="index-item"><a href="#o-problema-central-a-tala-que-vira-armad">O Problema Central: a Tala que Vira Armadilha</a><span class="index-num">01</span></div><div class="index-item"><a href="#seu-posicionamento-entre-o-tutor-e-o-cir">Seu Posicionamento: entre o Tutor e o Cirurgião</a><span class="index-num">02</span></div><div class="index-item"><a href="#conserto-nao-e-o-mesmo-preco">Conserto Não é o Mesmo Preço</a><span class="index-num">03</span></div><div class="index-item"><a href="#avaliacao-preanestesica-exames-e-o-corac">Avaliação Pré-Anestésica: Exames e o Coração do Filhote</a><span class="index-num">04</span></div><div class="index-item"><a href="#o-caso-a-yorkshire-de-4-meses">O Caso: a Yorkshire de "4 Meses"</a><span class="index-num">05</span></div><div class="index-item"><a href="#protocolo-mpa-e-inducao">Protocolo: MPA e Indução</a><span class="index-num">06</span></div><div class="index-item"><a href="#o-bloqueio-latencia-e-o-timing-com-o-cir">O Bloqueio: Latência e o Timing com o Cirurgião</a><span class="index-num">07</span></div><div class="index-item"><a href="#manutencao-inalatoria-em-vez-de-tiva">Manutenção: Inalatória em vez de TIVA</a><span class="index-num">08</span></div><div class="index-item"><a href="#a-regra-do-membro-bloqueio-tala-e-automu">A Regra do Membro: Bloqueio, Tala e Automutilação</a><span class="index-num">09</span></div><div class="index-item"><a href="#fim-da-cirurgia-tala-bexiga-e-raiox">Fim da Cirurgia: Tala, Bexiga e Raio-X</a><span class="index-num">10</span></div><div class="index-item"><a href="#posoperatorio-glicemia-valor-e-o-proximo">Pós-operatório: Glicemia, Valor e o Próximo Caso</a><span class="index-num">11</span></div><div class="index-item"><a href="#perguntas-de-ativacao">Perguntas de Ativação</a><span class="index-num">12</span></div></div></div><div id="o-problema-central-a-tala-que-vira-armad" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Problema Central: a Tala que Vira Armadilha</h2><div class="callout callout-blue"><strong>Contexto do Paper</strong> Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.</div><p>Este material fecha a série de três encontros sobre anestesia em filhotes. Recapitulando: os neonatos (a mãe que morde a cabeça, atresia anal, miíase) e os oftálmicos (Cherry Eye, úlcera de córnea). Hoje o tema é <strong>fratura</strong>, com duas situações dentro dele.</p><p>A fratura mais comum é no filhote de porte pequeno — York, Spitz, Pinscher. Ao pular do colo ou do sofá, quebram o <strong>rádio e a ulna</strong>, em um membro ou nos dois.</p><p>O nó da história: a clínica quase nunca encaminha esses pacientes para operar de imediato. Recebem o filhote com a pata quebrada e a primeira conduta é fazer uma <strong>tala</strong>. Imobilizar é correto — não se deve deixar o membro solto. O problema é tratar a tala como se fosse <strong>curativa</strong>.</p><div class="callout callout-essential"><strong>O perigo do osso de filhote</strong> Em filhote, o osso <b>cola muito rápido</b> — e a chance de colar torto é enorme. Uma tala feita "às cegas", apenas para curar, vira armadilha.</div><h3 class="sub-title">Como acontece com estrutura (residência)</h3><p>No ambulatório: sedação, posicionamento, tala. Em muitos casos isso vira anestesia geral — para ela, sedação é MPA; uma vez canulado e feito propofol, já é anestesia geral. Fazia a tala (com bolus de propofol), levava ao raio-x ali mesmo e via que o alinhamento não estava adequado; voltava, refazia a tala, repetia o raio-x. Esse vai-e-volta acaba demorando mais que a própria cirurgia de rádio e ulna.</p><h3 class="sub-title">Como acontece no campo (sem estrutura)</h3><p>Aqui fora, muitas vezes a tala é feita às cegas. Encaminham ao centro de diagnóstico para o raio-x — ou nem isso. Se ficou um pouco torto, mantêm assim, seja por suporem que o tutor não quer cirurgia (sem perguntar), seja por acharem desnecessário.</p><p>Quem se complica é, sobretudo, o <strong>cirurgião</strong> — chamado só depois, quando o osso cresce torto, a tala solta de novo ou se constata que não houve consolidação. Aí ele assume um caso mais difícil: o conserto.</p></div><div id="seu-posicionamento-entre-o-tutor-e-o-cir" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Seu Posicionamento: entre o Tutor e o Cirurgião</h2><p>Boa parte do trabalho é se posicionar entre o tutor e o ortopedista/veterinário, em favor do que é melhor para o paciente.</p><p>A posição dela é a de <strong>expor a realidade ao tutor</strong>. Há quem discorde ("é um momento delicado, não vamos complicar"), mas, para ela, é preciso sim: o tutor precisa conhecer os riscos. Pode haver óbito, pode não haver resposta à medicação — e é por isso que existe um profissional para operar e outro para anestesiar. Ao dizer isso, você já educa o tutor.</p><div class="callout callout-blue"><strong>Quem precisa estar na conversa</strong> De preferência, traga o veterinário dono da clínica e o cirurgião (dono ou volante) para presenciar a conversa de riscos. O ortopedista tende a dizer que "vai dar tudo certo, o osso vai ficar perfeito" — melhor que ele ouça, junto, a ponderação do anestesista.</div><h3 class="sub-title">A dinâmica do cirurgião volante</h3><p>Muitos ortopedistas volantes não têm autonomia para exigir um anestesista: o dono da clínica prefere anestesiar ele mesmo, para não chamar outro profissional nem cobrar a mais. Outras vezes o volante leva o anestesista que encaixa no horário — com frequência, alguém em início de carreira. Todos começam, mas isso eleva o risco, ainda mais quando é o próprio ortopedista (que teve um módulo de anestesia na pós) orientando o anestesista novato.</p></div><div id="conserto-nao-e-o-mesmo-preco" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Conserto Não é o Mesmo Preço</h2><p>Para ela, o tempo de procedimento não pesa na cobrança: anestesia a partir de um valor, e "se durar 5 minutos ou 2 horas, é o mesmo preço".</p><p>Há uma exceção importante: o <strong>conserto</strong>. Uma ortopédica de primeira vez, sem tentativa prévia de tala, resolve-se em ~40 minutos. Já um conserto de tala que colou torto tende a demorar mais, e pode exigir anestesiar o paciente mais de uma vez.</p><div class="callout callout-blue"><strong>Regra de cobrança</strong> Conserto cobra mais caro. Já inclua o adicional (de tempo, do que for) — se não usar, retira depois. Não pode custar o mesmo de uma cirurgia que se resolveria de primeira.</div></div><div id="avaliacao-preanestesica-exames-e-o-corac" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Avaliação Pré-Anestésica: Exames e o Coração do Filhote</h2><p>Antes do protocolo, examine tudo o que tem. Nesse caso vieram <strong>hemograma e bioquímico</strong> — interessa a função renal e hepática. Peça também <strong>glicemia e albumina</strong>.</p><p>A <strong>avaliação cardiológica</strong> é fortemente recomendada, porque o filhote de porte pequeno tem alta incidência de cardiopatia (o Spitz em especial): cardiopatia congênita, PDA, entre outras. O obstáculo é conseguir essa avaliação num filhote tão novo — no interior, mal se está habituado a chamar anestesista, quanto mais a pedir eco em cão jovem.</p><div class="callout callout-warning"><strong>Se os exames não vierem normais</strong> Pode ser uma trombocitopenia, por exemplo — e a conduta muda conforme raça e espécie (isso também ocorre em gato, como na amputação do gatinho do primeiro encontro).</div></div><div id="o-caso-a-yorkshire-de-4-meses" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">O Caso: a Yorkshire de "4 Meses"</h2><p>O caso que fecha o tema é uma Yorkshire apresentada como tendo 4 meses (tinha 3), com fratura de rádio e ulna. Veterinário consciente, que já tinha o ortopedista e não ficou tentando talar — encaminhou direto.</p><p>Na chegada, a York é uma bolinha de pelo extremamente agitada — agitação de quem <strong>não está com dor</strong>. Não para, escorrega da mão, só quer pular do colo (foi assim, pulando do colo, que quebrou a pata). A tutora, apavorada, é bem informada e exigente — comprou o cão há um ou dois meses e já tem esse problema para resolver.</p><div class="callout callout-blue"><strong>Por que "3 para 4 meses" muda o jogo</strong> Quatro meses já é, para ela, a faixa em que se pode usar <b>acepromazina</b> — ou seja, mais estratégias disponíveis que num neonato. Três meses, não.</div></div><div id="protocolo-mpa-e-inducao" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Protocolo: MPA e Indução</h2><p>O protocolo muda pouco do que já foi visto na série.</p><ul class="body-list"><li><strong>MPA</strong>: metadona, na dose alta que ela costuma usar.</li><li>Peça que alguém fique com a paciente: no momento em que ela "der a caidinha", você <strong>canula</strong> — porque a janela passa rápido.</li><li><strong>Indução</strong>: ketamina + propofol, o mesmo esquema.</li><li>Como é fratura de rádio e ulna, ela gosta de iniciar um <strong>bolus de fentanil já na indução</strong> — um bolus pré-infusão, mesmo que a analgesia principal não seja por infusão.</li></ul><p>O motivo desse bolus precoce está ligado ao bloqueio, explicado a seguir.</p></div><div id="o-bloqueio-latencia-e-o-timing-com-o-cir" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Bloqueio: Latência e o Timing com o Cirurgião</h2><p>O membro torácico recebe <strong>bloqueio locorregional com neurolocalizador</strong>. Não é um bloqueio rápido de fazer — é preciso encontrar uma resposta específica no neuro.</p><div class="callout callout-warning"><strong>Cuidado anatômico</strong> Atenção à profundidade da agulha e à concentração, para não introduzir a agulha dentro do tórax. Há vídeos da técnica na plataforma, às cegas e com neurolocalizador.</div><h3 class="sub-title">O problema da latência</h3><p>A fratura de rádio e ulna tem latência de bloqueio longa. Se o bloqueio demora a agir, a cirurgia pode terminar antes de ele funcionar.</p><ul class="body-list"><li>Com <strong>bupivacaína isolada</strong>, a latência é de cerca de <strong>40 minutos</strong>.</li><li>Misturando <strong>lidocaína + bupivacaína</strong>, a latência cai para uns <strong>20 minutos</strong> — por isso ela prefere a mistura nesses casos.</li></ul><p>Como é um cão muito pequeno, o bloqueio tende a pegar mais rápido — daí estimar ~20 min.</p><div class="callout callout-warning"><strong>O timing com o cirurgião</strong> Você quer que o cirurgião demore um pouco a começar, por causa da latência. Mas é filhote e a cirurgia é rápida (cerca de 40 min do início ao despertar). Por isso o <b>bolus de fentanil</b> segura a analgesia enquanto o bloqueio não pega — permite ao cirurgião incisar e começar. Sem ele, você pode supor que "o bloqueio não pegou" quando, na verdade, ele ainda nem começou a agir. No pós, sempre <b>teste o bloqueio motor</b> para confirmar se pegou.</div></div><div id="manutencao-inalatoria-em-vez-de-tiva" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Manutenção: Inalatória em vez de TIVA</h2><p>A escolha é manter na <strong>inalatória (isoflurano)</strong>, não na TIVA. O raciocínio: a TIVA exigiria vários adjuvantes para manter o propofol baixo, e no filhote isso é desnecessário — a analgesia já está coberta pelo bloqueio.</p><div class="callout callout-blue"><strong>Quando partir para a infusão (bolsa santa)</strong> Se o bloqueio talvez não tenha pegado e a frequência cardíaca dispara quando o cirurgião alcança o osso (mesmo com o bolus feito): peça que ele pare de manipular e, na dúvida, inicie a infusão. Nesses casos ela usa a <b>bolsa santa</b> (infusão), às vezes separando o fentanil da ketamina — começa o fentanil em taxa mais alta e vai reduzindo, mantendo a ketamina alta e fixa.</div></div><div id="a-regra-do-membro-bloqueio-tala-e-automu" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A Regra do Membro: Bloqueio, Tala e Automutilação</h2><p>Este é um dos pontos mais importantes do caso — e a razão de tudo ser pensado já no caminho até o local.</p><p>Dependendo do bloqueio, o paciente pode ficar <strong>8 horas sem mover a pata</strong> — e esse filhote talvez precise ir para casa no mesmo dia.</p><div class="callout callout-red"><strong>Por que isso é perigoso</strong> A metadona dura cerca de 6 horas, mas o pico de sedação passa em ~10 minutos. Superada a fase de sonolência, o filhote fica <b>extremamente agitado</b>. Se não sentir o membro, ele pode <b>automutilá-lo</b> (comer a pata). Por isso ela não quer mais que <b>4 horas de bloqueio</b> — busca acelerar a latência (mistura lido+bup) e limitar a duração. Tudo isso é planejado antes.</div></div><div id="fim-da-cirurgia-tala-bexiga-e-raiox" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Fim da Cirurgia: Tala, Bexiga e Raio-X</h2><div class="callout callout-red"><strong>Não acorde antes da tala</strong> Não desperte o paciente antes de o cirurgião concluir a tala do pós-operatório. Nada de "estou no último ponto, é filhote, vou desligar o isoflurano": se desligar, ele reage e pode pular da mesa. O resultado é ruim e constrangedor, porque o despertar é rápido. Só desligue o isoflurano com a tala pronta.</div><p>Ao final, <strong>esvazie a bexiga</strong> do paciente com delicadeza, manualmente, para conforto — na internação ele pode segurar a urina, o que causa muita dor.</p><div class="callout callout-blue"><strong>O caso que ensina</strong> Um filhote de porte grande, após amputação de membro pélvico, vocalizava no pós mesmo com toda a analgesia e o bloqueio feitos. Ao investigar, a <b>bexiga estava repleta</b>. Ele adormeceu assim que foi esvaziada. Lembre-se sempre disso.</div><h3 class="sub-title">O raio-x pós-cirúrgico</h3><p>O cirurgião costuma querer um raio-x antes da tala, para verificar a necessidade de ajustes — o que é positivo. Mas nem sempre o raio-x vai ao centro cirúrgico.</p><ul class="body-list"><li>Se o raio-x vem à sala (paciente anestesiado): melhor; que eles se organizem para posicionar.</li><li>Se não vem: faça bolus de propofol para manter, ou desperte e leve o paciente ao raio-x. Depende do seu contexto de monitoração.</li></ul><p>Muitas vezes ela mesma levava o paciente: deixava superficializar com bons parâmetros e o transportava com ambu e estetoscópio, acompanhando — sem montar monitor fora da sala.</p><div class="callout callout-warning"><strong>Combine antes</strong> Peça ao cirurgião que evite ao máximo precisar voltar à mesa — sendo filhote, esse vai-e-volta o faz despertar. Isso se combina antes. Se retornar à mesa, há cobrança adicional (cerca de 25% a 50% a mais, conforme o que será refeito — às vezes a cirurgia inteira).</div></div><div id="posoperatorio-glicemia-valor-e-o-proximo" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Pós-operatório: Glicemia, Valor e o Próximo Caso</h2><p>Glicemia e temperatura já foram cobertas na série; reforce: <strong>cheque a glicemia no pós</strong>. Se estiver baixa — ou se o paciente estiver muito sonolento, por exemplo após uma dexmedetomidina pouco recomendável nesse caso —, é preciso saber repor glicose.</p><div class="callout callout-blue"><strong>Glicemia não é só bolus</strong> Às vezes não basta repetir bolus de glicose — é necessária <b>infusão</b>. Oriente o pós para a equipe: não deixar o paciente sem comer e monitorar a glicemia.</div><p>Crie valor para o seu trabalho. Orientando tudo isso, você se torna lembrado. Acostume-se: o cirurgião termina e vai embora; o pós-operatório da imobilização é com ele e o tutor. Se precisar consertar depois, é responsabilidade dele — e você cobra normalmente (lembrando: conserto é mais caro).</p><div class="callout callout-blue"><strong>Gancho para o próximo caso</strong> O PDA poderia ocorrer numa cadela dessas, mas costuma se manifestar num paciente um pouco mais velho, que passa a demandar mais volume sanguíneo e a dar sintomas. O próximo encontro é sobre uma adolescente Spitz com suspeita (provavelmente confirmada) de PDA.</div></div><div id="perguntas-de-ativacao" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Modelos Mentais</span></div><h2 class="section-title">Perguntas de Ativação</h2><div class="mental-model"><div class="mm-num">1</div><div class="mm-content"><h4>A clínica fez uma tala "curativa" num filhote. Por que isso costuma virar conserto?</h4><p>Porque o osso do filhote cola rápido — e cola torto.</p></div></div><div class="mental-model"><div class="mm-num">2</div><div class="mm-content"><h4>O ortopedista volante disse ao tutor que "vai dar tudo certo". Qual é o meu papel na conversa?</h4><p>Expor a realidade ao tutor, com o dono da clínica e o cirurgião presentes.</p></div></div><div class="mental-model"><div class="mm-num">3</div><div class="mm-content"><h4>A cirurgia é rápida e o bloqueio tem latência longa. Como não deixar o paciente desprotegido?</h4><p>Bolus de fentanil na indução, para cobrir a analgesia enquanto o bloqueio não pega.</p></div></div><div class="mental-model"><div class="mm-num">4</div><div class="mm-content"><h4>O membro ficará dormente por horas e o filhote é muito agitado. Qual o risco?</h4><p>Automutilação — por isso limite o bloqueio a ~4 horas.</p></div></div><div class="mental-model"><div class="mm-num">5</div><div class="mm-content"><h4>O cirurgião quer desligar o isoflurano no último ponto para ir ao raio-x. Pode?</h4><p>Não. Só desligue após a tala pronta — senão o paciente reage e pula da mesa.</p></div></div><div class="mental-model"><div class="mm-num">6</div><div class="mm-content"><h4>O paciente acordou vocalizando mesmo com toda a analgesia feita. O que checar?</h4><p>A bexiga — esvazie com delicadeza, manualmente.</p></div></div></div><div class="playbook-cta"><h3>Precisa do passo a passo na hora?</h3><p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso.</p><a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a></div></div><div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
