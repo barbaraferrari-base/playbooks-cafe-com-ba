@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playbook Café com a Bá — Caso #9</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #27ae60; }
+    .dot-good { background: #3498db; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover"><div class="cover-badge">Café com a Bá</div><div class="cover-series">Base Anestesia Veterinária</div><h1 class="cover-title">Anestesia em Filhotes —<br><span>Parte 2: Oftálmicas e o Risco Real</span></h1><p class="cover-subtitle">Filhotes "mais velhos" e cirurgia oftálmica. A conversa de risco, o protocolo enxuto e o que fazer quando o fármaco de emergência não responde.</p><div class="cover-meta"><div class="cover-meta-item">Tempo de leitura<strong>14 a 16 min</strong></div><div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div><div class="cover-meta-item">Série<strong>Café com a Bá · Caso #9</strong></div></div></div><div class="body-wrap"><div class="index-block"><h2>Índice</h2><div class="index-grid"><div class="index-item"><a href="#o-problema-central-filhote-mais-velho-ri">O Problema Central: Filhote "Mais Velho", Risco Real</a><span class="index-num">01</span></div><div class="index-item"><a href="#a-conversa-de-risco-com-o-tutor">A Conversa de Risco com o Tutor</a><span class="index-num">02</span></div><div class="index-item"><a href="#repertorio-conhecer-a-cirurgia-para-pesa">Repertório: Conhecer a Cirurgia para Pesar o Risco</a><span class="index-num">03</span></div><div class="index-item"><a href="#protocolo-do-filhote-mais-velho-mpa-com-">Protocolo do Filhote "Mais Velho": MPA com Metadona</a><span class="index-num">04</span></div><div class="index-item"><a href="#complementacao-e-inducao">Complementação e Indução</a><span class="index-num">05</span></div><div class="index-item"><a href="#manutencao-e-analgesia">Manutenção e Analgesia</a><span class="index-num">06</span></div><div class="index-item"><a href="#recuperacao-oftalmica-atencao-total">Recuperação Oftálmica: Atenção Total</a><span class="index-num">07</span></div><div class="index-item"><a href="#quando-da-errado-o-farmaco-que-nao-respo">Quando Dá Errado: O Fármaco que Não Responde</a><span class="index-num">08</span></div><div class="index-item"><a href="#o-pediatrico-bravo-de-4-meses">O Pediátrico Bravo de ~4 Meses</a><span class="index-num">09</span></div><div class="index-item"><a href="#o-gato-oftalmico-enucleacao-e-bloqueio-r">O Gato Oftálmico: Enucleação e Bloqueio Retrobulbar</a><span class="index-num">10</span></div><div class="index-item"><a href="#o-bulldog-do-cherry-eye">O Bulldog do Cherry Eye</a><span class="index-num">11</span></div><div class="index-item"><a href="#monitorizacao-seu-maior-aliado-as-cegas">Monitorização: Seu Maior Aliado às Cegas</a><span class="index-num">12</span></div><div class="index-item"><a href="#alem-do-protocolo-tenha-medo">Além do Protocolo: Tenha Medo</a><span class="index-num">13</span></div><div class="index-item"><a href="#perguntas-de-ativacao">Perguntas de Ativação</a><span class="index-num">14</span></div></div></div><div id="o-problema-central-filhote-mais-velho-ri" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">O Problema Central: Filhote "Mais Velho", Risco Real</h2><div class="callout callout-blue"><strong>Contexto do Paper</strong> Este material é resultado do encontro semanal "Café com a Bá", série de encontros práticos sobre anestesiologia veterinária conduzidos pela M.V. Anestesista Bárbara Ferrari. O objetivo é mostrar como pensar, não só o que fazer.</div><p>Esta é a continuação do encontro anterior sobre filhotes. Ela divide o filhote em quatro quadrantes, mais detalhados que o "neonato/pediátrico" da literatura: neonatos-1 (1 a 2 meses, que mal abriram os olhos), neonatos-2 (2 a 3/4 meses) e pediátricos (4 a 5–6 meses), estes ainda subdivididos. A subdivisão importa porque o protocolo muda conforme a faixa.</p><p>O melhor exemplo é a <strong>intubação</strong>: um filhote de 2 meses, mesmo de porte pequeno, costuma ser intubável; um filhote com os olhos ainda fechados, mesmo de porte médio, pode não ser. No pediátrico, entra também a <strong>raça</strong>. A Parte 1 tratou dos mais novos; aqui o foco são os mais velhos, com dois pacientes reais: uma <strong>Shih Tzu de 40 dias</strong> com o olho quase perfurado e um <strong>bulldog francês com Cherry Eye</strong>.</p><div class="callout callout-essential"><strong>O risco de que pouca gente fala</strong> Hipotermia, bradicardia que leva a hipotensão e hipoglicemia são lembrados por todos. Mas há um risco menos comentado: <b>esses pacientes podem não responder a fármacos de emergência</b> quando você mais precisa. Por isso, procedimento em filhote desse tipo só quando é <b>realmente necessário para a vida</b> dele.</div></div><div id="a-conversa-de-risco-com-o-tutor" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">A Conversa de Risco com o Tutor</h2><p>O anestesista precisa se posicionar entre o tutor e o oftalmologista. O oftalmo tem razão em querer corrigir o olho, mas cabe ao anestesista expor os riscos para a vida do paciente. A pergunta pode ser direta: "você prefere a paciente viva e cega de um olho, ou com o olho perfeito e morta?". Não se trata de ameaça — trata-se de ter a <strong>conversa difícil</strong>, mesmo que isso emocione a tutora, deixando claro de antemão por que o procedimento pode não dar certo, já que muito não depende apenas da equipe.</p><p>Em um local que só dispõe de oftalmo, não dá para barrar tudo — mas a conversa de risco é obrigatória: "que risco vocês querem correr? Vamos em frente, mas fica avisado". No caso da Shih Tzu, a cirurgia seria com microscópio e colocação de membrana, com duração estimada de cerca de duas horas.</p><h3 class="sub-title">Como esse caso terminou</h3><p>Perguntou ao oftalmo se havia técnica mais rápida. Resposta: "se for para fazer a técnica inadequada, prefiro nem fazer". Contraponto dela: "então, se for uma anestesia de duas horas, eu é que prefiro não fazer — porque, se eu precisar de um fármaco de emergência nessa paciente e ela não responder, como fica?". Quem decide é a tutora; ela optou por mais uma semana de tratamento conservador. A viagem se perdeu, mas faz parte. O oftalmo orientou cuidado máximo ("se ela espirrar, o olho perfura"). Na semana seguinte, o olho havia fechado — desfecho favorável para a paciente.</p></div><div id="repertorio-conhecer-a-cirurgia-para-pesa" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Repertório: Conhecer a Cirurgia para Pesar o Risco</h2><p>Ela se envolve nessa decisão porque conhece as técnicas — não necessariamente as ideais para o caso, mas alternativas mais rápidas que evitariam a perda do olho. Esse conhecimento veio de um estágio com oftalmo (que serviu também para concluir que cirurgia não era o caminho dela). É a importância do <strong>repertório</strong>: nem todos têm o mesmo, e é isso que se compartilha aqui.</p><ul class="body-list"><li><strong>Flap não resolve</strong>: não sustenta um olho prestes a perfurar. O flap (de terceira pálpebra) serve apenas para úlcera de córnea superficial.</li><li><strong>Enxerto 360°</strong>: descola toda a conjuntiva e cria uma espécie de bolsa sobre o olho. É mais rápido, mas não é o ideal — esteticamente mais grosseiro e com cicatriz que clareia parcialmente.</li><li><strong>Membrana com fio 9-0</strong>: resultado muito melhor, pós-operatório mais limpo, olho praticamente preservado. É o que o oftalmo indica — porém demorado.</li></ul><div class="callout callout-blue"><strong>A lição</strong> Abandone a ideia de "vou anestesiar um oftalmo" ou "vou anestesiar um Cherry". A pergunta certa é: qual paciente, qual cirurgia, quem vai operar e qual a experiência dessa pessoa? É isso que diferencia o anestesista — não o equipamento.</div></div><div id="protocolo-do-filhote-mais-velho-mpa-com-" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Protocolo do Filhote "Mais Velho": MPA com Metadona</h2><p>A Shih Tzu de 40 dias costuma ser bastante agitada, mas isso muda pouco a conduta. A opção é <strong>metadona isolada</strong>. Quanto à bradicardia da metadona: o metabolismo do filhote é tão rápido que, aplicada a metadona, em cerca de 10 minutos vem a sedação — e é exatamente nesse momento que se deve canular; passando disso, o paciente já está despertando. Ao ir para a mesa, em geral não há bradicardia alguma.</p><p>A dose é a <strong>dose normal — sem redução para o filhote</strong>.</p><ul class="body-list"><li><strong>Glicemia</strong>: lembre-se sempre. Filhote não faz jejum.</li><li><strong>MPA</strong>: a metadona.</li><li><strong>Atropina preparada</strong>: surgindo bradicardia, ela precisa estar pronta. O débito desses pacientes depende da frequência cardíaca.</li></ul></div><div id="complementacao-e-inducao" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Complementação e Indução</h2><p>E se a metadona não bastar? Nesse paciente ela <strong>não usa alfa-2 nem acepromazina</strong>. Recorre à <strong>ketamina</strong>, eventualmente associada a um pouco de <strong>midazolam</strong> — ciente de que isso pode prolongar o pós, mas considerando-o mais seguro num filhote.</p><p>Não se trata de uma subdose de ketamina: é a <strong>dose dissociativa de 5 mg/kg</strong>. (Ela trata 5 como a dose mínima — "para muitos a mínima é 2; para mim, não". Uma dissociativa de ≥5 mg/kg tem peso clínico.)</p><p>Sobre a literatura: sem desmerecê-la, ela é baseada em trabalhos com pacientes de determinado contexto, e não se pode segui-la cegamente. Vale o que se observa funcionar na prática.</p><h3 class="sub-title">Indução e intubação</h3><ul class="body-list"><li><strong>Sem lidocaína sistêmica</strong> nesse paciente. Apenas a <strong>periglótica</strong> (lidocaína tópica na glote).</li><li><strong>Ketamina na indução</strong> (se a dissociativa já tivesse sido feita na MPA, não precisaria repetir).</li><li><strong>Intubação</strong>: provavelmente sonda <strong>2,5 sem cuff</strong> ou <strong>2,0 sem cuff</strong>; vale ter uma <strong>2,0 com cuff</strong> à mão, embora o mais provável seja sem cuff. Mais um motivo para o procedimento ser curto.</li></ul><div class="callout callout-warning"><strong>Ketamina e pressão intraocular</strong> Dissociar pode <b>aumentar a pressão intraocular</b> — num olho prestes a romper, é mais um motivo para preferir não realizar o procedimento na Shih Tzu de 40 dias. Quando as opções de MPA são limitadas, pesa-se: às vezes não há muita escolha.</div></div><div id="manutencao-e-analgesia" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">Manutenção e Analgesia</h2><p>A manutenção é <strong>inalatória</strong>. A TIVA, aqui, não é questão de preferência: exigiria associar uma série de adjuvantes desnecessários num paciente de 40 dias. É possível, mas sem sentido.</p><p>Sem cuff, manter o plano é difícil e o <strong>consumo de isoflurano dispara</strong> — mais um motivo para o procedimento ser rápido e realmente emergencial.</p><p>A analgesia é o <strong>colírio anestésico</strong>, e há um modo correto de usá-lo: aplicar <strong>pelo menos 3 vezes, a cada 5 minutos</strong>, para durar cerca de <strong>40 minutos</strong>, cobrindo a analgesia da cirurgia.</p></div><div id="recuperacao-oftalmica-atencao-total" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Recuperação Oftálmica: Atenção Total</h2><p>Nada de desligar o isoflurano só porque "está no último ponto": esse paciente desperta intubado e, em cirurgia oftálmica, agita-se com facilidade. Tudo deve estar pronto para mantê-lo contido ao desligar, porque ele balança a cabeça e pode comprometer a cirurgia.</p><ul class="body-list"><li>De preferência, <strong>colar elizabetano antes de acordar</strong>.</li><li><strong>Dedicação exclusiva</strong> ao paciente no final — qualquer descuido pode custar a cirurgia.</li><li><strong>Glicemia</strong> novamente, sempre.</li></ul><p>Com esses cuidados, a recuperação tende a ser tranquila.</p></div><div id="quando-da-errado-o-farmaco-que-nao-respo" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Quando Dá Errado: O Fármaco que Não Responde</h2><p>Existe o risco real de que, num procedimento muito prolongado, um fármaco de emergência seja necessário e o paciente não responda — uma atropina, uma noradrenalina.</p><div class="callout callout-red"><strong>Vá direto para a adrenalina</strong> Na hipotensão que não responde à atropina, a dopamina tende a não funcionar num paciente desse porte — vá direto para a <b>adrenalina</b>. O filhote pode ainda não responder bem aos fármacos.</div><p>É por isso que ela subdivide em quadrantes: a capacidade de responder ou não a fármaco varia dentro dos neonatos e dos pediátricos. <strong>Pense sempre no que pode dar errado para se preparar</strong> — no início, a questão não é apenas "qual a MPA?".</p></div><div id="o-pediatrico-bravo-de-4-meses" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">O Pediátrico Bravo de ~4 Meses</h2><p>No geral, o filhote muda pouco; quem muda mais são os <strong>braquicefálicos</strong>. Um Husky de ~3 meses é viável, conforme o temperamento; um Shih Tzu de 3 meses, não. Já um Shih Tzu de 4 meses muito bravo exigiu <strong>acepromazina</strong> — em <strong>metade da metade da dose, rediluída</strong>, apenas para um leve grau de sedação.</p><p>A acepromazina não é proibida: evita-se, mas se usa quando necessário, levando em conta paciente e temperamento, não só o procedimento. Lembre que dissociar também pode elevar a pressão intraocular, o que torna a oftálmica mais delicada.</p></div><div id="o-gato-oftalmico-enucleacao-e-bloqueio-r" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">O Gato Oftálmico: Enucleação e Bloqueio Retrobulbar</h2><p>No gato, a úlcera de córnea é comum no filhote: olho comprometido por secreção, conjuntivite. Às vezes a indicação é enucleação, eventualmente bilateral, com <strong>bloqueio retrobulbar</strong> e todos os cuidados. (Há vídeo da técnica na plataforma; quem não tem prática deve treinar em cadáver primeiro.)</p><p>No protocolo oftálmico geral ela não muda muito. Em cirurgias em que o vômito não é problema, pode-se usar <strong>morfina</strong>. A meperidina, antes útil para a analgesia transcirúrgica com bloqueio, não está mais disponível; a opção passou a ser a <strong>metadona</strong>. No gato muito contaminado, às vezes nem se faz a cirurgia de membrana com microscópio: parte-se para o enxerto.</p></div><div id="o-bulldog-do-cherry-eye" class="section"><div class="section-tag"><div class="dot-tag dot-important"></div><span class="section-label">Importante</span></div><h2 class="section-title">O Bulldog do Cherry Eye</h2><p>O outro caso é o <strong>Cherry Eye</strong> — prolapso da glândula da terceira pálpebra, tratado por reposicionamento (sepultamento), e não por excisão (que alguns colegas ainda fazem). Não há regra de raça, mas predominam bulldog (francês e inglês) e Shih Tzu.</p><h3 class="sub-title">Bulldog x Shih Tzu</h3><p>Ambos tendem a tônus vagal aumentado pela questão respiratória, mas reagem de modo diferente:</p><ul class="body-list"><li><strong>Shih Tzu</strong>: muito agitado, com FC aparentemente alta (~150) que, na mesa, cai abruptamente (~80) — variação brusca, ainda mais no filhote.</li><li><strong>Bulldog</strong>: variação menos abrupta na anestesia geral, porém com a <strong>traqueia ainda menor</strong>.</li></ul><p>De protocolo, muda pouco. É cirurgia rápida (<strong>15 a 20 minutos</strong>), sem o risco de prolongar e precisar de fármaco de emergência. A analgesia também é o colírio anestésico (mesmo esquema: 3x a cada 5 minutos). Bloqueio para Cherry Eye é <strong>pouco eficaz</strong> — dificilmente se acerta. Intubando sem cuff, use o menor diâmetro possível; tente uma com cuff, já que sem cuff o vazamento de anestésico vai mais para a sala do que para o paciente.</p></div><div id="monitorizacao-seu-maior-aliado-as-cegas" class="section"><div class="section-tag"><div class="dot-tag dot-essential"></div><span class="section-label">Indispensável</span></div><h2 class="section-title">Monitorização: Seu Maior Aliado às Cegas</h2><p>Em oftálmica, a cabeça do paciente fica coberta e o cirurgião está no olho. Uma pequena variação de anestésico e o paciente começa a piscar e mexer o olho — e você está <strong>às cegas</strong> quanto ao plano. Com um monitor ruim, a anestesia fica comprometida.</p><ul class="body-list"><li>O <strong>oxímetro</strong> bom capta em pata, vulva ou pênis. Quando não capta (um gatinho preto, por exemplo), há a <strong>pastilha / oxímetro de pele</strong>. O sensor custa cerca de R$ 1.500 (equivalente a quatro anestesias), mas resolve — é prevenção de risco.</li><li><strong>Canule por trás</strong> desses pacientes, de preferência, e posicione o <strong>Doppler</strong> também atrás.</li></ul><div class="callout callout-warning"><strong>O erro clássico</strong> Você está atrás, no Doppler; a pressão cai, você se assusta e reduz o isoflurano — e o paciente reage à frente, com o cirurgião sobre o olho. O resultado é desastroso. Em oftálmica, mantém-se o plano um pouco mais profundo, tolerando alguma hipotensão e compensando de outras formas — inclusive com <b>noradrenalina</b>, se a causa não for bradicardia —, justamente porque não dá para monitorar pelo olho.</div><p>Por isso, um bom monitor é a primeira prioridade — não um monitor medíocre acompanhado de cinco bombas. Nesse paciente, cinco bombas pouco ajudariam (talvez só a de fluido). Um bom monitor salva a anestesia.</p></div><div id="alem-do-protocolo-tenha-medo" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Legal de saber</span></div><h2 class="section-title">Além do Protocolo: Tenha Medo</h2><p>"Mas é caro para uma anestesia mal paga." Veja no longo prazo: é o cliente que fideliza. Entregar o paciente vivo e bem gera mais serviço. Divulgue os pós-operatórios desses pacientes — não para que outro veterinário a chame, mas para que o <strong>tutor</strong> passe a exigir esse cuidado.</p><p>O objetivo do Café é tratar cada caso como quem chega à clínica mal sabendo o que o espera — em geral, com apenas um hemograma em mãos.</p><div class="callout callout-blue"><strong>Anestesista bom é anestesista com medo</strong> Não é o equipamento que faz o bom anestesista. O excesso de confiança, a ausência de medo — é isso que mata.</div></div><div id="perguntas-de-ativacao" class="section"><div class="section-tag"><div class="dot-tag dot-good"></div><span class="section-label">Modelos Mentais</span></div><h2 class="section-title">Perguntas de Ativação</h2><div class="mental-model"><div class="mm-num">1</div><div class="mm-content"><h4>Esse procedimento é realmente necessário para a vida do paciente?</h4><p>Em filhote com risco de não responder a fármaco de emergência, só vale o procedimento verdadeiramente essencial. Tenha a conversa de risco com o tutor antes.</p></div></div><div class="mental-model"><div class="mm-num">2</div><div class="mm-content"><h4>Conheço as técnicas cirúrgicas em jogo?</h4><p>Saber que há alternativas mais rápidas (enxerto 360°) versus a ideal porém demorada (membrana 9-0) muda a decisão anestésica. Repertório pesa.</p></div></div><div class="mental-model"><div class="mm-num">3</div><div class="mm-content"><h4>Qual a MPA do filhote "mais velho", e por quê?</h4><p>Metadona isolada, em dose normal (sem redução). Evita-se alfa-2 e acepromazina; se faltar, ketamina dissociativa 5 mg/kg ± um pouco de midazolam.</p></div></div><div class="mental-model"><div class="mm-num">4</div><div class="mm-content"><h4>Por que dissociar exige cautela na oftálmica?</h4><p>A dissociação pode elevar a pressão intraocular — num olho prestes a romper, é motivo para reconsiderar o procedimento.</p></div></div><div class="mental-model"><div class="mm-num">5</div><div class="mm-content"><h4>O fármaco de emergência pode não responder. Qual o plano?</h4><p>Atropina pronta para bradicardia; em hipotensão que não responde, vá direto para a adrenalina (a dopamina tende a falhar nesse paciente).</p></div></div><div class="mental-model"><div class="mm-num">6</div><div class="mm-content"><h4>Estou às cegas pelo olho coberto. O que me salva?</h4><p>Um bom monitor é a prioridade. Mantenha o plano um pouco mais profundo, canule e posicione o Doppler por trás, e não reduza o isoflurano no susto da pressão.</p></div></div></div><div class="playbook-cta"><h3>Precisa do passo a passo na hora?</h3><p>O Checklist deste Café com a Bá tem todas as condutas em formato operacional, na ordem do procedimento, pra você abrir no celular durante o caso.</p><a class="playbook-btn" href="checklist.html" target="_blank">Acessar o Checklist</a></div></div><div class="paper-footer">
+  © 2026 Base Anestesia Veterinária | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP - Anestesia Veterinária na Prática
+</div>
+
+</body>
+</html>
